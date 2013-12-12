@@ -37,6 +37,10 @@ echo Password::widget($name, $options);
 
 // with model
 echo Password::widget($model, $attribute, $options);
+
+// with model and active form
+echo Password::widget($model, $attribute, $form, $options);
+
 ```
 
 ## License
