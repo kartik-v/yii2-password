@@ -73,7 +73,7 @@ class PasswordInput extends \yii\widgets\InputWidget
 			throw new InvalidParamException("The 'model' and 'attribute' are mandatory when you pass a 'form' object.");
 		}
 		$this->config['bootstrap3'] = true;
-		$this->config['usernameField'] = '#' . (($this->hasModel) ? Html::getInputId($this->model, $this->userAttribute) : $this->userAttribute;
+		$this->config['usernameField'] = '#' . (($this->hasModel()) ? Html::getInputId($this->model, $this->userAttribute) : $this->userAttribute);
 		$this->setJs('onLoad');
 		$this->setJs('onKeyUp');
 		$this->setJs('container');
@@ -85,8 +85,8 @@ class PasswordInput extends \yii\widgets\InputWidget
  	 * Renders the password input field
 	 */
 	protected function renderField() {
-		if (isset($this->form)) {
-			return $form->field($this->model, $this->attribute)->passwordInput($this->inputOptions);
+		if (isset($this->form) && ($this->form instanceof \yii\widgets\ActiveForm)) {
+			return $this->form->field($this->model, $this->attribute)->passwordInput($this->inputOptions);
 		}
 		if ($this->hasModel()) {
 			return Html::activePasswordInput($this->model, $this->attribute, $this->inputOptions);
@@ -100,7 +100,7 @@ class PasswordInput extends \yii\widgets\InputWidget
 	public function registerAssets()
 	{
 		$config = empty($this->config) ? '' : ',' . Json::encode($this->config);
-		$id = ($this->hasModel) ? Html::getInputId($this->model, $this->attribute) : $this->name;
+		$id = ($this->hasModel()) ? Html::getInputId($this->model, $this->attribute) : $this->name;
 		$js = <<< SCRIPT
         jQuery(document).ready(function () {
             $("#$id").pwstrength($config);
@@ -115,7 +115,7 @@ SCRIPT;
 	 * Validate and set js expressions
 	 */
 	protected function setJs($var) {
-		if (!empty($this->config[$var]) && !($this->config[$var] instanceof JsExpression))
+		if (!empty($this->config[$var]) && !($this->config[$var] instanceof JsExpression)) {
 			$this->config[$var] =  new JsExpression($this->config[$var]);
 		}
 	}
@@ -127,7 +127,7 @@ SCRIPT;
 	protected function setJsArray($var) {
 		if (!empty($this->config[$var]) && is_array($this->config[$var])) {
 			foreach ($this->config[$var] as $key => $value) {
-				if (!empty($this->config[$var][$key]) && !($this->config[$var][$key] instanceof JsExpression))
+				if (!empty($this->config[$var][$key]) && !($this->config[$var][$key] instanceof JsExpression)) {
 					$this->config[$var][$key] =  new JsExpression($this->config[$var][$key]);
 				}
 			}
