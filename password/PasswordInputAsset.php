@@ -10,6 +10,7 @@ class PasswordInputAsset extends AssetBundle
 {
 	public $sourcePath = '@vendor/kartik-v/yii2-password/kartik/assets';
 	public $css = [
+		'css/pwstrength.css',
 	];
 	public $js = [
 		'js/pwstrength.js',

@@ -133,12 +133,19 @@ class PasswordInput extends \yii\widgets\InputWidget
 		$this->config['viewports']['progress'] = '#' . $this->meterOptions['id'];
 		$this->config['viewports']['errors'] = '#' . $this->errorOptions['id'];
 		$this->config['container'] = '#' . $this->options['id'];
+		
 		$this->config['onKeyUp'] = new JsExpression('function (evt) {
 			$(evt.target).pwstrength("outputErrorList");
 		}');
+		
 		$this->setDefault('minChar', 5);
+		
+		$this->setDefaultError('password_too_short', 'The password is too short');
+		$this->setDefaultError('email_as_password', 'Do not use your email as your password');
+		$this->setDefaultError('same_as_username', 'Your password cannot contain your username');
+			
 		$this->setJs('onLoad');
-		$this->setJsArray('validationRules');
+		$this->setJsArr('validationRules');
 	}
 	
 	/**
@@ -170,8 +177,18 @@ class PasswordInput extends \yii\widgets\InputWidget
 	 * Validate and set default value to config array
 	 */
 	protected function setDefault($var, $value) {
-		if (!empty($this->config[$var])) {
+		if (empty($this->config[$var])) {
 			$this->config[$var] =  $value;
+		}
+	}
+	
+	
+	/**
+	 * Validate and set default value to config array
+	 */
+	protected function setDefaultError($var2, $value) {
+		if (empty($this->config['errorMessages'][$var2])) {
+			$this->config['errorMessages'][$var2] =  Html::tag('span', $value);
 		}
 	}
 	
@@ -187,7 +204,7 @@ class PasswordInput extends \yii\widgets\InputWidget
 	/**
 	 * Validate and set an array of js expressions in config array
 	 */
-	protected function setJsArray($var) {
+	protected function setJsArr($var) {
 		if (!empty($this->config[$var]) && is_array($this->config[$var])) {
 			foreach ($this->config[$var] as $key => $value) {
 				if (!empty($this->config[$var][$key]) && !($this->config[$var][$key] instanceof JsExpression)) {
