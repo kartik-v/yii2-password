@@ -34,14 +34,14 @@ class PasswordInput extends \yii\widgets\InputWidget
 	public $form;
 	
 	/**
- 	 * @var array the options for the password input field
+ 	 * @var array the options for the password input
 	 */
-	public $options = [];
-	
+	public $inputOptions = [];
+
 	/**
  	 * @var array the options for the widget container
 	 */
-	public $container = [];
+	public $options = [];
 
 	/**
  	 * Initializes the widget
@@ -50,8 +50,16 @@ class PasswordInput extends \yii\widgets\InputWidget
 		parent::init();
 		$this->initPlugin();
 		$this->registerAssets();
+		echo Html::beginTag('div', $this->options);
 	}
 	
+	/**
+ 	 * Displays the input
+	 */		
+	public function run() {
+		echo $this->renderField();
+		echo Html::endTag('div');
+	}
 	
 	/**
  	 * Initializes the password input plugin
@@ -78,12 +86,12 @@ class PasswordInput extends \yii\widgets\InputWidget
 	 */
 	protected function renderField() {
 		if (isset($this->form)) {
-			return $form->field($this->model, $this->attribute)->passwordInput($this->options);
+			return $form->field($this->model, $this->attribute)->passwordInput($this->inputOptions);
 		}
 		if ($this->hasModel()) {
-			return Html::activePasswordInput($this->model, $this->attribute, $this->options);
+			return Html::activePasswordInput($this->model, $this->attribute, $this->inputOptions);
 		}
-		return Html::passwordInput($this->name, $this->value, $this->options);
+		return Html::passwordInput($this->name, $this->value, $this->inputOptions);
 	}
 	
 	/**
@@ -93,11 +101,11 @@ class PasswordInput extends \yii\widgets\InputWidget
 	{
 		$config = empty($this->config) ? '' : ',' . Json::encode($this->config);
 		$id = ($this->hasModel) ? Html::getInputId($this->model, $this->attribute) : $this->name;
-		$js = <<< EOT
+		$js = <<< SCRIPT
         jQuery(document).ready(function () {
             $("#$id").pwstrength($config);
         });
-EOT;
+SCRIPT;
 		$view = $this->getView();
 		PasswordInputAsset::register($view);
 		$view->registerJs($js);		
