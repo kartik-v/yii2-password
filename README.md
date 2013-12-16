@@ -1,9 +1,39 @@
-yii2-password
-=============
+ yii2-password
+==============
 
-This extension is a password input widget for Yii Framework 2.0. It generates a password input with password strength validation by wrapping [jQuery Password Strength Meter for Twitter Bootstrap](https://github.com/ablanco/jquery.pwstrength.bootstrap). This extension extends the [Yii Input Widget](https://github.com/yiisoft/yii2/blob/master/framework/yii/widgets/InputWidget.php) to generate a password input. The widget is styled for Twitter Bootstrap 3.0 and provides rulesets for visually displaying the quality of a users typed in password.
+This extension provides a couple of great password management utilities for Yii Framework 2.0. The extension allows password strength validation through your model. In addition, it provides an advanced password input widget, that allows you to display/hide text and show the password strength. The password strength client validation for the meter is based on [password input meter](http://www.passwordmeter.com/). Inbuilt Twitter Bootstrap CSS is used to style the widgets.
 
-[```VIEW DEMO```](http://demos.krajee.com/password)  
+### StrengthValidator
+[```VIEW DEMO```](http://demos.krajee.com/password-details/strength-validator)  
+This is a password strength validator for your model attributes. The strength validator allows you to configure the following parameters for validating passwords or strings.
+
+1. Whether password contains an username
+2. Whether password contains an email string
+3. Minimum number of characters
+4. Maximum number of characters
+5. Minimum number of lower space characters
+6. Minimum number of upper space characters
+7. Minimum number of numeric / digit characters
+8. Minimum number of special characters
+
+Other features:
+1. Includes 5 presets (simple, normal, fair, medium, and strong). Instead of setting each parameter above, you can call a preset which will auto-set each of the parameters above. 
+2. It includes both server and client validation. 
+3. This can work with the PasswordInput widget (described next) as per your needs. The strength validation routines for both are a bit different. The PasswordInput widget focuses on displaying the strength only, and does not restrict the user input in any way.
+
+> NOTE: The StrengthValidator does not validate if the password field is required. You need to use Yii's ```required``` operator for this.
+
+### PasswordInput
+[```VIEW DEMO```](http://demos.krajee.com/password-details/password-input) 
+This is a widget, that can be used directly in your forms. It provides these advanced features and functionality:
+
+1. Allows you to show/ hide a password text (using bootstrap styled input addons). You can configure this option to be shown or not.
+2. Allows you to display an advanced password strength meter to calculate and show your password strength as you type. 
+3. Allows you to control and position/style your meter based on templates.
+4. A password strength meter consists of the meter bar, the score, and the verdict.
+5. Uses Twitter Bootstrap 3.0 styling wherever possible with inbuilt Yii 2.0 ActiveField functionality.
+6. Works independent and complements the StrengthValidator.
+7. If needed, it utilizes the advanced features of [\kartik\widgets\ActiveField] from the [yii2-widgets package](https://github.com/kartik-v/yii2-widgets). It does the validation dynamically, if the current ActiveForm is based on kartik\widgets\ActiveForm.
 
 ### Demo
 You can see a [demonstration here](http://demos.krajee.com/password) on usage of these functions with documentation and examples.

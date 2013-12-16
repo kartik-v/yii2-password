@@ -1,0 +1,33 @@
+.kv-meter {
+	text-align: center;
+}
+.kv-scorebar-border {
+	background: none repeat scroll 0 0 #333333;
+    border: 1px solid #333;
+    height: 16px;
+    width: 100px;
+	margin:0 auto;
+	border-radius: 4px;
+}
+.kv-score {
+	color: #fff;
+	font-weight: bold;
+	font-size: 75%;
+	position:absolute;
+	width: 98px;
+	z-index: 10;
+	border-radius: 2px;
+}
+.kv-scorebar {
+	background-image: url(../img/bg_strength_gradient.jpg);
+	background-repeat: no-repeat;
+	background-position: 0 0;
+	position:absolute;
+	width: 98px;
+	height: 14px;
+	z-index: 0;
+	border-radius: 2px;
+}
+.kv-verdict {
+	width: 100%;
+}

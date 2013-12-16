@@ -6,17 +6,13 @@ use yii\web\AssetBundle;
 /**
  * @author Kartik Visweswaran <kartikv2@gmail.com>
  */
-class PasswordInputAsset extends AssetBundle
+class StrengthValidatorAsset extends AssetBundle
 {
 	public $sourcePath = '@vendor/kartik-v/yii2-password/kartik/assets';
-	public $css = [
-		'css/strength-meter.css',
-	];
 	public $js = [
-		'js/strength-meter.js',
+		'js/strength-validation.js',
 	];
 	public $depends = [
-		'yii\web\JqueryAsset',
-		'yii\bootstrap\BootstrapAsset',
+		'yii\web\JqueryAsset'
 	];
 }
