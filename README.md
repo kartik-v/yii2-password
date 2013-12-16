@@ -1,7 +1,7 @@
  yii2-password
 ==============
 
-This extension provides a couple of great password management utilities for Yii Framework 2.0. The extension allows password strength validation through your model. In addition, it provides an advanced password input widget, that allows you to display/hide text , calculate strength as you type, and display a dynamic strength meter. The client validation for the meter is based on idea from [password input meter](http://www.passwordmeter.com/) and modified/extended largely for Yii Framework 2.0. Inbuilt Twitter Bootstrap CSS is used to style the widgets.
+This extension provides a couple of great password management utilities for Yii Framework 2.0. The extension allows password strength validation through your model. In addition, it provides an advanced password input widget, that allows you to display/hide text and show the password strength.
 
 ### StrengthValidator
 [```VIEW DEMO```](http://demos.krajee.com/password-details/strength-validator)  
@@ -16,7 +16,7 @@ This is a password strength validator for your model attributes. The strength va
 7. Minimum number of numeric / digit characters
 8. Minimum number of special characters
 
-#### Other features:
+Other features:
 1. Includes 5 presets (simple, normal, fair, medium, and strong). Instead of setting each parameter above, you can call a preset which will auto-set each of the parameters above. 
 2. It includes both server and client validation. 
 3. This can work with the PasswordInput widget (described next) as per your needs. The strength validation routines for both are a bit different. The PasswordInput widget focuses on displaying the strength only, and does not restrict the user input in any way.
@@ -24,8 +24,8 @@ This is a password strength validator for your model attributes. The strength va
 > NOTE: The StrengthValidator does not validate if the password field is required. You need to use Yii's ```required``` operator for this.
 
 ### PasswordInput
-[```VIEW DEMO```](http://demos.krajee.com/password-details/password-input)  
-This is a widget, that can be used directly in your forms. It provides these advanced features and functionality:
+[```VIEW DEMO```](http://demos.krajee.com/password-details/password-input) 
+This is an advanced password input widget with configurable options and a dynamic strength meter. The strength client validation for the meter is based on <a href="http://www.passwordmeter.com/" target="_blank">password input meter</a>. The widget provides various features as mentioned below:
 
 1. Allows you to show/ hide a password text (using bootstrap styled input addons). You can configure this option to be shown or not.
 2. Allows you to display an advanced password strength meter to calculate and show your password strength as you type. 
@@ -79,13 +79,12 @@ use kartik\password\PasswordInput;
 use kartik\widgets\ActiveForm; // optional
 
 $form = ActiveForm::begin(['id' => 'login-form']);
-
 echo $form->field($model,'username');
 echo PasswordInput::widget([
-   	'model' => $model, 
-   	'attribute' => 'password',
-   	'form' => $form,
-   	'showMeter' => true,
+	'model' => $model, 
+	'attribute' => 'password',
+	'form' => $form,
+	'showMeter' => true,
 ]);
 ```
 
