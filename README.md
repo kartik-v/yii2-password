@@ -79,13 +79,14 @@ use kartik\password\PasswordInput;
 use kartik\widgets\ActiveForm; // optional
 
 $form = ActiveForm::begin(['id' => 'login-form']);
-    echo $form->field($model,'username');
-    echo PasswordInput::widget([
-       	'model' => $model, 
-       	'attribute' => 'password',
-       	'form' => $form,
-       	'showMeter' => true,
-    ]);
+
+echo $form->field($model,'username');
+echo PasswordInput::widget([
+   	'model' => $model, 
+   	'attribute' => 'password',
+   	'form' => $form,
+   	'showMeter' => true,
+]);
 ```
 
 ## License
