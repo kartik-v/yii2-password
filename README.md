@@ -58,19 +58,34 @@ to the ```require``` section of your `composer.json` file.
 
 ## Usage
 
+### StrengthValidator
 ```php
-// add this to your code to use these classes
-use kartik\password\Password;
+// add this to your code to your model
+use kartik\password\StrengthValidator;
 
-// without model
-echo Password::widget($name, $options);
+// use the validator in your model rules
+public function rules() {
+    return [
+       	[['username', 'password'], 'required'],
+       	[['password'], StrengthValidator::className(), 'preset'=>'normal', 'userAttribute'=>'username']
+    ];
+}
+```
 
-// with model
-echo Password::widget($model, $attribute, $options);
+### PasswordInput
+```php
+// add this to your code in your view
+use kartik\password\PasswordInput;
+use kartik\widgets\ActiveForm; // optional
 
-// with model and active form
-echo Password::widget($model, $attribute, $form, $options);
-
+$form = ActiveForm::begin(['id' => 'login-form']);
+    echo $form->field($model,'username');
+    echo PasswordInput::widget([
+       	'model' => $model, 
+       	'attribute' => 'password',
+       	'form' => $form,
+       	'showMeter' => true,
+    ]);
 ```
 
 ## License
