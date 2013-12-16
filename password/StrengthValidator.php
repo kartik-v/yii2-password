@@ -263,9 +263,9 @@ class StrengthValidator extends \yii\validators\Validator {
         if (!$this->preset) {
             return;
         }
-		if (!isset($this->presetsSource)) {
-			$this->presetsSource = __DIR__ . '/presets.php';
-		}
+        if (!isset($this->presetsSource)) {
+            $this->presetsSource = __DIR__ . '/presets.php';
+        }
         $this->_presets = require($this->presetsSource);
 
         if (array_key_exists($this->preset, $this->_presets)) {
