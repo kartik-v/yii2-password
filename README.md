@@ -17,6 +17,7 @@ This is a password strength validator for your model attributes. The strength va
 8. Minimum number of special characters
 
 Other features:
+
 1. Includes 5 presets (simple, normal, fair, medium, and strong). Instead of setting each parameter above, you can call a preset which will auto-set each of the parameters above. 
 2. It includes both server and client validation. 
 3. This can work with the PasswordInput widget (described next) as per your needs. The strength validation routines for both are a bit different. The PasswordInput widget focuses on displaying the strength only, and does not restrict the user input in any way.
@@ -60,7 +61,7 @@ to the ```require``` section of your `composer.json` file.
 
 ### StrengthValidator
 ```php
-// add this to your code to your model
+// add this in your model
 use kartik\password\StrengthValidator;
 
 // use the validator in your model rules
@@ -74,7 +75,7 @@ public function rules() {
 
 ### PasswordInput
 ```php
-// add this to your code in your view
+// add this in your view
 use kartik\password\PasswordInput;
 use kartik\widgets\ActiveForm; // optional
 
