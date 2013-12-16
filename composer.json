@@ -1,6 +1,6 @@
 {
 	"name": "kartik-v/yii2-password",
-	"description": "A password input widget with strength validation based on jQuery Password Strength Meter for Twitter Bootstrap",
+	"description": "Useful password strength validation utilities for Yii Framework 2.0",
 	"keywords": ["yii", "yii2", "extension", "password", "strength", "auth", "input", "form", "bootstrap", "jquery"],
 	"homepage": "https://github.com/kartik-v/yii2-password",
 	"type": "yii2-extension",
