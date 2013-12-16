@@ -1,7 +1,7 @@
  yii2-password
 ==============
 
-This extension provides a couple of great password management utilities for Yii Framework 2.0. The extension allows password strength validation through your model. In addition, it provides an advanced password input widget, that allows you to display/hide text and show the password strength. The password strength client validation for the meter is based on [password input meter](http://www.passwordmeter.com/). Inbuilt Twitter Bootstrap CSS is used to style the widgets.
+This extension provides a couple of great password management utilities for Yii Framework 2.0. The extension allows password strength validation through your model. In addition, it provides an advanced password input widget, that allows you to display/hide text and show the password strength. The password strength client validation for the meter is based on [password input meter](http://www.passwordmeter.com/) by [Jeff Todnem](http://www.todnem.com/) and modified/extended largely for Yii Framework 2.0. Inbuilt Twitter Bootstrap CSS is used to style the widgets.
 
 ### StrengthValidator
 [```VIEW DEMO```](http://demos.krajee.com/password-details/strength-validator)  
