@@ -146,13 +146,13 @@ class StrengthValidator extends \yii\validators\Validator {
 	
     /**
      * @var string presets configuration source file
-	 * defaults to presets.php in the current directory
+     * defaults to presets.php in the current directory
      */
     public $presetsSource;
 
     /**
      * @var array the target strength rule requirements that will
-	 * be evaluated for displaying the strength meter
+     * be evaluated for displaying the strength meter
      */
     public $strengthTarget = [
 		'min' => 8,
