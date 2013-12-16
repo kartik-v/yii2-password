@@ -17,8 +17,8 @@ use yii\helpers\Json;
  * @since 1.0
  */
 class StrengthValidator extends \yii\validators\Validator {
+	
     /* The valid preset constants */
-
     const SIMPLE = 'simple';
     const NORMAL = 'normal';
     const FAIR = 'fair';
