@@ -24,7 +24,7 @@ Other features:
 > NOTE: The StrengthValidator does not validate if the password field is required. You need to use Yii's ```required``` operator for this.
 
 ### PasswordInput
-[```VIEW DEMO```](http://demos.krajee.com/password-details/password-input) 
+[```VIEW DEMO```](http://demos.krajee.com/password-details/password-input)  
 This is a widget, that can be used directly in your forms. It provides these advanced features and functionality:
 
 1. Allows you to show/ hide a password text (using bootstrap styled input addons). You can configure this option to be shown or not.
