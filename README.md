@@ -21,7 +21,7 @@ Other features:
 2. It includes both server and client validation. 
 3. This can work with the PasswordInput widget (described next) as per your needs. The strength validation routines for both are a bit different. The PasswordInput widget focuses on displaying the strength only, and does not restrict the user input in any way.
 
-> NOTE: The StrengthValidator does not validate if the password field is required. You need to use Yii's ```required``` operator for this.
+> NOTE: The StrengthValidator does not validate if the password field is required. You need to use Yii's ```required``` rule for this.
 
 ### PasswordInput
 [```VIEW DEMO```](http://demos.krajee.com/password-details/password-input)  
