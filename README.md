@@ -16,7 +16,7 @@ This is a password strength validator for your model attributes. The strength va
 7. Minimum number of numeric / digit characters
 8. Minimum number of special characters
 
-Other features:
+#### Other features:
 1. Includes 5 presets (simple, normal, fair, medium, and strong). Instead of setting each parameter above, you can call a preset which will auto-set each of the parameters above. 
 2. It includes both server and client validation. 
 3. This can work with the PasswordInput widget (described next) as per your needs. The strength validation routines for both are a bit different. The PasswordInput widget focuses on displaying the strength only, and does not restrict the user input in any way.
