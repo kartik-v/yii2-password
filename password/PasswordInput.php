@@ -64,11 +64,6 @@ class PasswordInput extends \yii\widgets\InputWidget
 	 * for hiding/showing the text within the password
 	 */
 	public $toggleMask = true;
-
-	/**
-	 * @var array options for the toggle checkbox
-	 */	
-	public $textOptions = ['class' => 'form-control hidden'];
 	
 	/**
 	 * @var array options for the toggle checkbox
