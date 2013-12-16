@@ -52,12 +52,12 @@ class StrengthValidator extends \yii\validators\Validator {
     public $min = 4;
 
     /**
-     * @var integer maximum length. If not set, it means no maximum length limit.
+     * @var int maximum length. If not set, it means no maximum length limit.
      */
     public $max;
 
     /**
-     * @var integer specifies the exact length that the value should be of
+     * @var int specifies the exact length that the value should be of
      */
     public $length;
 
@@ -107,7 +107,7 @@ class StrengthValidator extends \yii\validators\Validator {
     public $lengthError;
 
     /**
-     * @var string user-defined error message used [[hasUser]] is true and value contains the username
+     * @var string user-defined error message used when [[hasUser]] is true and value contains the username
      */
     public $hasUserError;
 
@@ -135,7 +135,7 @@ class StrengthValidator extends \yii\validators\Validator {
      * @var string user-defined error message used when value contains more than [[special]] characters
      */
     public $specialError;
-
+	
     /**
      * @var string preset - one of the preset constants,
      * @see $_presets
@@ -143,6 +143,12 @@ class StrengthValidator extends \yii\validators\Validator {
      * the validator level params
      */
     public $preset;
+	
+    /**
+     * @var string presets configuration source file
+	 * defaults to presets.php in the current directory
+     */
+    public $presetsSource;
 
     /**
      * @var array the target strength rule requirements that will
@@ -230,15 +236,21 @@ class StrengthValidator extends \yii\validators\Validator {
         }
         foreach (self::$_rules as $rule => $setup) {
             $param = "{$rule}Error";
-            if ($this->$rule !== null && (!isset($this->$param) || $this->$param === null)) {
+            if ($this->$rule !== null) {
                 $required = ($this->$rule == 1) ? 'one character' : "{$this->$rule} characters";
                 if (!empty($setup['title'])) {
                     $title = $setup['title'];
                     $required = ($this->$rule == 1) ? "one {$title} character" : "{$this->$rule} {$title} characters";
                     $this->$param = Yii::t('app', $setup['msg']);
                 }
-                $this->$param = Yii::t('app', $setup['msg'], ['required' => $required]);
+				if (!isset($this->$param) || $this->$param === null) {
+					$this->$param = Yii::t('app', $setup['msg'], ['required' => $required]);
+				}
+				else {
+					$this->$param = Yii::t('app', $this->$param, ['required' => $required]);
+				}
             }
+			
         }
     }
 
@@ -251,7 +263,10 @@ class StrengthValidator extends \yii\validators\Validator {
         if (!$this->preset) {
             return;
         }
-        $this->_presets = require(__DIR__ . '/presets.php');
+		if (!isset($this->presetsSource)) {
+			$this->presetsSource = __DIR__ . '/presets.php';
+		}
+        $this->_presets = require($this->presetsSource);
 
         if (array_key_exists($this->preset, $this->_presets)) {
             foreach ($this->_presets[$this->preset] As $param => $value) {
