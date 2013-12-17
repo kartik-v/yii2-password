@@ -8,13 +8,14 @@ use yii\helpers\ArrayHelper;
 use yii\base\InvalidConfigException;
 
 /**
- * PasswordInput widget generates a password input with password strength 
- * validation based on jQuery Password Strength Meter for Twitter Bootstrap.
- * @see https://github.com/ablanco/jquery.pwstrength.bootstrap
+ * PasswordInput widget generates a password input widget with
+ * password mask toggle feature and an advanced strength validation
+ * meter. The password strength is validated as you type. The client
+ * validation routine for the meter is inspired from passwordmeter.com.
  *
  * @author Kartik Visweswaran <kartikv2@gmail.com>
  * @since 1.0
- *
+ * @see http://passwordmeter.com
  */
 class PasswordInput extends \yii\widgets\InputWidget {
 
