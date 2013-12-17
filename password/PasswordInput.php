@@ -126,7 +126,7 @@ EOT;
      * The following special options are recognized:
      * - tag: the tag name of the container element. Defaults to "div".
      */
-    public $scoreOptions = ['class' => 'kv-score'];
+    public $scoreOptions = ['class' => 'kv-score kv-score-0'];
 
     /**
      * @var array the HTML options for the strength verdict
