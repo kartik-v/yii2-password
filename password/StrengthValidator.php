@@ -237,20 +237,11 @@ class StrengthValidator extends \yii\validators\Validator {
         foreach (self::$_rules as $rule => $setup) {
             $param = "{$rule}Error";
             if ($this->$rule !== null) {
-                $required = ($this->$rule == 1) ? 'one character' : "{$this->$rule} characters";
-                if (!empty($setup['title'])) {
-                    $title = $setup['title'];
-                    $required = ($this->$rule == 1) ? "one {$title} character" : "{$this->$rule} {$title} characters";
-                    $this->$param = Yii::t('app', $setup['msg']);
-                }
-				if (!isset($this->$param) || $this->$param === null) {
-					$this->$param = Yii::t('app', $setup['msg'], ['required' => $required]);
-				}
-				else {
-					$this->$param = Yii::t('app', $this->$param, ['required' => $required]);
-				}
+		$title = empty($setup['title']) ? ' ' : $setup['title'] . ' ';
+		$required = ($this->$rule == 1) ? "one {$title}character" : "{$this->$rule} {$title}characters";
+		$message = (!isset($this->$param) || $this->$param === null) ? $setup['msg'] : 	$this->$param;		
+		$this->$param = Yii::t('app', $message, ['required' => $required]);
             }
-			
         }
     }
 
