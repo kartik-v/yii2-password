@@ -1,14 +1,16 @@
 /**
  * Password Strength Meter
- * Modified and built for Yii Framework 2.0
+ * Modified and built specially for Yii Framework 2.0
  * Author: Kartik Visweswaran
  * Year: 2013
  * For more Yii related demos visit http://demos.krajee.com
  *
  * Based on password meter created by Jeff Todnem (http://www.todnem.com/)
  */
-/**
+
+/*
  * String Reverse
+ * @returns {String|String.prototype.strReverse@call;charAt}
  */
 String.prototype.strReverse = function() {
     var newstring = "";
@@ -17,8 +19,13 @@ String.prototype.strReverse = function() {
     }
     return newstring;
 };
-/**
+/*
  * Main password check function for strength meter
+ * @param element elPwd the password field input
+ * @param element elScorebar the scorebar container
+ * @param element elScore the score container
+ * @param element elVerdict the verdict container
+ * @param array verdicts the list of verdicts 
  */
 function checkPwd(elPwd, elScorebar, elScore, elVerdict, verdicts) {
     var pwd = $(elPwd).val();
@@ -231,28 +238,35 @@ function checkPwd(elPwd, elScorebar, elScore, elVerdict, verdicts) {
         $("nSeqSymbolBonus").innerHTML = sSeqSymbol;
 
         /* Determine Verdict based on overall score */
+        var id = 0; // the verdict id
         if (nScore > 100) {
             nScore = 100;
-        } else if (nScore < 0) {
+            id = 5;
+        }
+        else if (nLength < 3) {
+            id = 0;
+        }
+        else if (nScore < 0) {
             nScore = 0;
-            sVerdict = verdicts[1];
+            id = 1;
         }
         if (nScore >= 0 && nScore < 20) {
-            sVerdict = verdicts[1];
+            id = 1;
         }
         else if (nScore >= 20 && nScore < 40) {
-            sVerdict = verdicts[2];
+            id = 2;
         }
         else if (nScore >= 40 && nScore < 60) {
-            sVerdict = verdicts[3];
+            id = 3;
         }
         else if (nScore >= 60 && nScore < 80) {
-            sVerdict = verdicts[4];
+            id = 4;
         }
         else if (nScore >= 80 && nScore <= 100) {
-            sVerdict = verdicts[5];
+            id = 5;
         }
-
+        sVerdict = verdicts[id];
+        setScoreCss(oScore, id);
         /* Display updated score criteria to client */
         oScorebar.css("background-position", 0 - parseInt(nScore * 4) + "px");
         oScore.html(nScore + "%");
@@ -262,29 +276,55 @@ function checkPwd(elPwd, elScorebar, elScore, elVerdict, verdicts) {
         /* Display default score criteria to client */
         initPwdChk(elPwd, elScorebar, elScore, elVerdict, verdicts[0]);
         oScore.html(nScore + "%");
+        setScoreCss(oScore, 0);
         oVerdict.html(sVerdict);
     }
 }
-/**
- * Replaces a field type
+/*
+ * Set CSS for score based on verdict
+ * @param element oScore the score container
+ * @param string id the verdict identifier
+ */
+function setScoreCss(oScore, id) {
+    for (i = 0; i < 6; i++) {
+        css = 'kv-score-' + i;
+        oScore.removeClass(css);
+        if (i === id) {
+            oScore.addClass(css);
+        }
+    }
+}
+/*
+ * Replaces a form input field type
+ * @param element fld the form input field
+ * @param string typ the form input type
+ * @returns {undefined}
  */
 function replaceField(fld, typ) {
     $(fld).clone(true).attr('type', typ).insertAfter(fld).prev().remove();
 }
-/**
+/*
  * Toggle Password Input Mask
+ * @param element pwdField the password field input
+ * @param element togField the toggle field input
  */
 function togPwdMask(pwdField, togField) {
     inputType = ($(togField + ":checked").val()) ? 'text' : 'password';
     replaceField(pwdField, inputType);
 }
-/**
+/*
  * Initialize password meter
+ * @param element elPwd the password field input
+ * @param element elScorebar the scorebar container
+ * @param element elScore the score container
+ * @param element elVerdict the verdict container
+ * @param string defVerdict the default verdict value
  */
 function initPwdChk(elPwd, elScorebar, elScore, elVerdict, defVerdict) {
     $(elPwd).val("");
     $(elScorebar).css("background-position", "0");
     $(elScore).html("0%");
+    setScoreCss($(elScore), 0);
     $(elVerdict).html(defVerdict);
     replaceField(elPwd, 'password');
 }
