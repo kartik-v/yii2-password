@@ -146,7 +146,7 @@ class StrengthValidator extends \yii\validators\Validator {
 
     /**
      * @var string presets configuration source file
-     * defaults to presets.php in the current directory
+     * defaults to [[presets.php]] in the current directory
      */
     public $presetsSource;
 
@@ -250,7 +250,7 @@ class StrengthValidator extends \yii\validators\Validator {
      * @return void
      * @throws InvalidConfigException if [[preset]] value is invalid.
      */
-    private function applyPreset() {
+    protected function applyPreset() {
         if (!$this->preset) {
             return;
         }
@@ -274,7 +274,7 @@ class StrengthValidator extends \yii\validators\Validator {
      * and the right threshold for 'max' chars.
      * @throw InvalidConfigException if validation is invalid
      */
-    private function checkParams() {
+    protected function checkParams() {
         foreach (self::$_rules as $rule => $setup) {
             if (isset($this->$rule) && !empty($setup['int']) && $setup['int'] &&
                     (!is_int($this->$rule) || $this->$rule < 0)) {
@@ -353,7 +353,7 @@ class StrengthValidator extends \yii\validators\Validator {
      * @param Model $object
      * @param string $attribute
      * @param View $view
-     * @return type
+     * @return string javascript method
      */
     public function clientValidateAttribute($object, $attribute, $view) {
         $label = $object->getAttributeLabel($attribute);
