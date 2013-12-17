@@ -1,13 +1,28 @@
 /**
- * Is a value undefined or empty
+ * Password Strength Validation
+ * Built for Yii Framework 2.0
+ * Author: Kartik Visweswaran
+ * Copyright: 2013, Kartik Visweswaran, Krajee.com
+ * For more Yii related demos visit http://demos.krajee.com
  */
- function isEmpty(value, trim) {
+
+/**
+ * Is a value undefined or empty
+ * @param string value
+ * @param boolean trim
+ * @returns boolean
+ */
+function isEmpty(value, trim) {
     return value === null || value === undefined || value == []
             || value === '' || trim && $.trim(value) === '';
 }
 
 /**
  * Adds validation message based on lower, upper, digit, and special patterns
+ * @param array messages
+ * @param string message
+ * @param string valueRequired
+ * @param string valueFound
  */
 function addPatternMessage(messages, message, valueRequired, valueFound) {
     val = (valueFound == 0) ? 'none' : valueFound;
@@ -17,6 +32,9 @@ function addPatternMessage(messages, message, valueRequired, valueFound) {
 
 /**
  * Adds validation message for all other cases
+ * @param array messages
+ * @param string message
+ * @param string value
  */
 function addMessage(messages, message, value) {
     val = (value == 0) ? 'none' : value;
@@ -25,35 +43,40 @@ function addMessage(messages, message, value) {
 
 /**
  * Finds lower, upper, digit, and special characters
+ * @param string str
+ * @returns array counts for lower, upper, digit, and special characters
  */
 function findPatterns(str) {
     var lower = str.match(/[a-z]/g);
     var upper = str.match(/[A-Z]/g);
     var digit = str.match(/\d/g);
     var special = str.match(/\W/g);
-   
+
     lower = (isEmpty(lower)) ? 0 : lower;
     upper = (isEmpty(upper)) ? 0 : upper;
     digit = (isEmpty(digit)) ? 0 : digit;
     special = (isEmpty(special)) ? 0 : special;
-    
-    return [lower, upper, digit, special];   
+
+    return [lower, upper, digit, special];
 }
 
 /**
  * Main strength validation routine
+ * @param string the attribute value
+ * @param array the messages array
+ * @param array the client validation options
  */
 function checkStrength(value, messages, options) {
-	score = 0;
+    score = 0;
     if (isEmpty(value)) {
         return;
     }
     if (typeof value !== 'string') {
-            addMessage(messages, options.strError, value);
-            return;
+        addMessage(messages, options.strError, value);
+        return;
     }
     patterns = findPatterns(value);
-	username = $(options.userField).val().toLowerCase();
+    username = $(options.userField).val().toLowerCase();
     if (options.min !== undefined && value.length < options.min) {
         addPatternMessage(messages, options.minError, options.min, value.length);
     }
@@ -74,7 +97,7 @@ function checkStrength(value, messages, options) {
     }
     if (options.upper !== undefined && patterns[1] < options.upper) {
         addPatternMessage(messages, options.upperError, options.upper, patterns[1]);
-	}
+    }
     if (options.digit !== undefined && patterns[2] < options.digit) {
         addPatternMessage(messages, options.digitError, options.digit, patterns[2]);
     }
