@@ -17,8 +17,8 @@ use yii\helpers\Json;
  * @since 1.0
  */
 class StrengthValidator extends \yii\validators\Validator {
-	
     /* The valid preset constants */
+
     const SIMPLE = 'simple';
     const NORMAL = 'normal';
     const FAIR = 'fair';
@@ -35,7 +35,7 @@ class StrengthValidator extends \yii\validators\Validator {
     const RULE_UP = 'upper';
     const RULE_NUM = 'digit';
     const RULE_SPL = 'special';
-	
+
     /**
      * @var boolean check whether password contains the username
      */
@@ -135,7 +135,7 @@ class StrengthValidator extends \yii\validators\Validator {
      * @var string user-defined error message used when value contains more than [[special]] characters
      */
     public $specialError;
-	
+
     /**
      * @var string preset - one of the preset constants,
      * @see $_presets
@@ -143,7 +143,7 @@ class StrengthValidator extends \yii\validators\Validator {
      * the validator level params
      */
     public $preset;
-	
+
     /**
      * @var string presets configuration source file
      * defaults to presets.php in the current directory
@@ -155,12 +155,12 @@ class StrengthValidator extends \yii\validators\Validator {
      * be evaluated for displaying the strength meter
      */
     public $strengthTarget = [
-		'min' => 8,
-		'lower' => 3,
-		'upper' => 3,
-		'digit' => 3,
-		'special' => 3,
-	];
+        'min' => 8,
+        'lower' => 3,
+        'upper' => 3,
+        'digit' => 3,
+        'special' => 3,
+    ];
 
     /**
      * @var array the list of inbuilt presets and their parameter settings
@@ -237,10 +237,10 @@ class StrengthValidator extends \yii\validators\Validator {
         foreach (self::$_rules as $rule => $setup) {
             $param = "{$rule}Error";
             if ($this->$rule !== null) {
-		$title = empty($setup['title']) ? ' ' : $setup['title'] . ' ';
-		$required = ($this->$rule == 1) ? "one {$title}character" : "{$this->$rule} {$title}characters";
-		$message = (!isset($this->$param) || $this->$param === null) ? $setup['msg'] : 	$this->$param;		
-		$this->$param = Yii::t('app', $message, ['required' => $required]);
+                $title = empty($setup['title']) ? ' ' : $setup['title'] . ' ';
+                $required = ($this->$rule == 1) ? "one {$title}character" : "{$this->$rule} {$title}characters";
+                $message = (!isset($this->$param) || $this->$param === null) ? $setup['msg'] : $this->$param;
+                $this->$param = Yii::t('app', $message, ['required' => $required]);
             }
         }
     }
@@ -317,7 +317,7 @@ class StrengthValidator extends \yii\validators\Validator {
                 $this->addError($object, $attribute, $this->$param, ['attribute' => $label]);
             }
             elseif (!empty($setup['match'])) {
-				$title = empty($setup['title']) ? '' : $setup['title'];
+                $title = empty($setup['title']) ? '' : $setup['title'];
                 $this->addError($object, $attribute, $this->$param, [
                     'attribute' => $label,
                     'title' => $title,
@@ -326,24 +326,24 @@ class StrengthValidator extends \yii\validators\Validator {
             }
             else {
                 $length = strlen($value);
-				$test = false;
-				
-				if ($rule === self::RULE_LEN) {
-					$test = ($length !== $this->$rule);
-				}
-				elseif ($rule === self::RULE_MIN) {
-					$test = ($length < $this->$rule);
-				}
-				elseif ($rule === self::RULE_MAX) {
-					$test = ($length > $this->$rule);
-				}
-				
+                $test = false;
+
+                if ($rule === self::RULE_LEN) {
+                    $test = ($length !== $this->$rule);
+                }
+                elseif ($rule === self::RULE_MIN) {
+                    $test = ($length < $this->$rule);
+                }
+                elseif ($rule === self::RULE_MAX) {
+                    $test = ($length > $this->$rule);
+                }
+
                 if ($this->$rule !== null && $test) {
                     $this->addError($object, $attribute, $this->$param, [
                         'attribute' => $label,
                         'found' => $length
                     ]);
-				}
+                }
             }
         }
     }
@@ -358,7 +358,7 @@ class StrengthValidator extends \yii\validators\Validator {
     public function clientValidateAttribute($object, $attribute, $view) {
         $label = $object->getAttributeLabel($attribute);
         $options = ['strError' => Html::encode(Yii::t('app', $this->message, ['attribute' => $label]))];
-		$options['userField'] = '#' . Html::getInputId($object, $this->userAttribute);
+        $options['userField'] = '#' . Html::getInputId($object, $this->userAttribute);
 
         foreach (self::$_rules as $rule => $setup) {
             $param = "{$rule}Error";
@@ -374,5 +374,4 @@ class StrengthValidator extends \yii\validators\Validator {
         StrengthValidatorAsset::register($view);
         return "checkStrength(value, messages, " . Json::encode($options) . ");";
     }
-
 }
