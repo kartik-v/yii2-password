@@ -17,12 +17,26 @@ use yii\base\InvalidConfigException;
  *
  */
 class PasswordInput extends \yii\widgets\InputWidget {
-    /* Preset constants to align the meter with respect to the input */
 
-    const ALIGN_RIGHT = 'right';
+    /**
+     * Placement constants for aligning the meter with respect to the input
+     */
     const ALIGN_NONE = 'none';
+    const ALIGN_RIGHT = 'right';
+    const ALIGN_RIGHT_TEMPLATE = <<< 'EOT'
+        <div class="row">
+            <div class="col-sm-9">
+                {input}
+            </div>
+            <div class="col-sm-3">
+                {meter}
+            </div>
+        </div>
+EOT;
 
-    /* Constants for the strengths to be displayed */
+    /**
+     * Password meter strength verdicts
+     */
     const STRENGTH_0 = 'Too Short';
     const STRENGTH_1 = 'Very Weak';
     const STRENGTH_2 = 'Weak';
@@ -44,7 +58,9 @@ class PasswordInput extends \yii\widgets\InputWidget {
 
     /**
      * @var array the configuration of various strength verdicts 
-     * that will be displayed with the strength meter
+     * that will be displayed with the strength meter. The array
+     * keys are the verdicts and the array values are the CSS class
+     * that will be used to display each verdict
      */
     public $verdicts = [
         self::STRENGTH_0 => 'label label-default',
@@ -190,18 +206,8 @@ class PasswordInput extends \yii\widgets\InputWidget {
                 '{verdict}' => Html::tag($verdictTag, $this->_verdicts[0], $this->verdictOptions),
             ]);
             $this->_meter = Html::tag($meterTag, $meter, $this->meterOptions);
-            if ($this->placement == self::ALIGN_RIGHT) {
-                $adjusted = <<< EOT
-                    <div class="row">
-                        <div class="col-sm-9">
-                            {input}
-                        </div>
-                        <div class="col-sm-3">
-                            {meter}
-                        </div>
-                    </div>
-EOT;
-                $this->template = "{label}\n{$adjusted}\n{error}\n{hint}";
+            if ($this->placement === self::ALIGN_RIGHT) {
+                $this->template = "{label}\n" . self::ALIGN_RIGHT_TEMPLATE . "\n{error}\n{hint}";
             }
         }
     }
@@ -254,10 +260,10 @@ EOT;
 
             $js = <<< SCRIPT
                 \$('#$this->_inputId').keyup(function() {
-                        $check;
+                    $check;
                 });
-                \$('#$this->_inputId').closest("form").bind('reset', function() {
-                        $reset;
+                \$('#$this->_inputId').closest('form').bind('reset', function() {
+                    $reset;
                 });
 SCRIPT;
             $view->registerJs($js);
