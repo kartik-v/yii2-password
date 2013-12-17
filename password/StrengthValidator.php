@@ -278,7 +278,7 @@ class StrengthValidator extends \yii\validators\Validator {
         foreach (self::$_rules as $rule => $setup) {
             if (isset($this->$rule) && !empty($setup['int']) && $setup['int'] &&
                     (!is_int($this->$rule) || $this->$rule < 0)) {
-                throw new InvalidConfigException("The property '{$rule}' cannot be negative.");
+                throw new InvalidConfigException("The property '{$rule}' must be a positive integer.");
             }
             if (isset($this->$rule) && !empty($setup['bool']) && $setup['bool'] &&
                     !is_bool($this->$rule)) {
