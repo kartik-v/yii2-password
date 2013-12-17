@@ -374,4 +374,5 @@ class StrengthValidator extends \yii\validators\Validator {
         StrengthValidatorAsset::register($view);
         return "checkStrength(value, messages, " . Json::encode($options) . ");";
     }
+
 }
