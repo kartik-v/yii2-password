@@ -21,7 +21,7 @@ String.prototype.strReverse = function() {
  * Main password check function for strength meter
  */
 function checkPwd(pwd, params) {
-	var elScorebar = params.elBar, elScore = params.elScore, elVerdict = params.elVerdict, verdicts = params.verdicts
+	var elPwd = params.elPwd, elScorebar = params.elBar, elScore = params.elScore, elVerdict = params.elVerdict, verdicts = params.verdicts
 	var oScorebar = $(elScorebar);
 	var oScore = $(elScore);
 	var oVerdict = $(elVerdict);
