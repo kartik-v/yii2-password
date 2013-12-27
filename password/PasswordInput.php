@@ -193,7 +193,7 @@ EOT;
             $this->meterOptions['id'] = ArrayHelper::getValue($this->meterOptions, 'id', "{$this->_inputId}-meter");
             $this->barOptions['id'] = ArrayHelper::getValue($this->barOptions, 'id', "{$this->_inputId}-bar");
             $this->scoreOptions['id'] = ArrayHelper::getValue($this->scoreOptions, 'id', "{$this->_inputId}-score");
-            $this->options['id'] = ArrayHelper::getValue($this->options, 'id', "{$this->_inputId}-widget");
+            $this->options['id'] = $this->_inputId . '-widget';
 
             /* Generate meter container */
             $meterTag = ArrayHelper::remove($this->meterOptions, 'tag', 'div');
@@ -253,7 +253,7 @@ EOT;
                         'verdicts' => $this->_verdicts
             ]);
             $this->inputOptions['onkeyup'] = "checkPwd(this.value, {$params})";
-            $js = 'initMeter($params);';
+            $js = "initMeter({$params})";
             $view->registerJs($js);
         }
     }
