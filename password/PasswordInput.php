@@ -244,28 +244,16 @@ EOT;
     public function registerAssets() {
         $view = $this->getView();
         PasswordInputAsset::register($view);
-	$params = Json::encode([
-		'elBar' => "#" . $this->barOptions['id'],
-		'elScore' => "#" . $this->scoreOptions['id'],
-		'elVerdict' => "#" . $this->verdictOptions['id'],
-		'verdicts' => $this->_verdicts
-	]);
-
-	$this->inputOptions['onkeyup'] =  "checkPwd(this.value, {$params})";
-		
         if ($this->showMeter) {
-            $reset = 'initPwdChk("#' .
-                    $this->_inputId . '", "#' .
-                    $this->barOptions['id'] . '", "#' .
-                    $this->scoreOptions['id'] . '", "#' .
-                    $this->verdictOptions['id'] . '", ' .
-                    Json::encode($this->_verdicts[0]) . ')';
-
-            $js = <<< SCRIPT
-                \$('#$this->_inputId').closest('form').bind('reset', function() {
-                    $reset;
-                });
-SCRIPT;
+            $params = Json::encode([
+                        'elPwd' => "#" . $this->_inputId,
+                        'elBar' => "#" . $this->barOptions['id'],
+                        'elScore' => "#" . $this->scoreOptions['id'],
+                        'elVerdict' => "#" . $this->verdictOptions['id'],
+                        'verdicts' => $this->_verdicts
+            ]);
+            $this->inputOptions['onkeyup'] = "checkPwd(this.value, {$params})";
+            $js = 'initMeter($params);';
             $view->registerJs($js);
         }
     }
