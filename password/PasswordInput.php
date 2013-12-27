@@ -244,14 +244,16 @@ EOT;
     public function registerAssets() {
         $view = $this->getView();
         PasswordInputAsset::register($view);
+		$params = Json::encode([
+			'elBar' => "#" . $this->barOptions['id'],
+			'elScore' => "#" . $this->scoreOptions['id'],
+			'elVerdict' => "#" . $this->verdictOptions['id'],
+			'verdicts' => $this->_verdicts
+		]);
 
+		$this->inputOptions['onkeyup'] =  "checkPwd(this.value, {$params})";
+		
         if ($this->showMeter) {
-            $check = 'checkPwd("#' .
-                    $this->_inputId . '", "#' .
-                    $this->barOptions['id'] . '", "#' .
-                    $this->scoreOptions['id'] . '", "#' .
-                    $this->verdictOptions['id'] . '", ' .
-                    Json::encode($this->_verdicts) . ')';
             $reset = 'initPwdChk("#' .
                     $this->_inputId . '", "#' .
                     $this->barOptions['id'] . '", "#' .
@@ -260,9 +262,6 @@ EOT;
                     Json::encode($this->_verdicts[0]) . ')';
 
             $js = <<< SCRIPT
-                \$('#$this->_inputId').keyup(function() {
-                    $check;
-                });
                 \$('#$this->_inputId').closest('form').bind('reset', function() {
                     $reset;
                 });
