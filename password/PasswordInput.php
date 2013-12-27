@@ -257,5 +257,4 @@ EOT;
             $view->registerJs($js);
         }
     }
-
 }
