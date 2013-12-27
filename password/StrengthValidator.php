@@ -318,15 +318,18 @@ class StrengthValidator extends \yii\validators\Validator {
             }
             elseif (!empty($setup['match']) && $rule !== self::RULE_EMAIL  && $rule !== self::RULE_USER) {
                 $title = empty($setup['title']) ? '' : $setup['title'];
-                $this->addError($object, $attribute, $this->$param, [
-                    'attribute' => $label,
-                    'title' => $title,
-                    'found' => preg_match_all($setup['match'], $value, $temp)
-                ]);
+				$count = preg_match_all($setup['match'], $value, $temp);
+				if ($count < $this->$rule) {
+					$this->addError($object, $attribute, $this->$param, [
+						'attribute' => $label,
+						'title' => $title,
+						'found' => $count
+					]);
+				}
             }
             else {
                 $length = strlen($value);
-                $test = true;
+                $test = false;
 
                 if ($rule === self::RULE_LEN) {
                     $test = ($length !== $this->$rule);
@@ -340,7 +343,7 @@ class StrengthValidator extends \yii\validators\Validator {
 
                 if ($this->$rule !== null && $test) {
                     $this->addError($object, $attribute, $this->$param, [
-                        'attribute' => $label,
+                        'attribute' => $label . ' (' . $rule . ' , ' . $this->$rule . ')',
                         'found' => $length
                     ]);
                 }
