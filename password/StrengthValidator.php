@@ -310,13 +310,13 @@ class StrengthValidator extends \yii\validators\Validator {
 
         foreach (self::$_rules as $rule => $setup) {
             $param = "{$rule}Error";
-            if ($rule === self::RULE_USER && $this->hasUser && strpos($value, $username) !== false) {
+            if ($rule === self::RULE_USER && $this->hasUser && strpos($value, $username) > 0) {
                 $this->addError($object, $attribute, $this->$param, ['attribute' => $label]);
             }
-            elseif ($rule === self::RULE_EMAIL && $this->hasEmail && preg_match($setup['match'], $value)) {
+            elseif ($rule === self::RULE_EMAIL && $this->hasEmail && preg_match($setup['match'], $value, $matches)) {
                 $this->addError($object, $attribute, $this->$param, ['attribute' => $label]);
             }
-            elseif (!empty($setup['match'])) {
+            elseif (!empty($setup['match']) && $rule !== self::RULE_EMAIL  && $rule !== self::RULE_USER) {
                 $title = empty($setup['title']) ? '' : $setup['title'];
                 $this->addError($object, $attribute, $this->$param, [
                     'attribute' => $label,
@@ -326,7 +326,7 @@ class StrengthValidator extends \yii\validators\Validator {
             }
             else {
                 $length = strlen($value);
-                $test = false;
+                $test = true;
 
                 if ($rule === self::RULE_LEN) {
                     $test = ($length !== $this->$rule);
