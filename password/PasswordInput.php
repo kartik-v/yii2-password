@@ -244,14 +244,14 @@ EOT;
     public function registerAssets() {
         $view = $this->getView();
         PasswordInputAsset::register($view);
-		$params = Json::encode([
-			'elBar' => "#" . $this->barOptions['id'],
-			'elScore' => "#" . $this->scoreOptions['id'],
-			'elVerdict' => "#" . $this->verdictOptions['id'],
-			'verdicts' => $this->_verdicts
-		]);
+	$params = Json::encode([
+		'elBar' => "#" . $this->barOptions['id'],
+		'elScore' => "#" . $this->scoreOptions['id'],
+		'elVerdict' => "#" . $this->verdictOptions['id'],
+		'verdicts' => $this->_verdicts
+	]);
 
-		$this->inputOptions['onkeyup'] =  "checkPwd(this.value, {$params})";
+	$this->inputOptions['onkeyup'] =  "checkPwd(this.value, {$params})";
 		
         if ($this->showMeter) {
             $reset = 'initPwdChk("#' .
