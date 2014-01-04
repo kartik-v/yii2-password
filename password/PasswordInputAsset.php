@@ -1,5 +1,11 @@
 <?php
 
+/**
+ * @copyright Copyright &copy; Kartik Visweswaran, Krajee.com, 2013
+ * @package yii2-password
+ * @version 1.0.0
+ */
+
 namespace kartik\password;
 
 use yii\web\AssetBundle;
@@ -18,10 +24,10 @@ class PasswordInputAsset extends AssetBundle {
         'yii\bootstrap\BootstrapAsset',
     ];
 
-	public function init() {
-		$this->css = YII_DEBUG ? ['css/strength-meter.css'] : ['css/strength-meter.min.css'];
-		$this->js = YII_DEBUG ? ['js/strength-meter.js'] : ['js/strength-meter.min.js'];
-		parent::init();
-	}
-	
+    public function init() {
+        $this->css = YII_DEBUG ? ['css/strength-meter.css'] : ['css/strength-meter.min.css'];
+        $this->js = YII_DEBUG ? ['js/strength-meter.js'] : ['js/strength-meter.min.js'];
+        parent::init();
+    }
+
 }

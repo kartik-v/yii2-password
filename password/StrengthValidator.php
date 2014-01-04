@@ -1,5 +1,11 @@
 <?php
 
+/**
+ * @copyright Copyright &copy; Kartik Visweswaran, Krajee.com, 2013
+ * @package yii2-password
+ * @version 1.0.0
+ */
+
 namespace kartik\password;
 
 use Yii;
@@ -316,16 +322,16 @@ class StrengthValidator extends \yii\validators\Validator {
             elseif ($rule === self::RULE_EMAIL && $this->hasEmail && preg_match($setup['match'], $value, $matches)) {
                 $this->addError($object, $attribute, $this->$param, ['attribute' => $label]);
             }
-            elseif (!empty($setup['match']) && $rule !== self::RULE_EMAIL  && $rule !== self::RULE_USER) {
+            elseif (!empty($setup['match']) && $rule !== self::RULE_EMAIL && $rule !== self::RULE_USER) {
                 $title = empty($setup['title']) ? '' : $setup['title'];
-				$count = preg_match_all($setup['match'], $value, $temp);
-				if ($count < $this->$rule) {
-					$this->addError($object, $attribute, $this->$param, [
-						'attribute' => $label,
-						'title' => $title,
-						'found' => $count
-					]);
-				}
+                $count = preg_match_all($setup['match'], $value, $temp);
+                if ($count < $this->$rule) {
+                    $this->addError($object, $attribute, $this->$param, [
+                        'attribute' => $label,
+                        'title' => $title,
+                        'found' => $count
+                    ]);
+                }
             }
             else {
                 $length = strlen($value);

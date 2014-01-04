@@ -1,4 +1,8 @@
-/**
+/*!
+ * @copyright Copyright &copy; Kartik Visweswaran, Krajee.com, 2013
+ * @package yii2-password
+ * @version 1.0.0
+ *
  * Password Strength Meter
  * Modified and built for Yii Framework 2.0
  * Author: Kartik Visweswaran
