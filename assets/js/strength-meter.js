@@ -11,6 +11,7 @@
  *
  * Based on password meter created by Jeff Todnem (http://www.todnem.com/)
  */
+
 /**
  * String Reverse
  */
@@ -58,7 +59,8 @@ function checkPwd(pwd, params) {
 
         /* Loop through password to check for Symbol, Numeric, Lowercase and Uppercase pattern matches */
         for (var a = 0; a < arrPwdLen; a++) {
-            if (arrPwd[a].match(/[A-Z]/g)) {
+            str = arrPwd[a]
+            if (str.toUpperCase() != str) {
                 if (nTmpAlphaUC !== "") {
                     if ((nTmpAlphaUC + 1) == a) {
                         nConsecAlphaUC++;
@@ -68,7 +70,7 @@ function checkPwd(pwd, params) {
                 nTmpAlphaUC = a;
                 nAlphaUC++;
             }
-            else if (arrPwd[a].match(/[a-z]/g)) {
+            else if (str.toLowerCase() != str) {
                 if (nTmpAlphaLC !== "") {
                     if ((nTmpAlphaLC + 1) == a) {
                         nConsecAlphaLC++;
@@ -78,7 +80,7 @@ function checkPwd(pwd, params) {
                 nTmpAlphaLC = a;
                 nAlphaLC++;
             }
-            else if (arrPwd[a].match(/[0-9]/g)) {
+            else if (str.match(/[0-9]/g)) {
                 if (a > 0 && a < (arrPwdLen - 1)) {
                     nMidChar++;
                 }
@@ -91,7 +93,7 @@ function checkPwd(pwd, params) {
                 nTmpNumber = a;
                 nNumber++;
             }
-            else if (arrPwd[a].match(/[^a-zA-Z0-9_]/g)) {
+            else if (str.match(/[^\w]/g)) {
                 if (a > 0 && a < (arrPwdLen - 1)) {
                     nMidChar++;
                 }
@@ -297,8 +299,8 @@ function initPwdChk(elPwd, elScorebar, elScore, elVerdict, defVerdict) {
  */
 function initMeter(params) {
     var elPwd = params.elPwd, elScorebar = params.elBar,
-            elScore = params.elScore, elVerdict = params.elVerdict,
-            defVerdict = params.verdicts[0]
+        elScore = params.elScore, elVerdict = params.elVerdict,
+        defVerdict = params.verdicts[0]
     $(elPwd).closest('form').bind('reset', function() {
         initPwdChk(elPwd, elScorebar, elScore, elVerdict, defVerdict)
     });
