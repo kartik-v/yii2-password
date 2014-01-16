@@ -233,7 +233,7 @@ EOT;
                     $this->toggleOptions['id'] . '")';
             if ($this->form instanceof \kartik\widgets\ActiveForm) {
                 $toggle = Html::tag('span', Html::checkbox($this->toggleOptions['id'], false, $this->toggleOptions));
-                return $this->form->field($this->model, $this->attribute, ['template' => $this->template, 'addon' => ['type' => 'append', 'content' => $toggle]])->passwordInput($this->inputOptions);
+                return $this->form->field($this->model, $this->attribute, ['template' => $this->template, 'addon' => ['append' => ['content' => $toggle]]])->passwordInput($this->inputOptions);
             }
 
             $toggle = Html::tag('span', Html::checkbox($this->toggleOptions['id'], false, $this->toggleOptions), ['class' => 'input-group-addon']);
