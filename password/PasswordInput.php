@@ -112,7 +112,7 @@ EOT;
     /**
      * @var array the HTML options for the password input
      */
-    public $inputOptions = [];
+    public $options = [];
 
     /**
      * @var array the HTML options for the strength meter
@@ -143,14 +143,9 @@ EOT;
     public $verdictOptions = ['class' => 'kv-verdict'];
 
     /**
-     * @var array the HTML options for the entire widget
+     * @var array the HTML options for the widget container
      */
-    public $options = ['class' => 'kv-password'];
-
-    /**
-     * @var string the generated input id
-     */
-    private $_inputId;
+    public $containerOptions = ['class' => 'kv-password'];
 
     /**
      * @var string the generated meter content
@@ -177,7 +172,7 @@ EOT;
         }
         $this->initTemplate();
         $this->registerAssets();
-        echo Html::beginTag('div', $this->options);
+        echo Html::beginTag('div', $this->containerOptions);
     }
 
     /**
@@ -192,14 +187,14 @@ EOT;
      * Initializes the template
      */
     protected function initTemplate() {
+        $id = $this->options['id'];
+        $this->containerOptions['id'] = "{$id}-widget";
         if ($this->showMeter) {
             /* Generate element ids */
-            $this->_inputId = Html::getInputId($this->model, $this->attribute);
-            $this->verdictOptions['id'] = ArrayHelper::getValue($this->verdictOptions, 'id', "{$this->_inputId}-verdict");
-            $this->meterOptions['id'] = ArrayHelper::getValue($this->meterOptions, 'id', "{$this->_inputId}-meter");
-            $this->barOptions['id'] = ArrayHelper::getValue($this->barOptions, 'id', "{$this->_inputId}-bar");
-            $this->scoreOptions['id'] = ArrayHelper::getValue($this->scoreOptions, 'id', "{$this->_inputId}-score");
-            $this->options['id'] = $this->_inputId . '-widget';
+            $this->verdictOptions['id'] = ArrayHelper::getValue($this->verdictOptions, 'id', "{$id}-verdict");
+            $this->meterOptions['id'] = ArrayHelper::getValue($this->meterOptions, 'id', "{$id}-meter");
+            $this->barOptions['id'] = ArrayHelper::getValue($this->barOptions, 'id', "{$id}-bar");
+            $this->scoreOptions['id'] = ArrayHelper::getValue($this->scoreOptions, 'id', "{$id}-score");
 
             /* Generate meter container */
             $meterTag = ArrayHelper::remove($this->meterOptions, 'tag', 'div');
@@ -223,17 +218,18 @@ EOT;
      * Renders the password input field
      */
     protected function renderField() {
+        $id = $this->options['id'];
         $this->template = strtr($this->template, [
             '{meter}' => $this->_meter,
         ]);
         if ($this->toggleMask) {
-            $this->toggleOptions['id'] = ArrayHelper::getValue($this->toggleOptions, 'id', "{$this->_inputId}-tog");
+            $this->toggleOptions['id'] = ArrayHelper::getValue($this->toggleOptions, 'id', "{$id}-tog");
             $this->toggleOptions['onchange'] = 'togPwdMask("#' .
-                    $this->_inputId . '", "#' .
+                    $id . '", "#' .
                     $this->toggleOptions['id'] . '")';
             if ($this->form instanceof \kartik\widgets\ActiveForm) {
                 $toggle = Html::tag('span', Html::checkbox($this->toggleOptions['id'], false, $this->toggleOptions));
-                return $this->form->field($this->model, $this->attribute, ['template' => $this->template, 'addon' => ['append' => ['content' => $toggle]]])->passwordInput($this->inputOptions);
+                return $this->form->field($this->model, $this->attribute, ['template' => $this->template, 'addon' => ['append' => ['content' => $toggle]]])->passwordInput($this->options);
             }
 
             $toggle = Html::tag('span', Html::checkbox($this->toggleOptions['id'], false, $this->toggleOptions), ['class' => 'input-group-addon']);
@@ -241,7 +237,7 @@ EOT;
                 '{input}' => '<div class="input-group">{input}' . $toggle . '</div>'
             ]);
         }
-        return $this->form->field($this->model, $this->attribute, ['template' => $this->template])->passwordInput($this->inputOptions);
+        return $this->form->field($this->model, $this->attribute, ['template' => $this->template])->passwordInput($this->options);
     }
 
     /**
@@ -252,13 +248,13 @@ EOT;
         PasswordInputAsset::register($view);
         if ($this->showMeter) {
             $params = Json::encode([
-                        'elPwd' => "#" . $this->_inputId,
+                        'elPwd' => "#" . $this->options['id'],
                         'elBar' => "#" . $this->barOptions['id'],
                         'elScore' => "#" . $this->scoreOptions['id'],
                         'elVerdict' => "#" . $this->verdictOptions['id'],
                         'verdicts' => $this->_verdicts
             ]);
-            $this->inputOptions['onkeyup'] = "checkPwd(this.value, {$params})";
+            $this->options['onkeyup'] = "checkPwd(this.value, {$params})";
             $js = "initMeter({$params})";
             $view->registerJs($js);
         }
