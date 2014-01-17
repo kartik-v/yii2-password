@@ -8,6 +8,7 @@
 
 namespace kartik\password;
 
+use Yii;
 use yii\helpers\Html;
 use yii\helpers\Json;
 use yii\helpers\ArrayHelper;
@@ -44,12 +45,12 @@ EOT;
     /**
      * Password meter strength verdicts
      */
-    const STRENGTH_0 = 'Too Short';
-    const STRENGTH_1 = 'Very Weak';
-    const STRENGTH_2 = 'Weak';
-    const STRENGTH_3 = 'Good';
-    const STRENGTH_4 = 'Strong';
-    const STRENGTH_5 = 'Very Strong';
+    const STRENGTH_0 = 0;
+    const STRENGTH_1 = 1;
+    const STRENGTH_2 = 2;
+    const STRENGTH_3 = 3;
+    const STRENGTH_4 = 4;
+    const STRENGTH_5 = 5;
 
     /**
      * @var ActiveForm the form object to which this
@@ -66,16 +67,16 @@ EOT;
     /**
      * @var array the configuration of various strength verdicts 
      * that will be displayed with the strength meter. The array
-     * keys are the verdicts and the array values are the CSS class
-     * that will be used to display each verdict
+     * keys are the verdicts and the array values are the CSS class 
+     * and titles that will be used to display each verdict
      */
     public $verdicts = [
-        self::STRENGTH_0 => 'label label-default',
-        self::STRENGTH_1 => 'label label-danger',
-        self::STRENGTH_2 => 'label label-warning',
-        self::STRENGTH_3 => 'label label-info',
-        self::STRENGTH_4 => 'label label-primary',
-        self::STRENGTH_5 => 'label label-success',
+        self::STRENGTH_0 => ['class' => 'label label-default', 'title' => 'Too Short'],
+        self::STRENGTH_1 => ['class' => 'label label-danger', 'title' => 'Very Weak'],
+        self::STRENGTH_2 => ['class' => 'label label-warning', 'title' => 'Weak'],
+        self::STRENGTH_3 => ['class' => 'label label-info', 'title' => 'Good'],
+        self::STRENGTH_4 => ['class' => 'label label-primary', 'title' => 'Strong'],
+        self::STRENGTH_5 => ['class' => 'label label-success', 'title' => 'Very Strong'],
     ];
 
     /**
@@ -92,7 +93,7 @@ EOT;
     /**
      * @var array options for the toggle checkbox
      */
-    public $toggleOptions = ['title' => 'Show / Hide Password'];
+    public $toggleOptions = [];
 
     /**
      * @var string the template for displaying the whole input widget
@@ -148,6 +149,11 @@ EOT;
     public $containerOptions = ['class' => 'kv-password'];
 
     /**
+     * @var array the the internalization configuration for this widget
+     */
+    public $i18n = [];
+
+    /**
      * @var string the generated meter content
      */
     private $_meter = '';
@@ -166,10 +172,16 @@ EOT;
         if (!isset($this->form) || !($this->form instanceof \yii\widgets\ActiveForm)) {
             throw new InvalidConfigException("The 'form' property must be set and must be an object of type 'ActiveForm'.");
         }
-        /* Generate styled verdicts */
-        foreach ($this->verdicts as $verdict => $class) {
-            $this->_verdicts[] = "<div class='{$class}'>{$verdict}</div>";
+        Yii::setAlias('@pwdinput', dirname(__FILE__));
+        if (empty($this->i18n)) {
+            $this->i18n = [
+                'class' => 'yii\i18n\PhpMessageSource',
+                'basePath' => '@pwdinput/messages'
+            ];
         }
+        Yii::$app->i18n->translations['pwdinput'] = $this->i18n;
+        $this->toggleOptions['title'] = ArrayHelper::getValue($this->toggleOptions, 'title', Yii::t('pwdinput', 'Show / Hide Password'));
+        $this->initVerdicts();
         $this->initTemplate();
         $this->registerAssets();
         echo Html::beginTag('div', $this->containerOptions);
@@ -181,6 +193,15 @@ EOT;
     public function run() {
         echo $this->renderField();
         echo Html::endTag('div');
+    }
+
+    /**
+     * Initialize styled verdicts
+     */
+    protected function initVerdicts() {
+        foreach ($this->verdicts as $verdict) {
+            $this->_verdicts[] = Html::tag('div', Yii::t('pwdinput', $verdict['title']), ['class' => $verdict['class']]);
+        }
     }
 
     /**

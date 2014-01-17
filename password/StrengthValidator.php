@@ -169,6 +169,11 @@ class StrengthValidator extends \yii\validators\Validator {
     ];
 
     /**
+     * @var array the the internalization configuration for this widget
+     */
+    public $i18n = [];
+
+    /**
      * @var array the list of inbuilt presets and their parameter settings
      */
     private $_presets;
@@ -178,15 +183,15 @@ class StrengthValidator extends \yii\validators\Validator {
      */
     private static $_rules = [
         self::RULE_MIN => [
-            'msg' => '{attribute} should contain at least {required} ({found} found)',
+            'msg' => '{attribute} should contain at least {n, plural, =1{one character} other{# characters}} ({found} found)',
             'int' => true
         ],
         self::RULE_MAX => [
-            'msg' => '{attribute} should contain at most {required} ({found} found)',
+            'msg' => '{attribute} should contain at most {n, plural, =1{one character} other{# characters}} ({found} found)',
             'int' => true
         ],
         self::RULE_LEN => [
-            'msg' => '{attribute} should contain exactly {required} ({found} found)',
+            'msg' => '{attribute} should contain exactly {n, plural, =1{one character} other{# characters}} ({found} found)',
             'int' => true
         ],
         self::RULE_USER => [
@@ -199,26 +204,22 @@ class StrengthValidator extends \yii\validators\Validator {
             'bool' => true
         ],
         self::RULE_LOW => [
-            'msg' => '{attribute} should contain at least {required} ({found} found)',
-            'title' => 'lower case',
+            'msg' => '{attribute} should contain at least {n, plural, =1{one lower case character} other{# lower case characters}} ({found} found)',
             'match' => '![a-z]!',
             'int' => true
         ],
         self::RULE_UP => [
-            'msg' => '{attribute} should contain at least {required} ({found} found)',
-            'title' => 'upper case',
+            'msg' => '{attribute} should contain at least {n, plural, =1{one upper case character} other{# upper case characters}} ({found} found)',
             'match' => '![A-Z]!',
             'int' => true
         ],
         self::RULE_NUM => [
-            'msg' => '{attribute} should contain at least {required} ({found} found)',
-            'title' => 'numeric / digit',
+            'msg' => '{attribute} should contain at least {n, plural, =1{one numeric / digit character} other{# numeric / digit characters}} ({found} found)',
             'match' => '![\d]!',
             'int' => true
         ],
         self::RULE_SPL => [
-            'msg' => '{attribute} should contain at least {required} ({found} found)',
-            'title' => 'special',
+            'msg' => '{attribute} should contain at least {n, plural, =1{one special character} other{# special characters}} ({found} found)',
             'match' => '![\W]!',
             'int' => true
         ]
@@ -228,6 +229,14 @@ class StrengthValidator extends \yii\validators\Validator {
      * Initialize the validator component
      */
     public function init() {
+        Yii::setAlias('@pwdstrength', dirname(__FILE__));
+        if (empty($this->i18n)) {
+            $this->i18n = [
+                'class' => 'yii\i18n\PhpMessageSource',
+                'basePath' => '@pwdstrength/messages'
+            ];
+        }
+        Yii::$app->i18n->translations['pwdstrength'] = $this->i18n;
         $this->applyPreset();
         $this->checkParams();
         $this->setRuleMessages();
@@ -238,15 +247,13 @@ class StrengthValidator extends \yii\validators\Validator {
      */
     protected function setRuleMessages() {
         if ($this->strError === null) {
-            $this->strError = Yii::t('app', '{attribute} must be a string.');
+            $this->strError = Yii::t('pwdstrength', '{attribute} must be a string');
         }
         foreach (self::$_rules as $rule => $setup) {
             $param = "{$rule}Error";
             if ($this->$rule !== null) {
-                $title = empty($setup['title']) ? ' ' : $setup['title'] . ' ';
-                $required = ($this->$rule == 1) ? "one {$title}character" : "{$this->$rule} {$title}characters";
                 $message = (!isset($this->$param) || $this->$param === null) ? $setup['msg'] : $this->$param;
-                $this->$param = Yii::t('app', $message, ['required' => $required]);
+                $this->$param = Yii::t('pwdstrength', $message, ['n' => $this->$rule]);
             }
         }
     }
@@ -323,12 +330,10 @@ class StrengthValidator extends \yii\validators\Validator {
                 $this->addError($object, $attribute, $this->$param, ['attribute' => $label]);
             }
             elseif (!empty($setup['match']) && $rule !== self::RULE_EMAIL && $rule !== self::RULE_USER) {
-                $title = empty($setup['title']) ? '' : $setup['title'];
                 $count = preg_match_all($setup['match'], $value, $temp);
                 if ($count < $this->$rule) {
                     $this->addError($object, $attribute, $this->$param, [
                         'attribute' => $label,
-                        'title' => $title,
                         'found' => $count
                     ]);
                 }
@@ -366,18 +371,14 @@ class StrengthValidator extends \yii\validators\Validator {
      */
     public function clientValidateAttribute($object, $attribute, $view) {
         $label = $object->getAttributeLabel($attribute);
-        $options = ['strError' => Html::encode(Yii::t('app', $this->message, ['attribute' => $label]))];
+        $options = ['strError' => Html::encode(Yii::t('pwdstrength', $this->message, ['attribute' => $label]))];
         $options['userField'] = '#' . Html::getInputId($object, $this->userAttribute);
 
         foreach (self::$_rules as $rule => $setup) {
             $param = "{$rule}Error";
             if ($this->$rule !== null) {
-                $title = empty($setup['title']) ? '' : $setup['title'];
                 $options[$rule] = $this->$rule;
-                $options[$param] = Html::encode(Yii::t('app', $this->$param, [
-                                    'attribute' => $label,
-                                    'title' => $title
-                ]));
+                $options[$param] = Html::encode(Yii::t('pwdstrength', $this->$param, ['attribute' => $label]));
             }
         }
         StrengthValidatorAsset::register($view);
