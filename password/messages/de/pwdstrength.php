@@ -17,14 +17,21 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
-    '{attribute} should contain at least {n, plural, =1{one character} other{# characters}} ({found} found)' => '',
-    '{attribute} should contain at most {n, plural, =1{one character} other{# characters}} ({found} found)' => '',
-    '{attribute} should contain exactly {n, plural, =1{one character} other{# characters}} ({found} found)' => '',
-    '{attribute} cannot contain the username' => "",
-    '{attribute} cannot contain an email address' => "",
-    '{attribute} must be a string' => '',
-    '{attribute} should contain at least {n, plural, =1{one lower case character} other{# lower case characters}} ({found} found)' => '',
-    '{attribute} should contain at least {n, plural, =1{one upper case character} other{# upper case characters}} ({found} found)' => '',
-    '{attribute} should contain at least {n, plural, =1{one numeric / digit character} other{# numeric / digit characters}} ({found} found)' => '',
-    '{attribute} should contain at least {n, plural, =1{one special character} other{# special characters}} ({found} found)' => '',
+    '{attribute} should contain at least {n, plural, =1{one character} other{# characters}} ({found} found)' =>
+    '{attribute} sollte mindestens {n, plural, =1{ein Zeichen} other{# Zeichen}} ({found} gefunden)',
+    '{attribute} should contain at most {n, plural, =1{one character} other{# characters}} ({found} found)' =>
+    '{attribute} sollte höchstens {n, plural, =1{ein Zeichen} other{# Zeichen}} ({found} gefunden)',
+    '{attribute} should contain exactly {n, plural, =1{one character} other{# characters}} ({found} found)' =>
+    '{attribute} sollte genau {n, plural, =1{ein Zeichen} other{# Zeichen}} ({found} gefunden)',
+    '{attribute} cannot contain the username' => '{attribute} nicht den Benutzernamen enthalten',
+    '{attribute} cannot contain an email address' => '{attribute} nicht die E-Mail-Adresse enthalten',
+    '{attribute} must be a string' => '{attribute} muss ein String sein',
+    '{attribute} should contain at least {n, plural, =1{one lower case character} other{# lower case characters}} ({found} found)' =>
+    '{attribute} sollte mindestens {n, plural, =1{ein Kleinbuchstaben enthalten} other{# Kleinbuchstaben enthalten}} ({found} gefunden)',
+    '{attribute} should contain at least {n, plural, =1{one upper case character} other{# upper case characters}} ({found} found)' =>
+    '{attribute} sollte mindestens {n, plural, =1{ein Großbuchstaben enthalten} other{# Großbuchstaben enthalten}} ({found} gefunden)',
+    '{attribute} should contain at least {n, plural, =1{one numeric / digit character} other{# numeric / digit characters}} ({found} found)' =>
+    '{attribute} sollte mindestens {n, plural, =1{numerisch / stelligen Zeichen enthalten} other{# numerisch / stelligen Zeichen enthalten}} ({found} gefunden)',
+    '{attribute} should contain at least {n, plural, =1{one special character} other{# special characters}} ({found} found)' =>
+    '{attribute} sollte mindestens {n, plural, =1{Sonderzeichen Zeichen enthalten} other{# Sonderzeichen Zeichen enthalten}} ({found} gefunden)',
 ];
