@@ -18,7 +18,7 @@
  */
 return [
     'Show / Hide Password' => 'Passwort anzeigen / ausblenden',
-    'Too Short' => 'sehr kurze',
+    'Too Short' => 'zu kurz',
     'Very Weak' => 'sehr schwach',
     'Weak' => 'schwach',
     'Good' => 'gut',
