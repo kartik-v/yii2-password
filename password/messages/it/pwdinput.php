@@ -17,11 +17,11 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
-    'Show / Hide Password' => 'Показать / Скрыть пароль',
-	'Too Short' => 'слишком короткий',
-	'Very Weak' => 'Очень слабый',
-    'Weak' => 'слабый',
-    'Good' => 'хорошо',
-    'Strong' => 'сильный',
-    'Very Strong' => 'Очень сильный',
+    'Show / Hide Password' => 'Mostra / Nascondi password',
+	'Too Short' => 'troppo corta',
+	'Very Weak' => 'molto debole',
+    'Weak' => 'debole',
+    'Good' => 'buono',
+    'Strong' => 'forte',
+    'Very Strong' => 'molto forte',
 ];
