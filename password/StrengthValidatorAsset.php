@@ -18,12 +18,12 @@ use yii\web\AssetBundle;
  */
 class StrengthValidatorAsset extends AssetBundle {
 
-    public $sourcePath = '@vendor/kartik-v/yii2-password/kartik/assets';
     public $depends = [
         'yii\web\JqueryAsset'
     ];
 
     public function init() {
+        $this->sourcePath = __DIR__ . '/../assets';
         $this->js = YII_DEBUG ? ['js/strength-validation.js'] : ['js/strength-validation.min.js'];
         parent::init();
     }

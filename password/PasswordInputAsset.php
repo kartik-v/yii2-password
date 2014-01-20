@@ -18,13 +18,13 @@ use yii\web\AssetBundle;
  */
 class PasswordInputAsset extends AssetBundle {
 
-    public $sourcePath = '@vendor/kartik-v/yii2-password/kartik/assets';
     public $depends = [
         'yii\web\JqueryAsset',
         'yii\bootstrap\BootstrapAsset',
     ];
 
     public function init() {
+        $this->sourcePath = __DIR__ . '/../assets';
         $this->css = YII_DEBUG ? ['css/strength-meter.css'] : ['css/strength-meter.min.css'];
         $this->js = YII_DEBUG ? ['js/strength-meter.js'] : ['js/strength-meter.min.js'];
         parent::init();
