@@ -53,13 +53,6 @@ EOT;
     const STRENGTH_5 = 5;
 
     /**
-     * @var ActiveForm the form object to which this
-     * input will be attached to. This is mandatory. 
-     * If not passed an exception will be raised
-     */
-    public $form;
-
-    /**
      * @var boolean whether to display the strength meter
      */
     public $showMeter = true;
@@ -97,10 +90,9 @@ EOT;
 
     /**
      * @var string the template for displaying the whole input widget
-     * if not using a model the template will just display "{input}\n{meter}\n{hint}"
      * @see initTemplate function
      */
-    public $template = "{label}\n{input}\n{meter}\n{error}\n{hint}";
+    public $template = "{input}\n{meter}";
 
     /**
      * @var string the template for displaying the meter
@@ -169,9 +161,6 @@ EOT;
      */
     public function init() {
         parent::init();
-        if (!isset($this->form) || !($this->form instanceof \yii\widgets\ActiveForm)) {
-            throw new InvalidConfigException("The 'form' property must be set and must be an object of type 'ActiveForm'.");
-        }
         Yii::setAlias('@pwdinput', dirname(__FILE__));
         if (empty($this->i18n)) {
             $this->i18n = [
@@ -210,6 +199,7 @@ EOT;
     protected function initTemplate() {
         $id = $this->options['id'];
         $this->containerOptions['id'] = "{$id}-widget";
+        Html::addCssClass($this->options, 'form-control');
         if ($this->showMeter) {
             /* Generate element ids */
             $this->verdictOptions['id'] = ArrayHelper::getValue($this->verdictOptions, 'id', "{$id}-verdict");
@@ -230,7 +220,7 @@ EOT;
             ]);
             $this->_meter = Html::tag($meterTag, $meter, $this->meterOptions);
             if ($this->placement === self::ALIGN_RIGHT) {
-                $this->template = "{label}\n" . self::ALIGN_RIGHT_TEMPLATE . "\n{error}\n{hint}";
+                $this->template = self::ALIGN_RIGHT_TEMPLATE;
             }
         }
     }
@@ -240,25 +230,27 @@ EOT;
      */
     protected function renderField() {
         $id = $this->options['id'];
-        $this->template = strtr($this->template, [
-            '{meter}' => $this->_meter,
-        ]);
         if ($this->toggleMask) {
             $this->toggleOptions['id'] = ArrayHelper::getValue($this->toggleOptions, 'id', "{$id}-tog");
             $this->toggleOptions['onchange'] = 'togPwdMask("#' .
                     $id . '", "#' .
                     $this->toggleOptions['id'] . '")';
-            if ($this->form instanceof \kartik\widgets\ActiveForm) {
-                $toggle = Html::tag('span', Html::checkbox($this->toggleOptions['id'], false, $this->toggleOptions));
-                return $this->form->field($this->model, $this->attribute, ['template' => $this->template, 'addon' => ['append' => ['content' => $toggle]]])->passwordInput($this->options);
-            }
-
             $toggle = Html::tag('span', Html::checkbox($this->toggleOptions['id'], false, $this->toggleOptions), ['class' => 'input-group-addon']);
             $this->template = strtr($this->template, [
                 '{input}' => '<div class="input-group">{input}' . $toggle . '</div>'
             ]);
         }
-        return $this->form->field($this->model, $this->attribute, ['template' => $this->template])->passwordInput($this->options);
+        if ($this->hasModel()) {
+            $input = Html::activePasswordInput($this->model, $this->attribute, $this->options);
+        }
+        else {
+            $input = Html::passwordInput($this->name, $this->value, $this->options);
+        }
+        return strtr($this->template, [
+            '{meter}' => $this->_meter,
+            '{input}' => $input
+        ]);
+        ;
     }
 
     /**
