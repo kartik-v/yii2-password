@@ -81,11 +81,9 @@ use kartik\widgets\ActiveForm; // optional
 
 $form = ActiveForm::begin(['id' => 'login-form']);
 echo $form->field($model,'username');
-echo PasswordInput::widget([
-	'model' => $model, 
-	'attribute' => 'password',
-	'form' => $form,
+echo $form->field($model, 'password')->widget(PasswordInput::classname(), [
 	'showMeter' => true,
+	'toggleMask' => false
 ]);
 ```
 
