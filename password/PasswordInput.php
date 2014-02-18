@@ -24,7 +24,8 @@ use yii\base\InvalidConfigException;
  * @since 1.0
  * @see http://passwordmeter.com
  */
-class PasswordInput extends \yii\widgets\InputWidget {
+class PasswordInput extends \yii\widgets\InputWidget
+{
 
     /**
      * Placement constants for aligning the meter with respect to the input
@@ -32,14 +33,14 @@ class PasswordInput extends \yii\widgets\InputWidget {
     const ALIGN_NONE = 'none';
     const ALIGN_RIGHT = 'right';
     const ALIGN_RIGHT_TEMPLATE = <<< 'EOT'
-        <div class="row">
-            <div class="col-sm-9">
-                {input}
-            </div>
-            <div class="col-sm-3">
-                {meter}
-            </div>
-        </div>
+<div class="row">
+    <div class="col-sm-9">
+        {input}
+    </div>
+    <div class="col-sm-3">
+        {meter}
+    </div>
+</div>
 EOT;
 
     /**
@@ -159,7 +160,8 @@ EOT;
      * Initializes the widget
      * @throw InvalidConfigException
      */
-    public function init() {
+    public function init()
+    {
         parent::init();
         Yii::setAlias('@pwdinput', dirname(__FILE__));
         if (empty($this->i18n)) {
@@ -179,7 +181,8 @@ EOT;
     /**
      * Displays the input
      */
-    public function run() {
+    public function run()
+    {
         echo $this->renderField();
         echo Html::endTag('div');
     }
@@ -187,7 +190,8 @@ EOT;
     /**
      * Initialize styled verdicts
      */
-    protected function initVerdicts() {
+    protected function initVerdicts()
+    {
         foreach ($this->verdicts as $verdict) {
             $this->_verdicts[] = Html::tag('div', Yii::t('pwdinput', $verdict['title']), ['class' => $verdict['class']]);
         }
@@ -196,7 +200,8 @@ EOT;
     /**
      * Initializes the template
      */
-    protected function initTemplate() {
+    protected function initTemplate()
+    {
         $id = $this->options['id'];
         $this->containerOptions['id'] = "{$id}-widget";
         Html::addCssClass($this->options, 'form-control');
@@ -228,7 +233,8 @@ EOT;
     /**
      * Renders the password input field
      */
-    protected function renderField() {
+    protected function renderField()
+    {
         $id = $this->options['id'];
         if ($this->toggleMask) {
             $this->toggleOptions['id'] = ArrayHelper::getValue($this->toggleOptions, 'id', "{$id}-tog");
@@ -256,7 +262,8 @@ EOT;
     /**
      * Registers the needed assets
      */
-    public function registerAssets() {
+    public function registerAssets()
+    {
         $view = $this->getView();
         PasswordInputAsset::register($view);
         if ($this->showMeter) {

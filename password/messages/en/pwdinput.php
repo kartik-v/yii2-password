@@ -18,8 +18,8 @@
  */
 return [
     'Show / Hide Password' => '',
-	'Too Short' => '',
-	'Very Weak' => '',
+    'Too Short' => '',
+    'Very Weak' => '',
     'Weak' => "",
     'Good' => "",
     'Strong' => '',

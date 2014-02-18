@@ -22,7 +22,8 @@ use yii\helpers\Json;
  * @author Kartik Visweswaran <kartikv2@gmail.com>
  * @since 1.0
  */
-class StrengthValidator extends \yii\validators\Validator {
+class StrengthValidator extends \yii\validators\Validator
+{
     /* The valid preset constants */
 
     const SIMPLE = 'simple';
@@ -228,7 +229,8 @@ class StrengthValidator extends \yii\validators\Validator {
     /**
      * Initialize the validator component
      */
-    public function init() {
+    public function init()
+    {
         Yii::setAlias('@pwdstrength', dirname(__FILE__));
         if (empty($this->i18n)) {
             $this->i18n = [
@@ -245,7 +247,8 @@ class StrengthValidator extends \yii\validators\Validator {
     /**
      * Sets the rule message for each rule
      */
-    protected function setRuleMessages() {
+    protected function setRuleMessages()
+    {
         if ($this->strError === null) {
             $this->strError = Yii::t('pwdstrength', '{attribute} must be a string');
         }
@@ -263,7 +266,8 @@ class StrengthValidator extends \yii\validators\Validator {
      * @return void
      * @throws InvalidConfigException if [[preset]] value is invalid.
      */
-    protected function applyPreset() {
+    protected function applyPreset()
+    {
         if (!$this->preset) {
             return;
         }
@@ -287,7 +291,8 @@ class StrengthValidator extends \yii\validators\Validator {
      * and the right threshold for 'max' chars.
      * @throw InvalidConfigException if validation is invalid
      */
-    protected function checkParams() {
+    protected function checkParams()
+    {
         foreach (self::$_rules as $rule => $setup) {
             if (isset($this->$rule) && !empty($setup['int']) && $setup['int'] &&
                     (!is_int($this->$rule) || $this->$rule < 0)) {
@@ -311,7 +316,8 @@ class StrengthValidator extends \yii\validators\Validator {
      * @param Model $object
      * @param string $attribute
      */
-    public function validateAttribute($object, $attribute) {
+    public function validateAttribute($object, $attribute)
+    {
         $value = $object->$attribute;
         if (!is_string($value)) {
             $this->addError($object, $attribute, $this->strError);
@@ -369,7 +375,8 @@ class StrengthValidator extends \yii\validators\Validator {
      * @param View $view
      * @return string javascript method
      */
-    public function clientValidateAttribute($object, $attribute, $view) {
+    public function clientValidateAttribute($object, $attribute, $view)
+    {
         $label = $object->getAttributeLabel($attribute);
         $options = ['strError' => Html::encode(Yii::t('pwdstrength', $this->message, ['attribute' => $label]))];
         $options['userField'] = '#' . Html::getInputId($object, $this->userAttribute);
