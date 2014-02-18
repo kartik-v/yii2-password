@@ -8,23 +8,23 @@
 
 namespace kartik\password;
 
-use yii\web\AssetBundle;
-
 /**
  * Asset bundle for StrengthValidator
  *
  * @author Kartik Visweswaran <kartikv2@gmail.com>
  * @since 1.0
  */
-class StrengthValidatorAsset extends AssetBundle {
+class StrengthValidatorAsset extends AssetBundle
+{
 
     public $depends = [
         'yii\web\JqueryAsset'
     ];
 
-    public function init() {
-        $this->sourcePath = __DIR__ . '/../assets';
-        $this->js = YII_DEBUG ? ['js/strength-validation.js'] : ['js/strength-validation.min.js'];
+    public function init()
+    {
+        $this->setSourcePath(__DIR__ . '/../assets');
+        $this->setupAssets('js', ['js/strength-validation']);
         parent::init();
     }
 
