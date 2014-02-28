@@ -32,7 +32,7 @@ This is an advanced password input widget with configurable options and a dynami
 2. Allows you to display an advanced password strength meter to calculate and show your password strength as you type. 
 3. Allows you to control and position/style your meter based on templates.
 4. A password strength meter consists of the meter bar, the score, and the verdict.
-5. Uses Twitter Bootstrap 3.0 styling wherever possible with inbuilt Yii 2.0 ActiveField functionality.
+5. Uses Bootstrap 3.0 styling wherever possible with inbuilt Yii 2.0 ActiveField functionality.
 6. Works independent and complements the StrengthValidator.
 7. If needed, it utilizes the advanced features of `kartik\widgets\ActiveField` from the [yii2-widgets package](https://github.com/kartik-v/yii2-widgets). It does the validation of Bootstrap horizontal form dynamically, if the current ActiveForm is based on `kartik\widgets\ActiveForm`.
 
