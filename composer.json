@@ -14,7 +14,8 @@
     ],
     "require": {
         "yiisoft/yii2": "dev-master",
-        "yiisoft/yii2-bootstrap": "dev-master"
+        "yiisoft/yii2-bootstrap": "dev-master",
+        "kartik-v/strength-meter": "dev-master"
     },
     "autoload": {
         "psr-4": {"kartik\\": ""}

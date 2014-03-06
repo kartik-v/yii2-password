@@ -184,15 +184,15 @@ class StrengthValidator extends \yii\validators\Validator
      */
     private static $_rules = [
         self::RULE_MIN => [
-            'msg' => '{attribute} should contain at least {n, plural, =1{one character} other{# characters}}! ({found} found)',
+            'msg' => '{attribute} should contain at least {n} {chars}! ({found} found)',
             'int' => true
         ],
         self::RULE_MAX => [
-            'msg' => '{attribute} should contain at most {n, plural, =1{one character} other{# characters}}! ({found} found)',
+            'msg' => '{attribute} should contain at most {n} {chars}! ({found} found)',
             'int' => true
         ],
         self::RULE_LEN => [
-            'msg' => '{attribute} should contain exactly {n, plural, =1{one character} other{# characters}}! ({found} found)',
+            'msg' => '{attribute} should contain exactly {n} {chars}! ({found} found)',
             'int' => true
         ],
         self::RULE_USER => [
@@ -205,22 +205,22 @@ class StrengthValidator extends \yii\validators\Validator
             'bool' => true
         ],
         self::RULE_LOW => [
-            'msg' => '{attribute} should contain at least {n, plural, =1{one lower case character} other{# lower case characters}}! ({found} found)',
+            'msg' => '{attribute} should contain at least {n} lower case {chars}! ({found} found)',
             'match' => '![a-z]!',
             'int' => true
         ],
         self::RULE_UP => [
-            'msg' => '{attribute} should contain at least {n, plural, =1{one upper case character} other{# upper case characters}}! ({found} found)',
+            'msg' => '{attribute} should contain at least {n} upper case {chars}! ({found} found)',
             'match' => '![A-Z]!',
             'int' => true
         ],
         self::RULE_NUM => [
-            'msg' => '{attribute} should contain at least {n, plural, =1{one numeric / digit character} other{# numeric / digit characters}}! ({found} found)',
+            'msg' => '{attribute} should contain at least {n} numeric / digit {chars}! ({found} found)',
             'match' => '![\d]!',
             'int' => true
         ],
         self::RULE_SPL => [
-            'msg' => '{attribute} should contain at least {n, plural, =1{one special character} other{# special characters}}! ({found} found)',
+            'msg' => '{attribute} should contain at least {n} special {chars}! ({found} found)',
             'match' => '![\W]!',
             'int' => true
         ]
@@ -243,7 +243,7 @@ class StrengthValidator extends \yii\validators\Validator
         $this->checkParams();
         $this->setRuleMessages();
     }
-
+    
     /**
      * Sets the rule message for each rule
      */
@@ -256,7 +256,13 @@ class StrengthValidator extends \yii\validators\Validator
             $param = "{$rule}Error";
             if ($this->$rule !== null) {
                 $message = (!isset($this->$param) || $this->$param === null) ? $setup['msg'] : $this->$param;
-                $this->$param = Yii::t('pwdstrength', $message, ['n' => $this->$rule]);
+                $n = $this->$rule;
+                $chars = Yii::t('pwdstrength', 'characters');
+                if ($this->$rule == 1) {
+                    $n = Yii::t('pwdstrength', 'one');
+                    $chars = Yii::t('pwdstrength', 'character');
+                }
+                $this->$param = Yii::t('pwdstrength', $message, ['n' => $n, 'chars'=>$chars]);
             }
         }
     }
