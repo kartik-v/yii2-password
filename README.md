@@ -26,7 +26,7 @@ Other features:
 
 ### PasswordInput
 [```VIEW DEMO```](http://demos.krajee.com/password-details/password-input)  
-This is an advanced password input widget with configurable options and a dynamic strength meter. The strength client validation for the meter is based on <a href="http://www.passwordmeter.com/" target="_blank">password input meter</a>. The widget provides various features as mentioned below:
+This is an advanced password input widget with configurable options and a dynamic strength meter. The strength client validation for the meter is based on <a href="http://plugins.krajee.com/strength-meter target="_blank">Strength Meter JQuery Plugin</a> by Krajee. The widget provides various features as mentioned below:
 
 1. Allows you to show/ hide a password text (using bootstrap styled input addons). You can configure this option to be shown or not.
 2. Allows you to display an advanced password strength meter to calculate and show your password strength as you type. 
@@ -34,7 +34,6 @@ This is an advanced password input widget with configurable options and a dynami
 4. A password strength meter consists of the meter bar, the score, and the verdict.
 5. Uses Bootstrap 3.0 styling wherever possible with inbuilt Yii 2.0 ActiveField functionality.
 6. Works independent and complements the StrengthValidator.
-7. If needed, it utilizes the advanced features of `kartik\widgets\ActiveField` from the [yii2-widgets package](https://github.com/kartik-v/yii2-widgets). It does the validation of Bootstrap horizontal form dynamically, if the current ActiveForm is based on `kartik\widgets\ActiveForm`.
 
 ### Demo
 You can see a [demonstration here](http://demos.krajee.com/password) on usage of these functions with documentation and examples.
