@@ -14,12 +14,12 @@ namespace kartik\password;
  * @author Kartik Visweswaran <kartikv2@gmail.com>
  * @since 1.0
  */
-class PasswordInputAsset extends AssetBundle
+class PasswordInputAsset extends \kartik\widgets\AssetBundle
 {
-
+    
     public function init()
     {
-        $this->setSourcePath(__DIR__ . '/../assets');
+        $this->setSourcePath('@vendor/kartik-v/strength-meter');
         $this->setupAssets('css', ['css/strength-meter']);
         $this->setupAssets('js', ['js/strength-meter']);
         parent::init();

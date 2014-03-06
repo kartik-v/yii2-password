@@ -14,7 +14,7 @@ namespace kartik\password;
  * @author Kartik Visweswaran <kartikv2@gmail.com>
  * @since 1.0
  */
-class StrengthValidatorAsset extends AssetBundle
+class StrengthValidatorAsset extends \kartik\widgets\AssetBundle
 {
 
     public $depends = [

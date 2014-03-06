@@ -17,7 +17,7 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
-    '{attribute} should contain at least {n, plural, =1{one character} other{# characters}}! ({found} found)' =>
+    '{attribute} should contain at least {n} {chars}, plural, =1{one character} other{# characters}}! ({found} found)' =>
     '{attribute} sollte mindestens {n, plural, =1{ein Zeichen} other{# Zeichen}} ({found} gefunden)',
     '{attribute} should contain at most {n, plural, =1{one character} other{# characters}}! ({found} found)' =>
     '{attribute} sollte höchstens {n, plural, =1{ein Zeichen} other{# Zeichen}} ({found} gefunden)',
