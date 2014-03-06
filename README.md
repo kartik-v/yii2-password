@@ -26,7 +26,7 @@ Other features:
 
 ### PasswordInput
 [```VIEW DEMO```](http://demos.krajee.com/password-details/password-input)  
-This is an advanced password input widget with configurable options and a dynamic strength meter. The strength client validation for the meter is based on <a href="http://plugins.krajee.com/strength-meter target="_blank">Strength Meter JQuery Plugin</a> by Krajee. The widget provides various features as mentioned below:
+This is an advanced password input widget with configurable options and a dynamic strength meter based on <a href="http://plugins.krajee.com/strength-meter target="_blank">Strength Meter JQuery Plugin</a> by Krajee. The widget provides various features as mentioned below:
 
 1. Allows you to show/ hide a password text (using bootstrap styled input addons). You can configure this option to be shown or not.
 2. Allows you to display an advanced password strength meter to calculate and show your password strength as you type. 
