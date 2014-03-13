@@ -184,15 +184,15 @@ class StrengthValidator extends \yii\validators\Validator
      */
     private static $_rules = [
         self::RULE_MIN => [
-            'msg' => '{attribute} should contain at least {n, plural, =1{one character} other{# characters}}! ({found} found)',
+            'msg' => '{attribute} should contain at least {n, plural, one{one character} other{# characters}}! ({found} found)',
             'int' => true
         ],
         self::RULE_MAX => [
-            'msg' => '{attribute} should contain at most {n, plural, =1{one character} other{# characters}}! ({found} found)',
+            'msg' => '{attribute} should contain at most {n, plural, one{one character} other{# characters}}! ({found} found)',
             'int' => true
         ],
         self::RULE_LEN => [
-            'msg' => '{attribute} should contain exactly {n, plural, =1{one character} other{# characters}}! ({found} found)',
+            'msg' => '{attribute} should contain exactly {n, plural, one{one character} other{# characters}}! ({found} found)',
             'int' => true
         ],
         self::RULE_USER => [
@@ -205,22 +205,22 @@ class StrengthValidator extends \yii\validators\Validator
             'bool' => true
         ],
         self::RULE_LOW => [
-            'msg' => '{attribute} should contain at least {n, plural, =1{one lower case character} other{# lower case characters}}! ({found} found)',
+            'msg' => '{attribute} should contain at least {n, plural, one{one lower case character} other{# lower case characters}}! ({found} found)',
             'match' => '![a-z]!',
             'int' => true
         ],
         self::RULE_UP => [
-            'msg' => '{attribute} should contain at least {n, plural, =1{one upper case character} other{# upper case characters}}! ({found} found)',
+            'msg' => '{attribute} should contain at least {n, plural, one{one upper case character} other{# upper case characters}}! ({found} found)',
             'match' => '![A-Z]!',
             'int' => true
         ],
         self::RULE_NUM => [
-            'msg' => '{attribute} should contain at least {n, plural, =1{one numeric / digit character} other{# numeric / digit characters}}! ({found} found)',
+            'msg' => '{attribute} should contain at least {n, plural, one{one numeric / digit character} other{# numeric / digit characters}}! ({found} found)',
             'match' => '![\d]!',
             'int' => true
         ],
         self::RULE_SPL => [
-            'msg' => '{attribute} should contain at least {n, plural, =1{one special character} other{# special characters}}! ({found} found)',
+            'msg' => '{attribute} should contain at least {n, plural, one{one special character} other{# special characters}}! ({found} found)',
             'match' => '![\W]!',
             'int' => true
         ]
