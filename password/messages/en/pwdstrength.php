@@ -17,14 +17,14 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
-    '{attribute} should contain at least {n, plural, one{one character} other{# characters}}! ({found} found)' => '',
-    '{attribute} should contain at most {n, plural, one{one character} other{# characters}}! ({found} found)' => '',
-    '{attribute} should contain exactly {n, plural, one{one character} other{# characters}}! ({found} found)' => '',
+    '{attribute} should contain at least {n, plural, one{one character} other{# characters}} ({found} found)!' => '',
+    '{attribute} should contain at most {n, plural, one{one character} other{# characters}} ({found} found)!' => '',
+    '{attribute} should contain exactly {n, plural, one{one character} other{# characters}} ({found} found)!' => '',
     '{attribute} cannot contain the username' => "",
     '{attribute} cannot contain an email address' => "",
     '{attribute} must be a string' => '',
-    '{attribute} should contain at least {n, plural, one{one lower case character} other{# lower case characters}}! ({found} found)' => '',
-    '{attribute} should contain at least {n, plural, one{one upper case character} other{# upper case characters}}! ({found} found)' => '',
-    '{attribute} should contain at least {n, plural, one{one numeric / digit character} other{# numeric / digit characters}}! ({found} found)' => '',
-    '{attribute} should contain at least {n, plural, one{one special character} other{# special characters}}! ({found} found)' => '',
+    '{attribute} should contain at least {n, plural, one{one lower case character} other{# lower case characters}} ({found} found)!' => '',
+    '{attribute} should contain at least {n, plural, one{one upper case character} other{# upper case characters}} ({found} found)!' => '',
+    '{attribute} should contain at least {n, plural, one{one numeric / digit character} other{# numeric / digit characters}} ({found} found)!' => '',
+    '{attribute} should contain at least {n, plural, one{one special character} other{# special characters}} ({found} found)!' => '',
 ];
