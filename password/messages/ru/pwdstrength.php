@@ -33,5 +33,5 @@ return [
     '{attribute} should contain at least {n, plural, one{one numeric / digit character} other{# numeric / digit characters}}! ({found} found)' =>
     '{attribute} должен содержать {n, plural, one{не менее одного цифрового / цифровой символ} other{не менее # числовое / значные символы}} ({found} найдено)',
     '{attribute} should contain at least {n, plural, one{one special character} other{# special characters}}! ({found} found)' =>
-    '{attribute} должен содержать {n, plural, one{по крайней мере один специальный символ} other{не менее # специальные символы}} ({found} найдено)',
+    '{attribute} должен содержать {n, plural, one{по крайней мере один специальный символ} other{не менее # специальные символы}} ({found} найдено)'
 ];

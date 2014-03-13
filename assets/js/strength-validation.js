@@ -29,8 +29,7 @@ function isEmpty(value, trim) {
  * @param string valueFound
  */
 function addPatternMessage(messages, message, valueRequired, valueFound) {
-    val = (valueFound == 0) ? 'none' : valueFound;
-    msg = message.replace(/\{found\}/g, val);
+    msg = message.replace(/\{found\}/g, valueFound);
     addMessage(messages, msg, valueRequired);
 }
 
