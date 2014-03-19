@@ -17,17 +17,17 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
-    '{attribute} should contain at least {n, plural, one{one character} other{# characters}} ({found} found)!' => '{attribute} devrait contenir au moins {n, plural, one{un caractère} other{# caractères}}! ({found} trouvé)!',
-    '{attribute} should contain at most {n, plural, one{one character} other{# characters}} ({found} found)!' => '{attribute} devrait contenir au plus {n, plural, one{un caractère} other{# caractères}}! ({found} trouvé)!',
-    '{attribute} should contain exactly {n, plural, one{one character} other{# characters}} ({found} found)!' => '{attribute} devrait contenir exactly {n, plural, one{un caractère} other{# caractères}}! ({found} trouvé)!',
-    '{attribute} cannot contain the username' => "{attribute} ne peut pas contenir le nom d'utilisateur",
-    '{attribute} cannot contain an email address' => "{attribute} ne peut pas contenir l'adresse e-mail",
-    '{attribute} must be a string' => '{attribute} doit être une chaîne',
-    '{attribute} should contain at least {n, plural, one{one lower case character} other{# lower case characters}} ({found} found)!' =>
-    '{attribute} {n, plural, one{devrait contenir au moins un caractère en minuscule} other{# doit contenir au moins caractères minuscules}}! ({found} trouvé)!',
-    '{attribute} should contain at least {n, plural, one{one upper case character} other{# upper case characters}} ({found} found)!' =>
-    '{attribute} {n, plural, one{devrait contenir au moins une lettre majuscule} other{# doit contenir au moins caractères majuscules}}! ({found} trouvé)!',
-    '{attribute} should contain at least {n, plural, one{one numeric / digit character} other{# numeric / digit characters}} ({found} found)!' =>
-    '{attribute} {n, plural, one{devrait contenir au moins un caractère numérique / chiffres} other{# doit contenir au moins caractères numérique / chiffres}}! ({found} trouvé)!',
-    '{attribute} should contain at least {n, plural, one{one special character} other{# special characters}} ({found} found)!' => '{attribute} {n, plural, one{devrait contenir au moins un caractère spécial} other{# doit contenir au moins caractères spéciaux}} ({found} trouvé)!',
+	'{attribute} should contain at least {n, plural, one{one character} other{# characters}} ({found} found)!' => '{attribute} devrait contenir au moins {n, plural, one{un caractère} other{# caractères}}! ({found} trouvé)!',
+	'{attribute} should contain at most {n, plural, one{one character} other{# characters}} ({found} found)!' => '{attribute} devrait contenir au plus {n, plural, one{un caractère} other{# caractères}}! ({found} trouvé)!',
+	'{attribute} should contain exactly {n, plural, one{one character} other{# characters}} ({found} found)!' => '{attribute} devrait contenir exactly {n, plural, one{un caractère} other{# caractères}}! ({found} trouvé)!',
+	'{attribute} cannot contain the username' => "{attribute} ne peut pas contenir le nom d'utilisateur",
+	'{attribute} cannot contain an email address' => "{attribute} ne peut pas contenir l'adresse e-mail",
+	'{attribute} must be a string' => '{attribute} doit être une chaîne',
+	'{attribute} should contain at least {n, plural, one{one lower case character} other{# lower case characters}} ({found} found)!' =>
+		'{attribute} {n, plural, one{devrait contenir au moins un caractère en minuscule} other{# doit contenir au moins caractères minuscules}}! ({found} trouvé)!',
+	'{attribute} should contain at least {n, plural, one{one upper case character} other{# upper case characters}} ({found} found)!' =>
+		'{attribute} {n, plural, one{devrait contenir au moins une lettre majuscule} other{# doit contenir au moins caractères majuscules}}! ({found} trouvé)!',
+	'{attribute} should contain at least {n, plural, one{one numeric / digit character} other{# numeric / digit characters}} ({found} found)!' =>
+		'{attribute} {n, plural, one{devrait contenir au moins un caractère numérique / chiffres} other{# doit contenir au moins caractères numérique / chiffres}}! ({found} trouvé)!',
+	'{attribute} should contain at least {n, plural, one{one special character} other{# special characters}} ({found} found)!' => '{attribute} {n, plural, one{devrait contenir au moins un caractère spécial} other{# doit contenir au moins caractères spéciaux}} ({found} trouvé)!',
 ];

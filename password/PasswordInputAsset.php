@@ -16,13 +16,13 @@ namespace kartik\password;
  */
 class PasswordInputAsset extends \kartik\widgets\AssetBundle
 {
-    
-    public function init()
-    {
-        $this->setSourcePath('@vendor/kartik-v/strength-meter');
-        $this->setupAssets('css', ['css/strength-meter']);
-        $this->setupAssets('js', ['js/strength-meter']);
-        parent::init();
-    }
+
+	public function init()
+	{
+		$this->setSourcePath('@vendor/kartik-v/strength-meter');
+		$this->setupAssets('css', ['css/strength-meter']);
+		$this->setupAssets('js', ['js/strength-meter']);
+		parent::init();
+	}
 
 }
