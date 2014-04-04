@@ -17,15 +17,15 @@ namespace kartik\password;
 class StrengthValidatorAsset extends \kartik\widgets\AssetBundle
 {
 
-	public $depends = [
-		'yii\web\JqueryAsset'
-	];
+    public $depends = [
+        'yii\web\JqueryAsset'
+    ];
 
-	public function init()
-	{
-		$this->setSourcePath(__DIR__ . '/../assets');
-		$this->setupAssets('js', ['js/strength-validation']);
-		parent::init();
-	}
+    public function init()
+    {
+        $this->setSourcePath(__DIR__ . '/../assets');
+        $this->setupAssets('js', ['js/strength-validation']);
+        parent::init();
+    }
 
 }
