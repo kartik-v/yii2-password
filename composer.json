@@ -13,10 +13,10 @@
 		}
 	],
 	"require": {
-		"yiisoft/yii2": "dev-master",
-		"yiisoft/yii2-bootstrap": "dev-master",
-		"kartik-v/strength-meter": "dev-master",
-		"kartik-v/yii2-widgets": "dev-master"
+		"yiisoft/yii2": "*",
+		"yiisoft/yii2-bootstrap": "*",
+		"kartik-v/strength-meter": "*",
+		"kartik-v/yii2-widgets": "*"
 	},
 	"autoload": {
 		"psr-4": {
