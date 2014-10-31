@@ -1,9 +1,9 @@
 <?php
 
 /**
- * @copyright Copyright &copy; Kartik Visweswaran, Krajee.com, 2013
+ * @copyright Copyright &copy; Kartik Visweswaran, Krajee.com, 2014
  * @package yii2-password
- * @version 1.0.0
+ * @version 1.2.0
  */
 
 namespace kartik\password;
@@ -92,8 +92,10 @@ class PasswordInput extends \kartik\widgets\InputWidget
     public function registerAssets()
     {
         $view = $this->getView();
-        if (!empty($this->language)) {
-            PasswordInputAsset::register($view)->js[] = 'js/locales/strength-meter-' . $this->language . '.js';
+        $locale = "js/locales/strength-meter-{$this->language}.js";
+        $path = Yii::getAlias("@vendor/kartik-v/strength-meter/{$locale}");
+        if (!empty($this->language) && file_exists($path)) {
+            PasswordInputAsset::register($view)->js[] = $locale;
         } else {
             PasswordInputAsset::register($view);
         }
