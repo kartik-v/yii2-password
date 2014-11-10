@@ -3,7 +3,7 @@
 /**
  * @copyright Copyright &copy; Kartik Visweswaran, Krajee.com, 2014
  * @package yii2-password
- * @version 1.2.0
+ * @version 1.3.0
  */
 
 namespace kartik\password;
@@ -24,9 +24,8 @@ use yii\base\InvalidConfigException;
  * @since 1.0
  * @see http://plugins.krajee.com/strength-meter
  */
-class PasswordInput extends \kartik\widgets\InputWidget
+class PasswordInput extends \kartik\base\InputWidget
 {
-
     /**
      * @var string the password strength meter language. If not provided or
      * no translation is available, this will default to `en` (US English).
@@ -101,5 +100,4 @@ class PasswordInput extends \kartik\widgets\InputWidget
         }
         $this->registerPlugin('strength');
     }
-
 }

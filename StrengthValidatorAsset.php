@@ -3,7 +3,7 @@
 /**
  * @copyright Copyright &copy; Kartik Visweswaran, Krajee.com, 2014
  * @package yii2-password
- * @version 1.2.0
+ * @version 1.3.0
  */
 
 namespace kartik\password;
@@ -14,7 +14,7 @@ namespace kartik\password;
  * @author Kartik Visweswaran <kartikv2@gmail.com>
  * @since 1.0
  */
-class StrengthValidatorAsset extends \kartik\widgets\AssetBundle
+class StrengthValidatorAsset extends \kartik\base\AssetBundle
 {
 
     public $depends = [

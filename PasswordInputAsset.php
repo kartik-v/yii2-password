@@ -3,7 +3,7 @@
 /**
  * @copyright Copyright &copy; Kartik Visweswaran, Krajee.com, 2014
  * @package yii2-password
- * @version 1.2.0
+ * @version 1.3.0
  */
 
 namespace kartik\password;
@@ -14,9 +14,8 @@ namespace kartik\password;
  * @author Kartik Visweswaran <kartikv2@gmail.com>
  * @since 1.0
  */
-class PasswordInputAsset extends \kartik\widgets\AssetBundle
+class PasswordInputAsset extends \kartik\base\AssetBundle
 {
-
     public function init()
     {
         $this->setSourcePath('@vendor/kartik-v/strength-meter');

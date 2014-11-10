@@ -3,13 +3,9 @@
 
 This extension provides a couple of great password management utilities for Yii Framework 2.0. The extension allows password strength validation through your model. In addition, it provides an advanced password input widget, that allows you to display/hide text and show the password strength.
 
-> NOTE: This extension depends on the [kartik-v/yii2-widgets](https://github.com/kartik-v/yii2-widgets) extension which in turn depends on the
-[yiisoft/yii2-bootstrap](https://github.com/yiisoft/yii2/tree/master/extensions/bootstrap) extension. Check the 
-[composer.json](https://github.com/kartik-v/yii2-password/blob/master/composer.json) for this extension's requirements and dependencies. 
-
 ### Latest Release
 
-> NOTE: The latest version of the plugin v1.2.0 has been released. Refer the [CHANGE LOG](https://github.com/kartik-v/yii2-password/blob/master/CHANGE.md) for details.
+> NOTE: The latest version of the plugin v1.3.0 has been released. Refer the [CHANGE LOG](https://github.com/kartik-v/yii2-password/blob/master/CHANGE.md) for details.
 
 ### StrengthValidator
 [```VIEW DEMO```](http://demos.krajee.com/password-details/strength-validator)  
@@ -49,6 +45,9 @@ You can see a [demonstration here](http://demos.krajee.com/password) on usage of
 ## Installation
 
 The preferred way to install this extension is through [composer](http://getcomposer.org/download/).
+
+> Note: Check the [composer.json](https://github.com/kartik-v/yii2-password/blob/master/composer.json) for this extension's requirements and dependencies. 
+Read this [web tip /wiki](http://webtips.krajee.com/setting-composer-minimum-stability-application/) on setting the `minimum-stability` settings for your application's composer.json.
 
 Either run
 
