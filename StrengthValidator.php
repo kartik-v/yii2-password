@@ -370,16 +370,16 @@ class StrengthValidator extends \yii\validators\Validator
     /**
      * Client validation
      *
-     * @param Model $object
+     * @param Model $model
      * @param string $attribute
      * @param View $view
      * @return string javascript method
      */
-    public function clientValidateAttribute($object, $attribute, $view)
+    public function clientValidateAttribute($model, $attribute, $view)
     {
-        $label = $object->getAttributeLabel($attribute);
+        $label = $model->getAttributeLabel($attribute);
         $options = ['strError' => Html::encode(Yii::t('pwdstrength', $this->message, ['attribute' => $label]))];
-        $options['userField'] = '#' . Html::getInputId($object, $this->userAttribute);
+        $options['userField'] = '#' . Html::getInputId($model, $this->userAttribute);
 
         foreach (self::$_rules as $rule => $setup) {
             $param = "{$rule}Error";
