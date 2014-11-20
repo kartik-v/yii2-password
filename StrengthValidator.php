@@ -3,7 +3,7 @@
 /**
  * @copyright Copyright &copy; Kartik Visweswaran, Krajee.com, 2014
  * @package yii2-password
- * @version 1.3.0
+ * @version 1.4.0
  */
 
 namespace kartik\password;
@@ -231,6 +231,7 @@ class StrengthValidator extends \yii\validators\Validator
      */
     public function init()
     {
+        parent::init();
         Yii::setAlias('@pwdstrength', dirname(__FILE__));
         if (empty($this->i18n)) {
             $this->i18n = [
@@ -269,14 +270,13 @@ class StrengthValidator extends \yii\validators\Validator
      */
     protected function applyPreset()
     {
-        if (!$this->preset) {
+        if (!isset($this->preset)) {
             return;
         }
         if (!isset($this->presetsSource)) {
             $this->presetsSource = __DIR__ . '/presets.php';
         }
         $this->_presets = require($this->presetsSource);
-
         if (array_key_exists($this->preset, $this->_presets)) {
             foreach ($this->_presets[$this->preset] As $param => $value) {
                 $this->$param = $value;
@@ -389,7 +389,7 @@ class StrengthValidator extends \yii\validators\Validator
             }
         }
         StrengthValidatorAsset::register($view);
-        return "checkStrength(value, messages, " . Json::encode($options) . ");";
+        return "kvStrengthValidator.validate(value, messages, " . Json::encode($options) . ");";
     }
 
 }

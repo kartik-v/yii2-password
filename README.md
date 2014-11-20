@@ -1,11 +1,11 @@
- yii2-password
-==============
+yii2-password
+=============
 
 This extension provides a couple of great password management utilities for Yii Framework 2.0. The extension allows password strength validation through your model. In addition, it provides an advanced password input widget, that allows you to display/hide text and show the password strength.
 
 ### Latest Release
 
-> NOTE: The latest version of the plugin v1.3.0 has been released. Refer the [CHANGE LOG](https://github.com/kartik-v/yii2-password/blob/master/CHANGE.md) for details.
+> NOTE: The latest version of the plugin v1.4.0 has been released. Refer the [CHANGE LOG](https://github.com/kartik-v/yii2-password/blob/master/CHANGE.md) for details.
 
 ### StrengthValidator
 [```VIEW DEMO```](http://demos.krajee.com/password-details/strength-validator)  
