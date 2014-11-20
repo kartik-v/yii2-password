@@ -383,9 +383,6 @@ class StrengthValidator extends \yii\validators\Validator
 
         foreach (self::$_rules as $rule => $setup) {
             $param = "{$rule}Error";
-            if ($rule === self::RULE_LEN) {
-                $rule = 'len';
-            }
             if ($this->$rule !== null) {
                 $options[$rule] = $this->$rule;
                 $options[$param] = Html::encode(Yii::t('pwdstrength', $this->$param, ['attribute' => $label]));
