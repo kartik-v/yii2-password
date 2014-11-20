@@ -9,7 +9,7 @@ This extension provides a couple of great password management utilities for Yii 
 
 ### Prerequisites
 
-- Ensure you have latest version jQuery
+- Ensure you have the right version of jQuery loaded (> v1.9.0).
 - In case you are upgrading from an older release, its recommended that you clean up your web assets, local browser cache, and restart your browsers before using the extension.
 
 ### StrengthValidator
