@@ -64,8 +64,8 @@
             if (compare(len, '>', options.max)) {
                 self.addError(messages, options.maxError, options.max, len);
             }
-            if (compare(len, '>', options.length)) {
-                self.addError(messages, options.lengthError, options.length, len);
+            if (compare(len, '>', options.len)) {
+                self.addError(messages, options.lengthError, options.len, len);
             }
             if (options.hasUser === true && username && value.toLowerCase().match(username)) {
                 self.addMessage(messages, options.hasUserError, value);
