@@ -6,7 +6,7 @@
  * Password Strength Validation
  * Built for Yii Framework 2.0
  * Author: Kartik Visweswaran
- * Copyright: 2013, Kartik Visweswaran, Krajee.com
+ * Copyright: 2014, Kartik Visweswaran, Krajee.com
  * For more Yii related demos visit http://demos.krajee.com
  */
 !function ($) {
