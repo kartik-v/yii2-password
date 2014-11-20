@@ -7,6 +7,11 @@ This extension provides a couple of great password management utilities for Yii 
 
 > NOTE: The latest version of the plugin v1.4.0 has been released. Refer the [CHANGE LOG](https://github.com/kartik-v/yii2-password/blob/master/CHANGE.md) for details.
 
+### Prerequisites
+
+- Ensure you have latest version jQuery
+- In case you are upgrading from an older release, its recommended that you clean up your web assets, local browser cache, and restart your browsers before using the extension.
+
 ### StrengthValidator
 [```VIEW DEMO```](http://demos.krajee.com/password-details/strength-validator)  
 This is a password strength validator for your model attributes. The strength validator allows you to configure the following parameters for validating passwords or strings.
