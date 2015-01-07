@@ -57,7 +57,7 @@
                 return;
             }
             var patterns = self.findPatterns(value), len = value.length || 0,
-                username = $(options.userField).val().toLowerCase();
+                username = $(options.userField).val();
             if (compare(len, '<', options.min)) {
                 self.addError(messages, options.minError, options.min, len);
             }
@@ -67,7 +67,7 @@
             if (compare(len, '>', options['length'])) {
                 self.addError(messages, options.lengthError, options['length'], len);
             }
-            if (options.hasUser === true && username && value.toLowerCase().match(username)) {
+            if (options.hasUser === true && username && value.toLowerCase().match(username.toLowerCase())) {
                 self.addMessage(messages, options.hasUserError, value);
             }
             if (options.hasEmail === true && value.match(/^([\w\!\#$\%\&\'\*\+\-\/\=\?\^\`{\|\}\~]+\.)*[\w\!\#$\%\&\'\*\+\-\/\=\?\^\`{\|\}\~]+@((((([a-z0-9]{1}[a-z0-9\-]{0,62}[a-z0-9]{1})|[a-z])\.)+[a-z]{2,6})|(\d{1,3}\.){3}\d{1,3}(\:\d{1,5})?)$/i)) {
