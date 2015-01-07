@@ -3,7 +3,7 @@
 /**
  * @copyright Copyright &copy; Kartik Visweswaran, Krajee.com, 2014
  * @package yii2-password
- * @version 1.4.0
+ * @version 1.5.0
  */
 
 namespace kartik\password;
@@ -42,143 +42,6 @@ class StrengthValidator extends \yii\validators\Validator
     const RULE_UP = 'upper';
     const RULE_NUM = 'digit';
     const RULE_SPL = 'special';
-
-    /**
-     * @var boolean check whether password contains the username
-     */
-    public $hasUser = true;
-
-    /**
-     * @var boolean check whether password contains an email string
-     */
-    public $hasEmail = true;
-
-    /**
-     * @var int minimum number of characters. If not set, defaults to 4.
-     */
-    public $min = 4;
-
-    /**
-     * @var int maximum length. If not set, it means no maximum length limit.
-     */
-    public $max;
-
-    /**
-     * @var int specifies the exact length that the value should be of
-     */
-    public $length;
-
-    /**
-     * @var int minimal number of lower case characters
-     */
-    public $lower = 2;
-
-    /**
-     * @var int minimal number of upper case characters
-     */
-    public $upper = 2;
-
-    /**
-     * @var int  minimal number of numeric digit characters
-     */
-    public $digit = 2;
-
-    /**
-     * @var int minimal number of special characters
-     */
-    public $special = 2;
-
-    /**
-     * @var string the name of the username attribute
-     */
-    public $userAttribute = 'username';
-
-    /**
-     * @var string user-defined error message used when the value is not a string
-     */
-    public $strError;
-
-    /**
-     * @var string user-defined error message used when the length of the value is smaller than [[min]].
-     */
-    public $minError;
-
-    /**
-     * @var string user-defined error message used when the length of the value is greater than [[max]].
-     */
-    public $maxError;
-
-    /**
-     * @var string user-defined error message used when the length of the value is not equal to [[length]].
-     */
-    public $lengthError;
-
-    /**
-     * @var string user-defined error message used when [[hasUser]] is true and value contains the username
-     */
-    public $hasUserError;
-
-    /**
-     * @var string user-defined error message used [[hasEmail]] is true and value contains an email
-     */
-    public $hasEmailError;
-
-    /**
-     * @var string user-defined error message used when value contains less than [[lower]] characters
-     */
-    public $lowerError;
-
-    /**
-     * @var string user-defined error message used when value contains less than [[upper]] characters
-     */
-    public $upperError;
-
-    /**
-     * @var string user-defined error message used when value contains less than [[digit]] characters
-     */
-    public $digitError;
-
-    /**
-     * @var string user-defined error message used when value contains more than [[special]] characters
-     */
-    public $specialError;
-
-    /**
-     * @var string preset - one of the preset constants,
-     * @see $_presets
-     * If this is not null, the preset parameters will override
-     * the validator level params
-     */
-    public $preset;
-
-    /**
-     * @var string presets configuration source file
-     * defaults to [[presets.php]] in the current directory
-     */
-    public $presetsSource;
-
-    /**
-     * @var array the target strength rule requirements that will
-     * be evaluated for displaying the strength meter
-     */
-    public $strengthTarget = [
-        'min' => 8,
-        'lower' => 3,
-        'upper' => 3,
-        'digit' => 3,
-        'special' => 3,
-    ];
-
-    /**
-     * @var array the the internalization configuration for this widget
-     */
-    public $i18n = [];
-
-    /**
-     * @var array the list of inbuilt presets and their parameter settings
-     */
-    private $_presets;
-
     /**
      * @var array the default rule settings
      */
@@ -225,6 +88,117 @@ class StrengthValidator extends \yii\validators\Validator
             'int' => true
         ]
     ];
+    /**
+     * @var boolean check whether password contains the username
+     */
+    public $hasUser = true;
+    /**
+     * @var boolean check whether password contains an email string
+     */
+    public $hasEmail = true;
+    /**
+     * @var int minimum number of characters. If not set, defaults to 4.
+     */
+    public $min = 4;
+    /**
+     * @var int maximum length. If not set, it means no maximum length limit.
+     */
+    public $max;
+    /**
+     * @var int specifies the exact length that the value should be of
+     */
+    public $length;
+    /**
+     * @var int minimal number of lower case characters
+     */
+    public $lower = 2;
+    /**
+     * @var int minimal number of upper case characters
+     */
+    public $upper = 2;
+    /**
+     * @var int  minimal number of numeric digit characters
+     */
+    public $digit = 2;
+    /**
+     * @var int minimal number of special characters
+     */
+    public $special = 2;
+    /**
+     * @var string the name of the username attribute
+     */
+    public $userAttribute = 'username';
+    /**
+     * @var string user-defined error message used when the value is not a string
+     */
+    public $strError;
+    /**
+     * @var string user-defined error message used when the length of the value is smaller than [[min]].
+     */
+    public $minError;
+    /**
+     * @var string user-defined error message used when the length of the value is greater than [[max]].
+     */
+    public $maxError;
+    /**
+     * @var string user-defined error message used when the length of the value is not equal to [[length]].
+     */
+    public $lengthError;
+    /**
+     * @var string user-defined error message used when [[hasUser]] is true and value contains the username
+     */
+    public $hasUserError;
+    /**
+     * @var string user-defined error message used [[hasEmail]] is true and value contains an email
+     */
+    public $hasEmailError;
+    /**
+     * @var string user-defined error message used when value contains less than [[lower]] characters
+     */
+    public $lowerError;
+    /**
+     * @var string user-defined error message used when value contains less than [[upper]] characters
+     */
+    public $upperError;
+    /**
+     * @var string user-defined error message used when value contains less than [[digit]] characters
+     */
+    public $digitError;
+    /**
+     * @var string user-defined error message used when value contains more than [[special]] characters
+     */
+    public $specialError;
+    /**
+     * @var string preset - one of the preset constants,
+     * @see $_presets
+     * If this is not null, the preset parameters will override
+     * the validator level params
+     */
+    public $preset;
+    /**
+     * @var string presets configuration source file
+     * defaults to [[presets.php]] in the current directory
+     */
+    public $presetsSource;
+    /**
+     * @var array the target strength rule requirements that will
+     * be evaluated for displaying the strength meter
+     */
+    public $strengthTarget = [
+        'min' => 8,
+        'lower' => 3,
+        'upper' => 3,
+        'digit' => 3,
+        'special' => 3,
+    ];
+    /**
+     * @var array the the internalization configuration for this widget
+     */
+    public $i18n = [];
+    /**
+     * @var array the list of inbuilt presets and their parameter settings
+     */
+    private $_presets;
 
     /**
      * Initialize the validator component
@@ -243,6 +217,81 @@ class StrengthValidator extends \yii\validators\Validator
         $this->applyPreset();
         $this->checkParams();
         $this->setRuleMessages();
+    }
+
+    /**
+     * @inherit doc
+     * @return void
+     */
+    public function validateAttribute($model, $attribute)
+    {
+        $value = $model->$attribute;
+        if (!is_string($value)) {
+            $this->addError($model, $attribute, $this->strError);
+            return;
+        }
+        $label = $model->getAttributeLabel($attribute);
+        $username = $model[$this->userAttribute];
+        $temp = [];
+
+        foreach (self::$_rules as $rule => $setup) {
+            $param = "{$rule}Error";
+            if ($rule === self::RULE_USER && $this->hasUser && $value && strpos($value, $username) > 0) {
+                $this->addError($model, $attribute, $this->$param, ['attribute' => $label]);
+            } elseif ($rule === self::RULE_EMAIL && $this->hasEmail && preg_match($setup['match'], $value, $matches)) {
+                $this->addError($model, $attribute, $this->$param, ['attribute' => $label]);
+            } elseif (!empty($setup['match']) && $rule !== self::RULE_EMAIL && $rule !== self::RULE_USER) {
+                $count = preg_match_all($setup['match'], $value, $temp);
+                if ($count < $this->$rule) {
+                    $this->addError(
+                        $model, $attribute, $this->$param, [
+                            'attribute' => $label,
+                            'found' => $count
+                        ]
+                    );
+                }
+            } else {
+                $length = strlen($value);
+                $test = false;
+
+                if ($rule === self::RULE_LEN) {
+                    $test = ($length !== $this->$rule);
+                } elseif ($rule === self::RULE_MIN) {
+                    $test = ($length < $this->$rule);
+                } elseif ($rule === self::RULE_MAX) {
+                    $test = ($length > $this->$rule);
+                }
+
+                if ($this->$rule !== null && $test) {
+                    $this->addError(
+                        $model, $attribute, $this->$param, [
+                            'attribute' => $label . ' (' . $rule . ' , ' . $this->$rule . ')',
+                            'found' => $length
+                        ]
+                    );
+                }
+            }
+        }
+    }
+
+    /**
+     * @inherit doc
+     */
+    public function clientValidateAttribute($model, $attribute, $view)
+    {
+        $label = $model->getAttributeLabel($attribute);
+        $options = ['strError' => Html::encode(Yii::t('pwdstrength', $this->message, ['attribute' => $label]))];
+        $options['userField'] = '#' . Html::getInputId($model, $this->userAttribute);
+
+        foreach (self::$_rules as $rule => $setup) {
+            $param = "{$rule}Error";
+            if ($this->$rule !== null) {
+                $options[$rule] = $this->$rule;
+                $options[$param] = Html::encode(Yii::t('pwdstrength', $this->$param, ['attribute' => $label]));
+            }
+        }
+        StrengthValidatorAsset::register($view);
+        return "kvStrengthValidator.validate(value, messages, " . Json::encode($options) . ");";
     }
 
     /**
@@ -312,84 +361,6 @@ class StrengthValidator extends \yii\validators\Validator
                 throw new InvalidConfigException("Total number of required characters {$chars} is greater than maximum allowed {$this->max}. Validation is impossible!");
             }
         }
-    }
-
-    /**
-     * Validation of the attribute
-     *
-     * @param Model $object
-     * @param string $attribute
-     */
-    public function validateAttribute($object, $attribute)
-    {
-        $value = $object->$attribute;
-        if (!is_string($value)) {
-            $this->addError($object, $attribute, $this->strError);
-            return;
-        }
-        $label = $object->getAttributeLabel($attribute);
-        $username = $object[$this->userAttribute];
-        $temp = [];
-
-        foreach (self::$_rules as $rule => $setup) {
-            $param = "{$rule}Error";
-            if ($rule === self::RULE_USER && $this->hasUser && $value && strpos($value, $username) > 0) {
-                $this->addError($object, $attribute, $this->$param, ['attribute' => $label]);
-            } elseif ($rule === self::RULE_EMAIL && $this->hasEmail && preg_match($setup['match'], $value, $matches)) {
-                $this->addError($object, $attribute, $this->$param, ['attribute' => $label]);
-            } elseif (!empty($setup['match']) && $rule !== self::RULE_EMAIL && $rule !== self::RULE_USER) {
-                $count = preg_match_all($setup['match'], $value, $temp);
-                if ($count < $this->$rule) {
-                    $this->addError($object, $attribute, $this->$param, [
-                        'attribute' => $label,
-                        'found' => $count
-                    ]);
-                }
-            } else {
-                $length = strlen($value);
-                $test = false;
-
-                if ($rule === self::RULE_LEN) {
-                    $test = ($length !== $this->$rule);
-                } elseif ($rule === self::RULE_MIN) {
-                    $test = ($length < $this->$rule);
-                } elseif ($rule === self::RULE_MAX) {
-                    $test = ($length > $this->$rule);
-                }
-
-                if ($this->$rule !== null && $test) {
-                    $this->addError($object, $attribute, $this->$param, [
-                        'attribute' => $label . ' (' . $rule . ' , ' . $this->$rule . ')',
-                        'found' => $length
-                    ]);
-                }
-            }
-        }
-    }
-
-    /**
-     * Client validation
-     *
-     * @param Model $model
-     * @param string $attribute
-     * @param View $view
-     * @return string javascript method
-     */
-    public function clientValidateAttribute($model, $attribute, $view)
-    {
-        $label = $model->getAttributeLabel($attribute);
-        $options = ['strError' => Html::encode(Yii::t('pwdstrength', $this->message, ['attribute' => $label]))];
-        $options['userField'] = '#' . Html::getInputId($model, $this->userAttribute);
-
-        foreach (self::$_rules as $rule => $setup) {
-            $param = "{$rule}Error";
-            if ($this->$rule !== null) {
-                $options[$rule] = $this->$rule;
-                $options[$param] = Html::encode(Yii::t('pwdstrength', $this->$param, ['attribute' => $label]));
-            }
-        }
-        StrengthValidatorAsset::register($view);
-        return "kvStrengthValidator.validate(value, messages, " . Json::encode($options) . ");";
     }
 
 }

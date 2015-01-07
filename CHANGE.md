@@ -1,3 +1,11 @@
+version 1.5.0
+=============
+**Date:** 07-Jan-2015
+
+- (enh #13): Added Portugese Brazilian translations.
+- (bug #14): StrengthValidator strpos empty needle error fix.
+- (enh #15): StrengthValidator client validation fix when not using username validation.
+
 version 1.4.0
 =============
 **Date:** 20-Nov-2014
