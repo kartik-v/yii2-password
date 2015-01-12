@@ -1,9 +1,10 @@
 <?php
 
 /**
+ * @package   yii2-password
+ * @author    Kartik Visweswaran <kartikv2@gmail.com>
  * @copyright Copyright &copy; Kartik Visweswaran, Krajee.com, 2014
- * @package yii2-password
- * @version 1.5.0
+ * @version   1.5.0
  */
 
 namespace kartik\password;
@@ -24,8 +25,9 @@ use yii\helpers\Json;
  */
 class StrengthValidator extends \yii\validators\Validator
 {
-    /* The valid preset constants */
+    use \kartik\base\TranslationTrait;
 
+    /* The valid preset constants */
     const SIMPLE = 'simple';
     const NORMAL = 'normal';
     const FAIR = 'fair';
@@ -191,32 +193,101 @@ class StrengthValidator extends \yii\validators\Validator
         'digit' => 3,
         'special' => 3,
     ];
+
     /**
      * @var array the the internalization configuration for this widget
      */
     public $i18n = [];
+
+    /**
+     * @var string translation message file category name for i18n
+     */
+    protected $_msgCat = 'kvpwdstrength';
+
     /**
      * @var array the list of inbuilt presets and their parameter settings
      */
     private $_presets;
 
     /**
-     * Initialize the validator component
+     * @inheritdoc
      */
     public function init()
     {
         parent::init();
-        Yii::setAlias('@pwdstrength', dirname(__FILE__));
-        if (empty($this->i18n)) {
-            $this->i18n = [
-                'class' => 'yii\i18n\PhpMessageSource',
-                'basePath' => '@pwdstrength/messages'
-            ];
-        }
-        Yii::$app->i18n->translations['pwdstrength'] = $this->i18n;
+        $this->initI18N();
         $this->applyPreset();
         $this->checkParams();
         $this->setRuleMessages();
+    }
+
+    /**
+     * Apply preset parameter if set
+     *
+     * @return void
+     * @throws InvalidConfigException if [[preset]] value is invalid.
+     */
+    protected function applyPreset()
+    {
+        if (!isset($this->preset)) {
+            return;
+        }
+        if (!isset($this->presetsSource)) {
+            $this->presetsSource = __DIR__ . '/presets.php';
+        }
+        $this->_presets = require($this->presetsSource);
+        if (array_key_exists($this->preset, $this->_presets)) {
+            foreach ($this->_presets[$this->preset] As $param => $value) {
+                $this->$param = $value;
+            }
+        } else {
+            throw new InvalidConfigException("Invalid preset '{$this->preset}'.");
+        }
+    }
+
+    /**
+     * Validates the provided parameters for valid data type
+     * and the right threshold for 'max' chars.
+     *
+     * @throw InvalidConfigException if validation is invalid
+     */
+    protected function checkParams()
+    {
+        foreach (self::$_rules as $rule => $setup) {
+            if (isset($this->$rule) && !empty($setup['int']) && $setup['int'] &&
+                (!is_int($this->$rule) || $this->$rule < 0)
+            ) {
+                throw new InvalidConfigException("The property '{$rule}' must be a positive integer.");
+            }
+            if (isset($this->$rule) && !empty($setup['bool']) && $setup['bool'] &&
+                !is_bool($this->$rule)
+            ) {
+                throw new InvalidConfigException("The property '{$rule}' must be either true or false.");
+            }
+        }
+        if (isset($this->max)) {
+            $chars = $this->lower + $this->upper + $this->digit + $this->special;
+            if ($chars > $this->max) {
+                throw new InvalidConfigException("Total number of required characters {$chars} is greater than maximum allowed {$this->max}. Validation is impossible!");
+            }
+        }
+    }
+
+    /**
+     * Sets the rule message for each rule
+     */
+    protected function setRuleMessages()
+    {
+        if ($this->strError === null) {
+            $this->strError = Yii::t('kvpwdstrength', '{attribute} must be a string');
+        }
+        foreach (self::$_rules as $rule => $setup) {
+            $param = "{$rule}Error";
+            if ($this->$rule !== null) {
+                $message = (!isset($this->$param) || $this->$param === null) ? $setup['msg'] : $this->$param;
+                $this->$param = Yii::t('kvpwdstrength', $message, ['n' => $this->$rule]);
+            }
+        }
     }
 
     /**
@@ -280,87 +351,18 @@ class StrengthValidator extends \yii\validators\Validator
     public function clientValidateAttribute($model, $attribute, $view)
     {
         $label = $model->getAttributeLabel($attribute);
-        $options = ['strError' => Html::encode(Yii::t('pwdstrength', $this->message, ['attribute' => $label]))];
+        $options = ['strError' => Html::encode(Yii::t('kvpwdstrength', $this->message, ['attribute' => $label]))];
         $options['userField'] = '#' . Html::getInputId($model, $this->userAttribute);
 
         foreach (self::$_rules as $rule => $setup) {
             $param = "{$rule}Error";
             if ($this->$rule !== null) {
                 $options[$rule] = $this->$rule;
-                $options[$param] = Html::encode(Yii::t('pwdstrength', $this->$param, ['attribute' => $label]));
+                $options[$param] = Html::encode(Yii::t('kvpwdstrength', $this->$param, ['attribute' => $label]));
             }
         }
         StrengthValidatorAsset::register($view);
         return "kvStrengthValidator.validate(value, messages, " . Json::encode($options) . ");";
-    }
-
-    /**
-     * Sets the rule message for each rule
-     */
-    protected function setRuleMessages()
-    {
-        if ($this->strError === null) {
-            $this->strError = Yii::t('pwdstrength', '{attribute} must be a string');
-        }
-        foreach (self::$_rules as $rule => $setup) {
-            $param = "{$rule}Error";
-            if ($this->$rule !== null) {
-                $message = (!isset($this->$param) || $this->$param === null) ? $setup['msg'] : $this->$param;
-                $this->$param = Yii::t('pwdstrength', $message, ['n' => $this->$rule]);
-            }
-        }
-    }
-
-    /**
-     * Apply preset parameter if set
-     *
-     * @return void
-     * @throws InvalidConfigException if [[preset]] value is invalid.
-     */
-    protected function applyPreset()
-    {
-        if (!isset($this->preset)) {
-            return;
-        }
-        if (!isset($this->presetsSource)) {
-            $this->presetsSource = __DIR__ . '/presets.php';
-        }
-        $this->_presets = require($this->presetsSource);
-        if (array_key_exists($this->preset, $this->_presets)) {
-            foreach ($this->_presets[$this->preset] As $param => $value) {
-                $this->$param = $value;
-            }
-        } else {
-            throw new InvalidConfigException("Invalid preset '{$this->preset}'.");
-        }
-    }
-
-    /**
-     * Validates the provided parameters for valid data type
-     * and the right threshold for 'max' chars.
-     *
-     * @throw InvalidConfigException if validation is invalid
-     */
-    protected function checkParams()
-    {
-        foreach (self::$_rules as $rule => $setup) {
-            if (isset($this->$rule) && !empty($setup['int']) && $setup['int'] &&
-                (!is_int($this->$rule) || $this->$rule < 0)
-            ) {
-                throw new InvalidConfigException("The property '{$rule}' must be a positive integer.");
-            }
-            if (isset($this->$rule) && !empty($setup['bool']) && $setup['bool'] &&
-                !is_bool($this->$rule)
-            ) {
-                throw new InvalidConfigException("The property '{$rule}' must be either true or false.");
-            }
-        }
-        if (isset($this->max)) {
-            $chars = $this->lower + $this->upper + $this->digit + $this->special;
-            if ($chars > $this->max) {
-                throw new InvalidConfigException("Total number of required characters {$chars} is greater than maximum allowed {$this->max}. Validation is impossible!");
-            }
-        }
     }
 
 }

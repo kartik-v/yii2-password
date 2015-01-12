@@ -1,10 +1,12 @@
 version 1.5.0
 =============
-**Date:** 07-Jan-2015
+**Date:** 12-Jan-2015
 
-- (enh #13): Added Portugese Brazilian translations.
-- (bug #14): StrengthValidator strpos empty needle error fix.
-- (enh #15): StrengthValidator client validation fix when not using username validation.
+- (enh #15): Added Portugese Brazilian translations.
+- (bug #16): StrengthValidator strpos empty needle error fix.
+- (enh #17): StrengthValidator client validation fix when not using username validation.
+- Change message file category name to begin with `kv` prefix.
+- Code formatting updates as per Yii2 coding style.
 
 version 1.4.0
 =============
