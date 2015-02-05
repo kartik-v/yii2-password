@@ -25,6 +25,6 @@ return [
     '{attribute} must be a string' => '{attribute} musi być ciągiem znaków',
     '{attribute} should contain at least {n, plural, one{one lower case character} other{# lower case characters}} ({found} found)!' => '{attribute} powinno zawierać przynajmniej {n, plural, =1{jedną małą literę} few{# małe litery} other{# małych liter}}  ({found} znaleziono)!',
     '{attribute} should contain at least {n, plural, one{one upper case character} other{# upper case characters}} ({found} found)!' => '{attribute} powinno zawierać przynajmniej {n, plural, =1{jedną wielką literę} few{# wielkie litery} other{# wielkich liter}}  ({found} znaleziono)!',
-    '{attribute} should contain at least {n, plural, one{one numeric / digit character} other{# numeric / digit characters}} ({found} found)!' => '{atrribute} powinno zawierać przynajmniej {n, plural, =1{jedną cyfrę} few{# cyfry} other{# cyfr}}  ({found} znaleziono)!',
+    '{attribute} should contain at least {n, plural, one{one numeric / digit character} other{# numeric / digit characters}} ({found} found)!' => '{attribute} powinno zawierać przynajmniej {n, plural, =1{jedną cyfrę} few{# cyfry} other{# cyfr}}  ({found} znaleziono)!',
     '{attribute} should contain at least {n, plural, one{one special character} other{# special characters}} ({found} found)!' => '{attribute} powinno zawierać przynajmniej {n, plural, =1{jeden znak specjalny} few{# znaki specjalne} other {# znaków specjalnych}}  ({found} znaleziono)!',
 ];
