@@ -291,23 +291,22 @@ class StrengthValidator extends \yii\validators\Validator
     }
 
     /**
-     * @inherit doc
-     * @return void
+     * @inheritdoc
      */
     public function validateAttribute($model, $attribute)
     {
-        $value = $model->$attribute;
+        $value = Html::getAttributeValue($model, $attribute);
         if (!is_string($value)) {
             $this->addError($model, $attribute, $this->strError);
             return;
         }
         $label = $model->getAttributeLabel($attribute);
-        $username = $model[$this->userAttribute];
+        $username = Html::getAttributeValue($model, $this->userAttribute);
         $temp = [];
 
         foreach (self::$_rules as $rule => $setup) {
             $param = "{$rule}Error";
-            if ($rule === self::RULE_USER && $this->hasUser && $value && strpos($value, $username) > 0) {
+            if ($rule === self::RULE_USER && $this->hasUser && !empty($value) && !empty($username) && strpos($value, $username) > 0) {
                 $this->addError($model, $attribute, $this->$param, ['attribute' => $label]);
             } elseif ($rule === self::RULE_EMAIL && $this->hasEmail && preg_match($setup['match'], $value, $matches)) {
                 $this->addError($model, $attribute, $this->$param, ['attribute' => $label]);
@@ -346,14 +345,13 @@ class StrengthValidator extends \yii\validators\Validator
     }
 
     /**
-     * @inherit doc
+     * @inheritdoc
      */
     public function clientValidateAttribute($model, $attribute, $view)
     {
         $label = $model->getAttributeLabel($attribute);
         $options = ['strError' => Html::encode(Yii::t('kvpwdstrength', $this->message, ['attribute' => $label]))];
         $options['userField'] = '#' . Html::getInputId($model, $this->userAttribute);
-
         foreach (self::$_rules as $rule => $setup) {
             $param = "{$rule}Error";
             if ($this->$rule !== null) {

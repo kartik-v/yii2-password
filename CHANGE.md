@@ -7,6 +7,7 @@ version 1.5.0
 - (enh #17): StrengthValidator client validation fix when not using username validation.
 - Change message file category name to begin with `kv` prefix.
 - Code formatting updates as per Yii2 coding style.
+- (bug #21): Ensure empty username check when `hasUser` is true.
 
 version 1.4.0
 =============
