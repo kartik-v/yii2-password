@@ -307,7 +307,7 @@ class StrengthValidator extends \yii\validators\Validator
 
         foreach (self::$_rules as $rule => $setup) {
             $param = "{$rule}Error";
-            if ($rule === self::RULE_USER && $this->hasUser && $value && strpos($value, $username) > 0) {
+            if ($rule === self::RULE_USER && $this->hasUser && $value && $username && strpos($value, $username) > 0) {
                 $this->addError($model, $attribute, $this->$param, ['attribute' => $label]);
             } elseif ($rule === self::RULE_EMAIL && $this->hasEmail && preg_match($setup['match'], $value, $matches)) {
                 $this->addError($model, $attribute, $this->$param, ['attribute' => $label]);
