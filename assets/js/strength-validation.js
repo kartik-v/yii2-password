@@ -1,7 +1,7 @@
 /*!
  * @copyright Copyright &copy; Kartik Visweswaran, Krajee.com, 2014
  * @package yii2-password
- * @version 1.5.0
+ * @version 1.5.1
  *
  * Password Strength Validation
  * Built for Yii Framework 2.0
@@ -9,19 +9,18 @@
  * Copyright: 2014, Kartik Visweswaran, Krajee.com
  * For more Yii related demos visit http://demos.krajee.com
  */
-!function ($) {
-    kvStrengthValidator = {
+(function ($) {
+    "use strict";
+    var kvStrengthValidator = {
         isEmpty: function (value, trim) {
-            return value === null || value === undefined || value == []
-            || value === '' || trim && $.trim(value) === '';
+            return value === null || value === undefined || value.length === 0 || trim && $.trim(value) === '';
         },
         addMessage: function (messages, message, value) {
-            val = (value == 0) ? 'none' : value;
+            var val = this.isEmpty(value) ? 'none' : value;
             messages.push(message.replace(/\{value\}/g, val));
         },
         addError: function (messages, message, valueRequired, valueFound) {
-            var self = this;
-            msg = message.replace(/\{found\}/g, valueFound);
+            var self = this, msg = message.replace(/\{found\}/g, valueFound);
             self.addMessage(messages, msg, valueRequired);
         },
         findPatterns: function (str) {
@@ -39,13 +38,13 @@
         },
         compare: function (from, operator, to) {
             var chk = (from !== undefined) && (to !== undefined);
-            if (operator == '<') {
+            if (operator === '<') {
                 return chk && (from < to);
             }
-            if (operator == '>') {
+            if (operator === '>') {
                 return chk && (from > to);
             }
-            return chk && (from == to);
+            return chk && (from === to);
         },
         validate: function (value, messages, options) {
             var self = this, score = 0, compare = self.compare;
@@ -67,7 +66,7 @@
             if (compare(len, '>', options['length'])) {
                 self.addError(messages, options.lengthError, options['length'], len);
             }
-            if (options.hasUser === true && !!username && value.toLowerCase().match(username.toLowerCase())) {
+            if (options.hasUser === true && username && value.toLowerCase().match(username.toLowerCase())) {
                 self.addMessage(messages, options.hasUserError, value);
             }
             if (options.hasEmail === true && value.match(/^([\w\!\#$\%\&\'\*\+\-\/\=\?\^\`{\|\}\~]+\.)*[\w\!\#$\%\&\'\*\+\-\/\=\?\^\`{\|\}\~]+@((((([a-z0-9]{1}[a-z0-9\-]{0,62}[a-z0-9]{1})|[a-z])\.)+[a-z]{2,6})|(\d{1,3}\.){3}\d{1,3}(\:\d{1,5})?)$/i)) {
@@ -87,4 +86,4 @@
             }
         }
     };
-}(window.jQuery);
+}(window.jQuery));

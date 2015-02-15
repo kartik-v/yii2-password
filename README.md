@@ -5,7 +5,7 @@ This extension provides a couple of great password management utilities for Yii 
 
 ### Latest Release
 
-> NOTE: The latest version of the plugin v1.5.0 has been released. Refer the [CHANGE LOG](https://github.com/kartik-v/yii2-password/blob/master/CHANGE.md) for details.
+> NOTE: The latest version of the plugin v1.5.1 has been released. Refer the [CHANGE LOG](https://github.com/kartik-v/yii2-password/blob/master/CHANGE.md) for details.
 
 ### Prerequisites
 

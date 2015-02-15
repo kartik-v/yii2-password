@@ -1,3 +1,10 @@
+version 1.5.1
+=============
+**Date:** 15-Feb-2015
+
+- (enh #22, #23): Updated German Translations
+- Set copyright year to current.
+
 version 1.5.0
 =============
 **Date:** 12-Jan-2015
