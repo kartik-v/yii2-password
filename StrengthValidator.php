@@ -215,7 +215,7 @@ class StrengthValidator extends \yii\validators\Validator
     public function init()
     {
         parent::init();
-        $this->initI18N();
+        $this->initI18N(__DIR__);
         $this->applyPreset();
         $this->checkParams();
         $this->setRuleMessages();

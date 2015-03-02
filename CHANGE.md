@@ -1,9 +1,10 @@
 version 1.5.1
 =============
-**Date:** 15-Feb-2015
+**Date:** 02-Mar-2015
 
-- (enh #22, #23): Updated German Translations
+- (enh #22, #23): Updated German Translations.
 - Set copyright year to current.
+- (enh #24): Improve validation to retrieve the right translation messages folder.
 
 version 1.5.0
 =============
