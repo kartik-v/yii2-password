@@ -5,6 +5,7 @@ version 1.5.1
 - (enh #22, #23): Updated German Translations.
 - Set copyright year to current.
 - (enh #24): Improve validation to retrieve the right translation messages folder.
+- (bug #25): Fix strength validator callback.
 
 version 1.5.0
 =============
