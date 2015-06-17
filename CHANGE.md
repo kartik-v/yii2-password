@@ -6,6 +6,7 @@ version 1.5.1
 - Set copyright year to current.
 - (enh #24): Improve validation to retrieve the right translation messages folder.
 - (bug #25): Fix strength validator callback.
+- (enh #26): Set composer version dependencies.
 
 version 1.5.0
 =============
