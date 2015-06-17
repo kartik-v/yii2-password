@@ -63,13 +63,13 @@ Read this [web tip /wiki](http://webtips.krajee.com/setting-composer-minimum-sta
 Either run
 
 ```
-$ php composer.phar require kartik-v/yii2-password "dev-master"
+$ php composer.phar require kartik-v/yii2-password "@dev"
 ```
 
 or add
 
 ```
-"kartik-v/yii2-password": "dev-master"
+"kartik-v/yii2-password": "@dev"
 ```
 
 to the ```require``` section of your `composer.json` file.

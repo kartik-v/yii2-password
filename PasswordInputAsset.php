@@ -24,5 +24,4 @@ class PasswordInputAsset extends \kartik\base\AssetBundle
         $this->setupAssets('js', ['js/strength-meter']);
         parent::init();
     }
-
 }

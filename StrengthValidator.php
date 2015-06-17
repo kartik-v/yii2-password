@@ -362,5 +362,4 @@ class StrengthValidator extends \yii\validators\Validator
         StrengthValidatorAsset::register($view);
         return "kvStrengthValidator.validate(value, messages, " . Json::encode($options) . ");";
     }
-
 }

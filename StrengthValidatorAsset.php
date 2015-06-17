@@ -17,7 +17,6 @@ namespace kartik\password;
  */
 class StrengthValidatorAsset extends \kartik\base\AssetBundle
 {
-
     public $depends = [
         'yii\web\JqueryAsset'
     ];
@@ -28,5 +27,4 @@ class StrengthValidatorAsset extends \kartik\base\AssetBundle
         $this->setupAssets('js', ['js/strength-validation']);
         parent::init();
     }
-
 }
