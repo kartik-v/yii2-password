@@ -4,7 +4,7 @@
  * @package   yii2-password
  * @author    Kartik Visweswaran <kartikv2@gmail.com>
  * @copyright Copyright &copy; Kartik Visweswaran, Krajee.com, 2015
- * @version   1.5.1
+ * @version   1.5.2
  */
 
 namespace kartik\password;
@@ -53,6 +53,7 @@ class PasswordInput extends \kartik\base\InputWidget
     public function init()
     {
         parent::init();
+        $this->initLanguage();
         if ($this->hasModel()) {
             $this->name = ArrayHelper::remove($this->options, 'name', Html::getInputName($this->model, $this->attribute));
             $this->value = $this->model[$this->attribute];

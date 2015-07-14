@@ -1,3 +1,9 @@
+version 1.5.2
+=============
+**Date:** 14-Jul-2015
+
+- (enh #27): Add ability to configure multi-language widgets on same page.
+
 version 1.5.1
 =============
 **Date:** 17-Jun-2015

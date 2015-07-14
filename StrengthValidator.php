@@ -4,7 +4,7 @@
  * @package   yii2-password
  * @author    Kartik Visweswaran <kartikv2@gmail.com>
  * @copyright Copyright &copy; Kartik Visweswaran, Krajee.com, 2015
- * @version   1.5.1
+ * @version   1.5.2
  */
 
 namespace kartik\password;
