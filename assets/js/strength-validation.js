@@ -1,7 +1,7 @@
 /*!
  * @copyright Copyright &copy; Kartik Visweswaran, Krajee.com, 2014
  * @package yii2-password
- * @version 1.5.2
+ * @version 1.5.3
  *
  * Password Strength Validation
  * Built for Yii Framework 2.0
