@@ -93,10 +93,10 @@ class PasswordInput extends \kartik\base\InputWidget
     public function registerAssets()
     {
         $view = $this->getView();
-        $locale = "js/locales/strength-meter-{$this->language}.js";
-        $path = Yii::getAlias("@vendor/kartik-v/strength-meter/{$locale}");
-        if (!empty($this->language) && file_exists($path)) {
-            PasswordInputAsset::register($view)->js[] = $locale;
+        $path = Yii::getAlias("@vendor/kartik-v/strength-meter");
+        $this->setLanguage('strength-meter-', $path, 'js/locales');
+        if (!empty($this->_langFile)) {
+            PasswordInputAsset::register($view)->js[] = $this->_langFile;
         } else {
             PasswordInputAsset::register($view);
         }
