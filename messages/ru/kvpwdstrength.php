@@ -18,20 +18,20 @@
  */
 return [
     '{attribute} should contain at least {n, plural, one{one character} other{# characters}} ({found} found)!' =>
-        '{attribute} должен содержать {n, plural, one{хотя бы один символ} other{как минимум # знака}} ({found} найдено)!',
+        '{attribute} должен содержать {n, plural, =1{хотя бы один символ} one{минимум # символ} few{минимум # символа} many{минимум # символов} other{минимум # символов}} ({found} найдено)!',
     '{attribute} should contain at most {n, plural, one{one character} other{# characters}} ({found} found)!' =>
-        '{attribute} должен содержать {n, plural, one{не более одного символа} other{не более # символов}} ({found} найдено)!',
+        '{attribute} должен содержать не более {n, plural, one{# символа} other{# символов}} ({found} найдено)!',
     '{attribute} should contain exactly {n, plural, one{one character} other{# characters}} ({found} found)!' =>
-        '{attribute} должен содержать {n, plural, one{хотя бы один символ} other{ровно # символов}} ({found} найдено)!',
+        '{attribute} должен содержать ровно {n, plural, one{# символ} few{# символа} many{# символов} other{# символов}} ({found} найдено)!',
     '{attribute} cannot contain the username' => '{attribute} не может содержать имя пользователя',
     '{attribute} cannot contain an email address' => '{attribute} не может содержать адрес электронной почты',
     '{attribute} must be a string' => '{attribute} должен быть строкой',
     '{attribute} should contain at least {n, plural, one{one lower case character} other{# lower case characters}} ({found} found)!' =>
-        '{attribute} должен содержать {n, plural, one{по крайней мере одну строчную характер} other{не менее # строчные символы}} ({found} найдено)!',
+        '{attribute} должен содержать минимум {n, plural, one{# строчный символ} few{# строчных символа} many{# строчных символов} other{# строчных символов}} ({found} найдено)!',
     '{attribute} should contain at least {n, plural, one{one upper case character} other{# upper case characters}} ({found} found)!' =>
-        '{attribute} должен содержать {n, plural, one{по крайней мере один символ верхнего регистра} other{не менее # символы верхнего регистра}} ({found} найдено)!',
+        '{attribute} должен содержать минимум {n, plural, one{# символ верхнего регистра} few{# символа верхнего регистра} many{# символов верхнего регистра} other{# символов верхнего регистра}} ({found} найдено)!',
     '{attribute} should contain at least {n, plural, one{one numeric / digit character} other{# numeric / digit characters}} ({found} found)!' =>
-        '{attribute} должен содержать {n, plural, one{не менее одного цифрового / цифровой символ} other{не менее # числовое / значные символы}} ({found} найдено)!',
+            '{attribute} должен содержать минимум {n, plural, one{# цифру} few{# цыфры} many{# цифер} many{# цифр} other{# цифр}} ({found} найдено)!',
     '{attribute} should contain at least {n, plural, one{one special character} other{# special characters}} ({found} found)!' =>
-        '{attribute} должен содержать {n, plural, one{по крайней мере один специальный символ} other{не менее # специальные символы}} ({found} найдено)!'
+        '{attribute} должен содержать минимум {n, plural, one{# специальный символ} few{# специальных символа} many{# специальных символов} other{# специальных символов}} ({found} найдено)!'
 ];
