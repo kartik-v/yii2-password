@@ -301,7 +301,7 @@ class StrengthValidator extends \yii\validators\Validator
             return;
         }
         $label = $model->getAttributeLabel($attribute);
-        $username = Html::getAttributeValue($model, $this->userAttribute);
+        $username = $this->hasUser ? Html::getAttributeValue($model, $this->userAttribute) : '';
         $temp = [];
 
         foreach (self::$_rules as $rule => $setup) {
