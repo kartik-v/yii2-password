@@ -17,6 +17,7 @@ Change Log: `yii2-password`
 - (enh #37): Enhance code to generate Yii localization messages via config
 - (enh #37): Validate username without attribute
     - New `usernameValue` property that will be used without model or `usernameAttribute`. If this is provided the `usernameAttribute` will be skipped.
+- Eliminate `StrengthValidator::strError` property (BC Breaking). Use the `StrengthValidator::message` property instead.
 
 ## Version 1.5.2
 
