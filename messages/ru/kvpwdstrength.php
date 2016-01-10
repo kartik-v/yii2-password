@@ -23,6 +23,7 @@ return [
         '{attribute} должен содержать не более {n, plural, one{# символа} other{# символов}} ({found} найдено)!',
     '{attribute} should contain exactly {n, plural, one{one character} other{# characters}} ({found} found)!' =>
         '{attribute} должен содержать ровно {n, plural, one{# символ} few{# символа} many{# символов} other{# символов}} ({found} найдено)!',
+    '{attribute} cannot contain any spaces' => "{attribute} не может содержать никаких пробелов",
     '{attribute} cannot contain the username' => '{attribute} не может содержать имя пользователя',
     '{attribute} cannot contain an email address' => '{attribute} не может содержать адрес электронной почты',
     '{attribute} must be a string' => '{attribute} должен быть строкой',

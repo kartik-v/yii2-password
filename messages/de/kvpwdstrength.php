@@ -23,6 +23,7 @@ return [
     '{attribute} darf höchstens {n, plural, one{ein Zeichen} other{# Zeichen}} enthalten ({found} gefunden)!',
     '{attribute} should contain exactly {n, plural, one{one character} other{# characters}} ({found} found)!' =>
     '{attribute} muss genau {n, plural, one{ein Zeichen} other{# Zeichen}} enthalten ({found} gefunden)!',
+    '{attribute} cannot contain any spaces' => '{attribute} kann keine Leerzeichen enthalten',
     '{attribute} cannot contain the username' => '{attribute} darf den Benutzernamen nicht enthalten',
     '{attribute} cannot contain an email address' => '{attribute} darf keine E-Mail-Adresse enthalten',
     '{attribute} must be a string' => '{attribute} muss eine Zeichenfogle sein',

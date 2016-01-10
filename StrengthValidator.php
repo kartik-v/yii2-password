@@ -3,7 +3,7 @@
 /**
  * @package   yii2-password
  * @author    Kartik Visweswaran <kartikv2@gmail.com>
- * @copyright Copyright &copy; Kartik Visweswaran, Krajee.com, 2015
+ * @copyright Copyright &copy; Kartik Visweswaran, Krajee.com, 2014 - 2016
  * @version   1.5.3
  */
 
@@ -13,6 +13,8 @@ use Yii;
 use yii\base\InvalidConfigException;
 use yii\helpers\Html;
 use yii\helpers\Json;
+use yii\validators\Validator;
+use kartik\base\TranslationTrait;
 
 /**
  * StrengthValidator validates if the attribute value matches a specified
@@ -23,9 +25,9 @@ use yii\helpers\Json;
  * @author Kartik Visweswaran <kartikv2@gmail.com>
  * @since 1.0
  */
-class StrengthValidator extends \yii\validators\Validator
+class StrengthValidator extends Validator
 {
-    use \kartik\base\TranslationTrait;
+    use TranslationTrait;
 
     /* The valid preset constants */
     const SIMPLE = 'simple';
@@ -38,6 +40,7 @@ class StrengthValidator extends \yii\validators\Validator
     const RULE_MIN = 'min';
     const RULE_MAX = 'max';
     const RULE_LEN = 'length';
+    const RULE_SPACES = 'allowSpaces';
     const RULE_USER = 'hasUser';
     const RULE_EMAIL = 'hasEmail';
     const RULE_LOW = 'lower';
@@ -59,6 +62,10 @@ class StrengthValidator extends \yii\validators\Validator
         self::RULE_LEN => [
             'msg' => '{attribute} should contain exactly {n, plural, one{one character} other{# characters}} ({found} found)!',
             'int' => true
+        ],
+        self::RULE_SPACES => [
+            'msg' => '{attribute} cannot contain any spaces',
+            'bool' => true
         ],
         self::RULE_USER => [
             'msg' => '{attribute} cannot contain the username',
@@ -91,11 +98,11 @@ class StrengthValidator extends \yii\validators\Validator
         ]
     ];
     /**
-     * @var boolean check whether password contains the username
+     * @var bool check whether password contains the username
      */
     public $hasUser = true;
     /**
-     * @var boolean check whether password contains an email string
+     * @var bool check whether password contains an email string
      */
     public $hasEmail = true;
     /**
@@ -110,6 +117,10 @@ class StrengthValidator extends \yii\validators\Validator
      * @var int specifies the exact length that the value should be of
      */
     public $length;
+    /**
+     * @var bool whether to allow spaces in the input. Defaults to `false`.
+     */
+    public $allowSpaces = false;
     /**
      * @var int minimal number of lower case characters
      */
@@ -147,6 +158,10 @@ class StrengthValidator extends \yii\validators\Validator
      */
     public $lengthError;
     /**
+     * @var string user-defined error message used when [[allowSpaces]] is `false` and spaces are found in input
+     */
+    public $allowSpacesError;
+    /**
      * @var string user-defined error message used when [[hasUser]] is true and value contains the username
      */
     public $hasUserError;
@@ -171,20 +186,16 @@ class StrengthValidator extends \yii\validators\Validator
      */
     public $specialError;
     /**
-     * @var string preset - one of the preset constants,
-     * @see $_presets
-     * If this is not null, the preset parameters will override
-     * the validator level params
+     * @var string preset - one of the preset constants as defined in [[self::$_presets]]. If this is not null, the
+     *     preset parameters will override the validator level params
      */
     public $preset;
     /**
-     * @var string presets configuration source file
-     * defaults to [[presets.php]] in the current directory
+     * @var string presets configuration source file defaults to [[presets.php]] in the current directory
      */
     public $presetsSource;
     /**
-     * @var array the target strength rule requirements that will
-     * be evaluated for displaying the strength meter
+     * @var array the target strength rule requirements that will be evaluated for displaying the strength meter
      */
     public $strengthTarget = [
         'min' => 8,
@@ -235,9 +246,10 @@ class StrengthValidator extends \yii\validators\Validator
         if (!isset($this->presetsSource)) {
             $this->presetsSource = __DIR__ . '/presets.php';
         }
+        /** @noinspection PhpIncludeInspection */
         $this->_presets = require($this->presetsSource);
         if (array_key_exists($this->preset, $this->_presets)) {
-            foreach ($this->_presets[$this->preset] As $param => $value) {
+            foreach ($this->_presets[$this->preset] as $param => $value) {
                 $this->$param = $value;
             }
         } else {
@@ -246,8 +258,7 @@ class StrengthValidator extends \yii\validators\Validator
     }
 
     /**
-     * Validates the provided parameters for valid data type
-     * and the right threshold for 'max' chars.
+     * Validates the provided parameters for valid data type and the right threshold for 'max' chars.
      *
      * @throw InvalidConfigException if validation is invalid
      */
@@ -259,16 +270,17 @@ class StrengthValidator extends \yii\validators\Validator
             ) {
                 throw new InvalidConfigException("The property '{$rule}' must be a positive integer.");
             }
-            if (isset($this->$rule) && !empty($setup['bool']) && $setup['bool'] &&
-                !is_bool($this->$rule)
-            ) {
+            if (isset($this->$rule) && !empty($setup['bool']) && $setup['bool'] && !is_bool($this->$rule)) {
                 throw new InvalidConfigException("The property '{$rule}' must be either true or false.");
             }
         }
         if (isset($this->max)) {
             $chars = $this->lower + $this->upper + $this->digit + $this->special;
             if ($chars > $this->max) {
-                throw new InvalidConfigException("Total number of required characters {$chars} is greater than maximum allowed {$this->max}. Validation is impossible!");
+                throw new InvalidConfigException(
+                    "Total number of required characters {$chars} is greater than maximum allowed {$this->max}. " .
+                    "Validation is not possible!"
+                );
             }
         }
     }
@@ -306,19 +318,18 @@ class StrengthValidator extends \yii\validators\Validator
 
         foreach (self::$_rules as $rule => $setup) {
             $param = "{$rule}Error";
-            if ($rule === self::RULE_USER && $this->hasUser && !empty($value) && !empty($username) && strpos($value, $username) !== false) {
+            if ($rule === self::RULE_USER && $this->hasUser && !empty($value) && !empty($username) &&
+                strpos($value, $username) !== false
+            ) {
                 $this->addError($model, $attribute, $this->$param, ['attribute' => $label]);
             } elseif ($rule === self::RULE_EMAIL && $this->hasEmail && preg_match($setup['match'], $value, $matches)) {
+                $this->addError($model, $attribute, $this->$param, ['attribute' => $label]);
+            } elseif ($rule === self::RULE_SPACES && strpos($value, ' ') !== false) {
                 $this->addError($model, $attribute, $this->$param, ['attribute' => $label]);
             } elseif (!empty($setup['match']) && $rule !== self::RULE_EMAIL && $rule !== self::RULE_USER) {
                 $count = preg_match_all($setup['match'], $value, $temp);
                 if ($count < $this->$rule) {
-                    $this->addError(
-                        $model, $attribute, $this->$param, [
-                            'attribute' => $label,
-                            'found' => $count
-                        ]
-                    );
+                    $this->addError($model, $attribute, $this->$param, ['attribute' => $label, 'found' => $count]);
                 }
             } else {
                 $length = strlen($value);
@@ -333,12 +344,10 @@ class StrengthValidator extends \yii\validators\Validator
                 }
 
                 if ($this->$rule !== null && $test) {
-                    $this->addError(
-                        $model, $attribute, $this->$param, [
-                            'attribute' => $label . ' (' . $rule . ' , ' . $this->$rule . ')',
-                            'found' => $length
-                        ]
-                    );
+                    $this->addError($model, $attribute, $this->$param, [
+                        'attribute' => $label . ' (' . $rule . ' , ' . $this->$rule . ')',
+                        'found' => $length
+                    ]);
                 }
             }
         }

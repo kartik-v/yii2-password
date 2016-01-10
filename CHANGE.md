@@ -1,17 +1,18 @@
 Change Log: `yii2-password`
 ===========================
 
-## Version 1.5.4
+## Version 1.5.3
 
 **Date:** 10-Jan-2016
 
-- Add Czech translation
-
-## Version 1.5.3
-
-**Date:** 13-Sep-2015
-
+- (enh #28): Spaces validation via new properties `allowSpaces` and `allowSpacesError`. 
 - (enh #29): Add Simplified Chinese translation
+- (enh #30): Add Hungarian Translations
+- (enh #31): Fix for short-long language code conflict
+- (enh #32): Correct Polish Translations 
+- (enh #33): Update Russian Translations
+- (enh #35): Model is required to have a username attribute (or userAttribute)
+- (enh #36): Add Czech translations
 
 ## Version 1.5.2
 

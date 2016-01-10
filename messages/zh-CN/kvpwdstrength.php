@@ -23,6 +23,7 @@ return [
         '{attribute} 必须最多包含 {n} 个字符, 实际存在{found}个!',
     '{attribute} should contain exactly {n, plural, one{one character} other{# characters}} ({found} found)!' =>
         '{attribute} 必须正好包含 {n} 个字符, 实际存在{found}个!',
+    '{attribute} cannot contain any spaces' => "{attribute} 不能包含任何空格",
     '{attribute} cannot contain the username' => '{attribute} 不能包含用户名',
     '{attribute} cannot contain an email address' => '{attribute} 不能包含Email',
     '{attribute} must be a string' => '{attribute} 必须是个字符串',

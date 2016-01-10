@@ -23,6 +23,7 @@ return [
         '{attribute} mag maximaal {n, plural, one{één karakter} other{# karakters}} ({found} gevonden)!',
     '{attribute} should contain exactly {n, plural, one{one character} other{# characters}} ({found} found)!' =>
         '{attribute} moet precies {n, plural, one{één karakter} other{# karakters}} ({found} gevonden)!',
+    '{attribute} cannot contain any spaces' => "{attribute} mag niet spaties bevatten",
     '{attribute} cannot contain the username' => '{attribute} mag niet de gebruikersnaam bevatten',
     '{attribute} cannot contain an email address' => '{attribute} mag niet het email-adres bevatten',
     '{attribute} must be a string' => '{attribute} moet een string zijn',

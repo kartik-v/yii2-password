@@ -19,6 +19,7 @@ return [
     '{attribute} should contain at least {n, plural, one{one character} other{# characters}} ({found} found)!' => '{attribute} mezőnek legalább {n, plural, one{egy} other{#}} karaktert kell tartalmaznia (most {found} darabot tartalmaz)!',
     '{attribute} should contain at most {n, plural, one{one character} other{# characters}} ({found} found)!' => '{attribute} mező legfeljebb {n, plural, one{egy} other{#}} karaktert tartalmazhat (most {found} darabot tartalmaz)!',
     '{attribute} should contain exactly {n, plural, one{one character} other{# characters}} ({found} found)!' => '{attribute} mező pontosan {n, plural, one{egy} other{#}} karaktert tartalmazhat (most {found} darabot tartalmaz)!',
+    '{attribute} cannot contain any spaces' => "{attribute} nem tartalmazhat szóközt",
     '{attribute} cannot contain the username' => '{attribute} mező nem tartalmazhatja a felhasználónevet',
     '{attribute} cannot contain an email address' => '{attribute} mező nem tartalmazhat email címet',
     '{attribute} must be a string' => '{attribute} mező csak szöveges lehet',
