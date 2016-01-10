@@ -1,6 +1,12 @@
 Change Log: `yii2-password`
 ===========================
 
+## Version 1.5.4
+
+**Date:** 10-Jan-2016
+
+- Add Czech translation
+
 ## Version 1.5.3
 
 **Date:** 13-Sep-2015
