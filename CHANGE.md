@@ -11,8 +11,12 @@ Change Log: `yii2-password`
 - (enh #31): Fix for short-long language code conflict
 - (enh #32): Correct Polish Translations 
 - (enh #33): Update Russian Translations
+- (enh #34): Enhance StrengthValidator to support `validateValue`
 - (enh #35): Model is required to have a username attribute (or userAttribute)
 - (enh #36): Add Czech translations
+- (enh #37): Enhance code to generate Yii localization messages via config
+- (enh #37): Validate username without attribute
+    - New `usernameValue` property that will be used without model or `usernameAttribute`. If this is provided the `usernameAttribute` will be skipped.
 
 ## Version 1.5.2
 
