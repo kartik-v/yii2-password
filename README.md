@@ -11,7 +11,7 @@ This extension provides a couple of great password management utilities for Yii 
 
 ### Latest Release
 
-> NOTE: The latest version of the plugin v1.5.2 has been released. Refer the [CHANGE LOG](https://github.com/kartik-v/yii2-password/blob/master/CHANGE.md) for details.
+> NOTE: The latest version of the plugin v1.5.3 has been released. Refer the [CHANGE LOG](https://github.com/kartik-v/yii2-password/blob/master/CHANGE.md) for details.
 
 ### Prerequisites
 
@@ -26,10 +26,11 @@ This is a password strength validator for your model attributes. The strength va
 2. Whether password contains an email string
 3. Minimum number of characters
 4. Maximum number of characters
-5. Minimum number of lower space characters
-6. Minimum number of upper space characters
-7. Minimum number of numeric / digit characters
-8. Minimum number of special characters
+5. Whether spaces are allowed
+6. Minimum number of lower space characters
+7. Minimum number of upper space characters
+8. Minimum number of numeric / digit characters
+9. Minimum number of special characters
 
 Other features:
 
