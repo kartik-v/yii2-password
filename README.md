@@ -1,11 +1,17 @@
 yii2-password
 =============
 
+[![Latest Stable Version](https://poser.pugx.org/kartik-v/yii2-password/v/stable)](https://packagist.org/packages/kartik-v/yii2-password)
+[![License](https://poser.pugx.org/kartik-v/yii2-password/license)](https://packagist.org/packages/kartik-v/yii2-password)
+[![Total Downloads](https://poser.pugx.org/kartik-v/yii2-password/downloads)](https://packagist.org/packages/kartik-v/yii2-password)
+[![Monthly Downloads](https://poser.pugx.org/kartik-v/yii2-password/d/monthly)](https://packagist.org/packages/kartik-v/yii2-password)
+[![Daily Downloads](https://poser.pugx.org/kartik-v/yii2-password/d/daily)](https://packagist.org/packages/kartik-v/yii2-password)
+
 This extension provides a couple of great password management utilities for Yii Framework 2.0. The extension allows password strength validation through your model. In addition, it provides an advanced password input widget, that allows you to display/hide text and show the password strength.
 
 ### Latest Release
 
-> NOTE: The latest version of the plugin v1.4.0 has been released. Refer the [CHANGE LOG](https://github.com/kartik-v/yii2-password/blob/master/CHANGE.md) for details.
+> NOTE: The latest version of the plugin v1.5.3 has been released. Refer the [CHANGE LOG](https://github.com/kartik-v/yii2-password/blob/master/CHANGE.md) for details.
 
 ### Prerequisites
 
@@ -20,10 +26,11 @@ This is a password strength validator for your model attributes. The strength va
 2. Whether password contains an email string
 3. Minimum number of characters
 4. Maximum number of characters
-5. Minimum number of lower space characters
-6. Minimum number of upper space characters
-7. Minimum number of numeric / digit characters
-8. Minimum number of special characters
+5. Whether spaces are allowed
+6. Minimum number of lower space characters
+7. Minimum number of upper space characters
+8. Minimum number of numeric / digit characters
+9. Minimum number of special characters
 
 Other features:
 
@@ -57,13 +64,13 @@ Read this [web tip /wiki](http://webtips.krajee.com/setting-composer-minimum-sta
 Either run
 
 ```
-$ php composer.phar require kartik-v/yii2-password "dev-master"
+$ php composer.phar require kartik-v/yii2-password "@dev"
 ```
 
 or add
 
 ```
-"kartik-v/yii2-password": "dev-master"
+"kartik-v/yii2-password": "@dev"
 ```
 
 to the ```require``` section of your `composer.json` file.

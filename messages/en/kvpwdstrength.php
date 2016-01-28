@@ -20,6 +20,7 @@ return [
     '{attribute} should contain at least {n, plural, one{one character} other{# characters}} ({found} found)!' => '',
     '{attribute} should contain at most {n, plural, one{one character} other{# characters}} ({found} found)!' => '',
     '{attribute} should contain exactly {n, plural, one{one character} other{# characters}} ({found} found)!' => '',
+    '{attribute} cannot contain any spaces' => '',
     '{attribute} cannot contain the username' => "",
     '{attribute} cannot contain an email address' => "",
     '{attribute} must be a string' => '',

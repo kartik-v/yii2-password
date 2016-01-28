@@ -20,6 +20,7 @@ return [
     '{attribute} should contain at least {n, plural, one{one character} other{# characters}} ({found} found)!' => '{attribute} devrait contenir au moins {n, plural, one{un caractère} other{# caractères}}! ({found} trouvé)!',
     '{attribute} should contain at most {n, plural, one{one character} other{# characters}} ({found} found)!' => '{attribute} devrait contenir au plus {n, plural, one{un caractère} other{# caractères}}! ({found} trouvé)!',
     '{attribute} should contain exactly {n, plural, one{one character} other{# characters}} ({found} found)!' => '{attribute} devrait contenir exactly {n, plural, one{un caractère} other{# caractères}}! ({found} trouvé)!',
+    '{attribute} cannot contain any spaces' => "{attribute} ne peut pas contenir d'espaces",
     '{attribute} cannot contain the username' => "{attribute} ne peut pas contenir le nom d'utilisateur",
     '{attribute} cannot contain an email address' => "{attribute} ne peut pas contenir l'adresse e-mail",
     '{attribute} must be a string' => '{attribute} doit être une chaîne',

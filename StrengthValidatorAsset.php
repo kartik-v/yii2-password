@@ -1,9 +1,10 @@
 <?php
 
 /**
- * @copyright Copyright &copy; Kartik Visweswaran, Krajee.com, 2014
- * @package yii2-password
- * @version 1.4.0
+ * @package   yii2-password
+ * @author    Kartik Visweswaran <kartikv2@gmail.com>
+ * @copyright Copyright &copy; Kartik Visweswaran, Krajee.com, 2014 - 2016
+ * @version   1.5.3
  */
 
 namespace kartik\password;
@@ -16,7 +17,6 @@ namespace kartik\password;
  */
 class StrengthValidatorAsset extends \kartik\base\AssetBundle
 {
-
     public $depends = [
         'yii\web\JqueryAsset'
     ];
@@ -27,5 +27,4 @@ class StrengthValidatorAsset extends \kartik\base\AssetBundle
         $this->setupAssets('js', ['js/strength-validation']);
         parent::init();
     }
-
 }
