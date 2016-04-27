@@ -8,6 +8,7 @@
  */
 
 namespace kartik\password;
+use kartik\base\AssetBundle;
 
 /**
  * Asset bundle for StrengthValidator
@@ -15,12 +16,11 @@ namespace kartik\password;
  * @author Kartik Visweswaran <kartikv2@gmail.com>
  * @since 1.0
  */
-class StrengthValidatorAsset extends \kartik\base\AssetBundle
+class StrengthValidatorAsset extends AssetBundle
 {
-    public $depends = [
-        'yii\web\JqueryAsset'
-    ];
-
+    /**
+     * @inheritdoc
+     */
     public function init()
     {
         $this->setSourcePath(__DIR__ . '/assets');
