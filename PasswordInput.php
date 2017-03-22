@@ -53,7 +53,7 @@ class PasswordInput extends InputWidget
      */
     public function run()
     {
-        $this->initLanguage();
+        $this->initLanguage('language', true);
         if ($this->hasModel()) {
             $this->name = ArrayHelper::remove(
                 $this->options,
