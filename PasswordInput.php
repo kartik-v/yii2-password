@@ -60,7 +60,7 @@ class PasswordInput extends InputWidget
                 'name',
                 Html::getInputName($this->model, $this->attribute)
             );
-            $this->value = $this->model[$this->attribute];
+            $this->value = Html::getAttributeValue($this->model, $this->attribute);
         }
         echo $this->getInput('passwordInput');
         if (empty($this->pluginOptions['inputTemplate']) &&
