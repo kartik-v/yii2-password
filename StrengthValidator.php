@@ -329,46 +329,25 @@ class StrengthValidator extends Validator
     {
         switch ($rule) {
             case self::RULE_MIN:
-                return Yii::t(
-                    'kvpwdstrength',
-                    '{attribute} should contain at least {n, plural, one{one character} other{# characters}} ({found} found)!'
-                );
+                return '{attribute} should contain at least {n, plural, one{one character} other{# characters}} ({found} found)!';
             case self::RULE_MAX:
-                return Yii::t(
-                    'kvpwdstrength',
-                    '{attribute} should contain at most {n, plural, one{one character} other{# characters}} ({found} found)!'
-                );
+                return '{attribute} should contain at most {n, plural, one{one character} other{# characters}} ({found} found)!';
             case self::RULE_LEN:
-                return Yii::t(
-                    'kvpwdstrength',
-                    '{attribute} should contain exactly {n, plural, one{one character} other{# characters}} ({found} found)!'
-                );
+                return '{attribute} should contain exactly {n, plural, one{one character} other{# characters}} ({found} found)!';
             case self::RULE_SPACES:
-                return Yii::t('kvpwdstrength', '{attribute} cannot contain any spaces');
+                return '{attribute} cannot contain any spaces';
             case self::RULE_USER:
-                return Yii::t('kvpwdstrength', '{attribute} cannot contain the username');
+                return '{attribute} cannot contain the username';
             case self::RULE_EMAIL:
-                return Yii::t('kvpwdstrength', '{attribute} cannot contain an email address');
+                return '{attribute} cannot contain an email address';
             case self::RULE_LOW:
-                return Yii::t(
-                    'kvpwdstrength',
-                    '{attribute} should contain at least {n, plural, one{one lower case character} other{# lower case characters}} ({found} found)!'
-                );
+                return '{attribute} should contain at least {n, plural, one{one lower case character} other{# lower case characters}} ({found} found)!';
             case self::RULE_UP:
-                return Yii::t(
-                    'kvpwdstrength',
-                    '{attribute} should contain at least {n, plural, one{one upper case character} other{# upper case characters}} ({found} found)!'
-                );
+                return '{attribute} should contain at least {n, plural, one{one upper case character} other{# upper case characters}} ({found} found)!';
             case self::RULE_NUM:
-                return Yii::t(
-                    'kvpwdstrength',
-                    '{attribute} should contain at least {n, plural, one{one numeric / digit character} other{# numeric / digit characters}} ({found} found)!'
-                );
+                return '{attribute} should contain at least {n, plural, one{one numeric / digit character} other{# numeric / digit characters}} ({found} found)!';
             case self::RULE_SPL:
-                return Yii::t(
-                    'kvpwdstrength',
-                    '{attribute} should contain at least {n, plural, one{one special character} other{# special characters}} ({found} found)!'
-                );
+                return '{attribute} should contain at least {n, plural, one{one special character} other{# special characters}} ({found} found)!';
         }
         return null;
     }
