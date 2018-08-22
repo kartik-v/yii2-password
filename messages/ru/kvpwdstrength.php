@@ -32,7 +32,7 @@ return [
     '{attribute} should contain at least {n, plural, one{one upper case character} other{# upper case characters}} ({found} found)!' =>
         '{attribute} должен содержать минимум {n, plural, one{# символ верхнего регистра} few{# символа верхнего регистра} many{# символов верхнего регистра} other{# символов верхнего регистра}} ({found} найдено)!',
     '{attribute} should contain at least {n, plural, one{one numeric / digit character} other{# numeric / digit characters}} ({found} found)!' =>
-            '{attribute} должен содержать минимум {n, plural, one{# цифру} few{# цыфры} many{# цифер} many{# цифр} other{# цифр}} ({found} найдено)!',
+            '{attribute} должен содержать минимум {n, plural, one{# цифру} few{# цифры} many{# цифр} other{# цифр}} ({found} найдено)!',
     '{attribute} should contain at least {n, plural, one{one special character} other{# special characters}} ({found} found)!' =>
         '{attribute} должен содержать минимум {n, plural, one{# специальный символ} few{# специальных символа} many{# специальных символов} other{# специальных символов}} ({found} найдено)!'
 ];
