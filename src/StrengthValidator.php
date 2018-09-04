@@ -3,7 +3,7 @@
 /**
  * @package   yii2-password
  * @author    Kartik Visweswaran <kartikv2@gmail.com>
- * @copyright Copyright &copy; Kartik Visweswaran, Krajee.com, 2014 - 2016
+ * @copyright Copyright &copy; Kartik Visweswaran, Krajee.com, 2014 - 2018
  * @version   1.5.3
  */
 
@@ -203,11 +203,6 @@ class StrengthValidator extends Validator
     public $encoding;
 
     /**
-     * @var array the the internalization configuration for this widget
-     */
-    public $i18n = [];
-
-    /**
      * @var array the default rule settings
      */
     protected static $_rules = [
@@ -220,13 +215,8 @@ class StrengthValidator extends Validator
         self::RULE_LOW => ['match' => '![a-z]!', 'int' => true],
         self::RULE_UP => ['match' => '![A-Z]!', 'int' => true],
         self::RULE_NUM => ['match' => '![\d]!', 'int' => true],
-        self::RULE_SPL => ['match' => '![\W]!', 'int' => true]
+        self::RULE_SPL => ['match' => '![\W]!', 'int' => true],
     ];
-
-    /**
-     * @var string translation message file category name for i18n
-     */
-    protected $_msgCat = 'kvpwdstrength';
 
     /**
      * @var array the list of inbuilt presets and their parameter settings
@@ -235,6 +225,8 @@ class StrengthValidator extends Validator
 
     /**
      * @inheritdoc
+     * @throws \ReflectionException
+     * @throws InvalidConfigException
      */
     public function init()
     {
@@ -242,6 +234,7 @@ class StrengthValidator extends Validator
         if ($this->encoding === null) {
             $this->encoding = Yii::$app->charset;
         }
+        $this->_msgCat = 'kvpwdstrength';
         $this->initI18N(__DIR__);
         $this->applyPreset();
         $this->checkParams();
@@ -276,7 +269,7 @@ class StrengthValidator extends Validator
     /**
      * Validates the provided parameters for valid data type and the right threshold for 'max' chars.
      *
-     * @throw InvalidConfigException if validation is invalid
+     * @throws InvalidConfigException if validation is invalid
      */
     protected function checkParams()
     {
@@ -437,7 +430,7 @@ class StrengthValidator extends Validator
                     if ($hasModel) {
                         $this->addError($model, $attribute, $this->$param, [
                             'attribute' => $label . ' (' . $rule . ' , ' . $this->$rule . ')',
-                            'found' => $length
+                            'found' => $length,
                         ]);
                     } else {
                         return [$this->$param, ['found' => $length]];

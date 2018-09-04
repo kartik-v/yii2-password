@@ -3,7 +3,7 @@
 /**
  * @package   yii2-password
  * @author    Kartik Visweswaran <kartikv2@gmail.com>
- * @copyright Copyright &copy; Kartik Visweswaran, Krajee.com, 2014 - 2016
+ * @copyright Copyright &copy; Kartik Visweswaran, Krajee.com, 2014 - 2018
  * @version   1.5.3
  */
 
@@ -27,13 +27,13 @@ class PasswordInput extends InputWidget
 {
     /**
      * @var string the password strength meter language. If not provided or no translation is available, this will
-     *     default to `en` (US English).
+     * default to `en` (US English).
      */
     public $language;
 
     /**
      * @var string the password input size. Defaults to medium size ('md'). Can be set 'lg' for large size or 'sm' for
-     *     small size.
+     * small size.
      */
     public $size = 'md';
 
@@ -50,6 +50,7 @@ class PasswordInput extends InputWidget
 
     /**
      * @inheritdoc
+     * @throws \ReflectionException
      */
     public function run()
     {
@@ -92,6 +93,7 @@ class PasswordInput extends InputWidget
 
     /**
      * Registers the needed assets
+     * @throws \ReflectionException
      */
     public function registerAssets()
     {

@@ -1,7 +1,8 @@
 yii2-password
 =============
 
-[![Latest Stable Version](https://poser.pugx.org/kartik-v/yii2-password/v/stable)](https://packagist.org/packages/kartik-v/yii2-password)
+[![Stable Version](https://poser.pugx.org/kartik-v/yii2-password/v/stable)](https://packagist.org/packages/kartik-v/yii2-password)
+[![Untable Version](https://poser.pugx.org/kartik-v/yii2-password/v/unstable)](https://packagist.org/packages/kartik-v/yii2-password)
 [![License](https://poser.pugx.org/kartik-v/yii2-password/license)](https://packagist.org/packages/kartik-v/yii2-password)
 [![Total Downloads](https://poser.pugx.org/kartik-v/yii2-password/downloads)](https://packagist.org/packages/kartik-v/yii2-password)
 [![Monthly Downloads](https://poser.pugx.org/kartik-v/yii2-password/d/monthly)](https://packagist.org/packages/kartik-v/yii2-password)
@@ -9,9 +10,8 @@ yii2-password
 
 This extension provides a couple of great password management utilities for Yii Framework 2.0. The extension allows password strength validation through your model. In addition, it provides an advanced password input widget, that allows you to display/hide text and show the password strength.
 
-### Latest Release
-
-> NOTE: The latest version of the plugin v1.5.3 has been released. Refer the [CHANGE LOG](https://github.com/kartik-v/yii2-password/blob/master/CHANGE.md) for details.
+### Release Changes
+Refer the [CHANGE LOG](https://github.com/kartik-v/yii2-password/blob/master/CHANGE.md) for details of various releases.
 
 ### Prerequisites
 
