@@ -17,7 +17,7 @@ return [
         'digit' => 1,
         'special' => 0,
         'hasUser' => false,
-        'hasEmail' => false
+        'hasEmail' => false,
     ],
     StrengthValidator::NORMAL => [
         'min' => 8,
@@ -26,7 +26,7 @@ return [
         'digit' => 1,
         'special' => 0,
         'hasUser' => true,
-        'hasEmail' => true
+        'hasEmail' => true,
     ],
     StrengthValidator::FAIR => [
         'min' => 10,
@@ -35,7 +35,7 @@ return [
         'digit' => 1,
         'special' => 1,
         'hasUser' => true,
-        'hasEmail' => true
+        'hasEmail' => true,
     ],
     StrengthValidator::MEDIUM => [
         'min' => 10,
@@ -44,7 +44,7 @@ return [
         'digit' => 2,
         'special' => 1,
         'hasUser' => true,
-        'hasEmail' => true
+        'hasEmail' => true,
     ],
     StrengthValidator::STRONG => [
         'min' => 12,
@@ -53,6 +53,6 @@ return [
         'digit' => 2,
         'special' => 2,
         'hasUser' => true,
-        'hasEmail' => true
+        'hasEmail' => true,
     ],
 ];

@@ -51,6 +51,7 @@ class PasswordInput extends InputWidget
     /**
      * @inheritdoc
      * @throws \ReflectionException
+     * @throws \yii\base\InvalidConfigException
      */
     public function run()
     {
@@ -64,9 +65,7 @@ class PasswordInput extends InputWidget
             $this->value = Html::getAttributeValue($this->model, $this->attribute);
         }
         echo $this->getInput('passwordInput');
-        if (empty($this->pluginOptions['inputTemplate']) &&
-            ($this->size === 'lg' || $this->size === 'sm' || $this->togglePlacement === 'left')
-        ) {
+        if (empty($this->pluginOptions['inputTemplate'])) {
             $this->pluginOptions['inputTemplate'] = $this->renderInputTemplate();
         }
         $this->registerAssets();
@@ -77,18 +76,24 @@ class PasswordInput extends InputWidget
      * Renders the input template
      *
      * @return string
+     * @throws \yii\base\InvalidConfigException
      */
     protected function renderInputTemplate()
     {
-        $class = 'input-group';
-        $content = '{input}<span class="input-group-addon">{toggle}</span>';
+        $isLeft = $this->togglePlacement === 'left';
+        $css = 'input-group-addon';
+        $tog = '{toggle}';
+        if ($this->isBs4()) {
+            $css = $isLeft ? 'input-group-prepend' : 'input-group-append';
+            $tog = '<span class="input-group-text">{toggle}</span>';
+        }
+        $groupOptions = ['class' => 'input-group'];
+        $toggle = Html::tag('span', $tog, ['class' => $css]);
         if ($this->size === 'lg' || $this->size === 'sm') {
-            $class .= ' input-group-' . $this->size;
+            Html::addCssClass($groupOptions, 'input-group-' . $this->size);
         }
-        if ($this->togglePlacement === 'left') {
-            $content = '<span class="input-group-addon">{toggle}</span>{input}';
-        }
-        return "<div class='{$class}'>{$content}</div>";
+        $content = $isLeft ? $toggle . '{input}' : '{input}' . $toggle;
+        return Html::tag('div', $content, $groupOptions);
     }
 
     /**

@@ -109,4 +109,4 @@ echo $form->field($model, 'password')->widget(PasswordInput::classname(), [
 
 ## License
 
-**yii2-password** is released under the BSD 3-Clause License. See the bundled `LICENSE.md` for details.
+**yii2-password** is released under the BSD-3-Clause License. See the bundled `LICENSE.md` for details.

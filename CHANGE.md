@@ -3,7 +3,7 @@ Change Log: `yii2-password`
 
 ## Version 1.5.4
 
-**Date:** 04-Sep-2018
+**Date:** 07-Sep-2018
 
 - Add github contribution and issue/PR log templates.
 - Updates for Bootstrap v4.x.
@@ -18,7 +18,7 @@ Change Log: `yii2-password`
 - (enh #45): Add Traditional Chinese Translations. 
 - (enh #44): Add Estonian Translations. 
 - (enh #42): Add Serbian Translations. 
-- (enh #39): Update Spanish Translations. 
+- (enh #39): Update Spanish Translations.
 
 ## Version 1.5.3
 
