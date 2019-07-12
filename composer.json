@@ -27,6 +27,12 @@
         "kartik-v/strength-meter": "~1.1",
         "kartik-v/yii2-krajee-base": ">=1.9"
     },
+    "repositories": [
+        {
+            "type": "git",
+            "url": "https://github.com/igosja/yii2-password"
+        }
+    ],
     "autoload": {
         "psr-4": {
             "kartik\\password\\": "src"
