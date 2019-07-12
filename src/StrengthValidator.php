@@ -400,7 +400,7 @@ class StrengthValidator extends Validator
             $chkUser = $rule === self::RULE_USER && $this->hasUser && !empty($value) && !empty($username) &&
                 strpos($value, $username) !== false;
             $chkEmail = $rule === self::RULE_EMAIL && $this->hasEmail && preg_match($setup['match'], $value, $matches);
-            $chkSpaces = $rule === self::RULE_SPACES && strpos($value, ' ') !== false;
+            $chkSpaces = $rule === self::RULE_SPACES && !$this->allowSpaces && strpos($value, ' ') !== false;
             if ($chkUser || $chkEmail || $chkSpaces) {
                 if ($hasModel) {
                     $this->addError($model, $attribute, $this->$param, ['attribute' => $label]);
