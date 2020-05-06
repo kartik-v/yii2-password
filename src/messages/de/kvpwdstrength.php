@@ -26,11 +26,11 @@ return [
     '{attribute} cannot contain any spaces' => '{attribute} kann keine Leerzeichen enthalten',
     '{attribute} cannot contain the username' => '{attribute} darf den Benutzernamen nicht enthalten',
     '{attribute} cannot contain an email address' => '{attribute} darf keine E-Mail-Adresse enthalten',
-    '{attribute} must be a string' => '{attribute} muss eine Zeichenfogle sein',
+    '{attribute} must be a string' => '{attribute} muss eine Zeichenfolge sein',
     '{attribute} should contain at least {n, plural, one{one lower case character} other{# lower case characters}} ({found} found)!' =>
-        '{attribute} muss mindestens {n, plural, one{ein Kleinbuchstaben enthalten} other{# Kleinbuchstaben enthalten}} ({found} gefunden)!',
+        '{attribute} muss mindestens {n, plural, one{einen Kleinbuchstaben enthalten} other{# Kleinbuchstaben enthalten}} ({found} gefunden)!',
     '{attribute} should contain at least {n, plural, one{one upper case character} other{# upper case characters}} ({found} found)!' =>
-        '{attribute} muss mindestens {n, plural, one{ein Großbuchstaben enthalten} other{# Großbuchstaben enthalten}} ({found} gefunden)!',
+        '{attribute} muss mindestens {n, plural, one{einen Großbuchstaben enthalten} other{# Großbuchstaben enthalten}} ({found} gefunden)!',
     '{attribute} should contain at least {n, plural, one{one numeric / digit character} other{# numeric / digit characters}} ({found} found)!' =>
         '{attribute} muss mindestens {n, plural, one{eine Ziffer enthalten} other{# Ziffern enthalten}} ({found} gefunden)!',
     '{attribute} should contain at least {n, plural, one{one special character} other{# special characters}} ({found} found)!' =>
