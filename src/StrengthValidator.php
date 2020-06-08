@@ -45,6 +45,7 @@ class StrengthValidator extends Validator
     const RULE_UP = 'upper';
     const RULE_NUM = 'digit';
     const RULE_SPL = 'special';
+    const RULE_HIBP = 'checkHaveIBeenPwned';
 
     // Email pattern match regex
     const EMAIL_MATCH = '/^([\w\!\#$\%\&\'\*\+\-\/\=\?\^\`{\|\}\~]+\.)*[\w\!\#$\%\&\'\*\+\-\/\=\?\^\`{\|\}\~]+@((((([a-z0-9]{1}[a-z0-9\-]{0,62}[a-z0-9]{1})|[a-z])\.)+[a-z]{2,6})|(\d{1,3}\.){3}\d{1,3}(\:\d{1,5})?)$/i';
@@ -107,6 +108,11 @@ class StrengthValidator extends Validator
      * @var int minimal number of special characters
      */
     public $special = 2;
+
+    /**
+     * @var bool wheter to check the online database of Have I Been Pwned
+     */
+    public $checkHaveIBeenPwned = true;
 
     /**
      * @var string the name of the username attribute
@@ -175,6 +181,11 @@ class StrengthValidator extends Validator
     public $specialError;
 
     /**
+     * @var string user-defined error message used when password is found in Have I Been Pwned
+     */
+    public $checkHaveIBeenPwnedError;
+
+    /**
      * @var string preset - one of the preset constants as defined in [[self::$_presets]]. If this is not null, the
      *     preset parameters will override the validator level params
      */
@@ -216,12 +227,18 @@ class StrengthValidator extends Validator
         self::RULE_UP => ['match' => '![A-Z]!', 'int' => true],
         self::RULE_NUM => ['match' => '![\d]!', 'int' => true],
         self::RULE_SPL => ['match' => '![\W]!', 'int' => true],
+        self::RULE_HIBP => ['bool' => true],
     ];
 
     /**
      * @var array the list of inbuilt presets and their parameter settings
      */
     private $_presets;
+
+        /**
+     * @var string curl http adapter for HIBP
+     */
+    private $_adapter;
 
     /**
      * @inheritdoc
@@ -362,7 +379,9 @@ class StrengthValidator extends Validator
                     'kvpwdstrength',
                     '{attribute} should contain at least {n, plural, one{one special character} other{# special characters}} ({found} found)!'
                 );
-        }
+            case self::RULE_HIBP:
+                return Yii::t('kvpwdstrength', '{attribute} is present in compromised password list');
+            }
         return null;
     }
 
@@ -414,6 +433,23 @@ class StrengthValidator extends Validator
                         $this->addError($model, $attribute, $this->$param, ['attribute' => $label, 'found' => $count]);
                     } else {
                         return [$this->$param, ['found' => $count]];
+                    }
+                }
+            } elseif ($rule === self::RULE_HIBP ) {
+                $hash = sha1($value);
+                $range = substr($hash, 0, 5);
+                $needle = strtoupper(substr($hash, 5));
+
+                #see https://haveibeenpwned.com/API/v3#SearchingPwnedPasswordsByRange
+                $url = "https://api.pwnedpasswords.com/range/" . urlencode($range);
+                $result = file_get_contents($url);
+                $result = preg_replace('/^([0-9A-Z]+:0)$/m', '', $result);
+
+                if (strpos($result, $needle) !== false) {
+                    if ($hasModel) {
+                        $this->addError($model, $attribute, $this->$param, ['attribute' => $label]);
+                    } else {
+                        return [$this->$param, []];
                     }
                 }
             } else {
