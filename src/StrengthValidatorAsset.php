@@ -3,8 +3,8 @@
 /**
  * @package   yii2-password
  * @author    Kartik Visweswaran <kartikv2@gmail.com>
- * @copyright Copyright &copy; Kartik Visweswaran, Krajee.com, 2014 - 2018
- * @version   1.5.3
+ * @copyright Copyright &copy; Kartik Visweswaran, Krajee.com, 2014 - 2020
+ * @version   1.5.5
  */
 
 namespace kartik\password;

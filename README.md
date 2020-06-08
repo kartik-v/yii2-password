@@ -41,6 +41,7 @@ This is a password strength validator for your model attributes. The strength va
 7. Minimum number of upper space characters
 8. Minimum number of numeric / digit characters
 9. Minimum number of special characters
+10. Whether password is compromised and part of [Have I Been Pwned](https://haveibeenpwned.com/) lists.
 
 Other features:
 

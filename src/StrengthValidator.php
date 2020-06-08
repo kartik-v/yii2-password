@@ -3,12 +3,13 @@
 /**
  * @package   yii2-password
  * @author    Kartik Visweswaran <kartikv2@gmail.com>
- * @copyright Copyright &copy; Kartik Visweswaran, Krajee.com, 2014 - 2018
- * @version   1.5.3
+ * @copyright Copyright &copy; Kartik Visweswaran, Krajee.com, 2014 - 2020
+ * @version   1.5.5
  */
 
 namespace kartik\password;
 
+use ReflectionException;
 use Yii;
 use yii\base\Model;
 use yii\base\InvalidConfigException;
@@ -45,7 +46,7 @@ class StrengthValidator extends Validator
     const RULE_UP = 'upper';
     const RULE_NUM = 'digit';
     const RULE_SPL = 'special';
-    const RULE_HIBP = 'checkHaveIBeenPwned';
+    const RULE_HIBP = 'haveIBeenPwned';
 
     // Email pattern match regex
     const EMAIL_MATCH = '/^([\w\!\#$\%\&\'\*\+\-\/\=\?\^\`{\|\}\~]+\.)*[\w\!\#$\%\&\'\*\+\-\/\=\?\^\`{\|\}\~]+@((((([a-z0-9]{1}[a-z0-9\-]{0,62}[a-z0-9]{1})|[a-z])\.)+[a-z]{2,6})|(\d{1,3}\.){3}\d{1,3}(\:\d{1,5})?)$/i';
@@ -112,7 +113,13 @@ class StrengthValidator extends Validator
     /**
      * @var bool wheter to check the online database of Have I Been Pwned
      */
-    public $checkHaveIBeenPwned = true;
+    public $haveIBeenPwned = true;
+
+    /**
+     * @var string the api for "Have I Been Pwned" check with trailing slash
+     * @see https://haveibeenpwned.com/API/v3#SearchingPwnedPasswordsByRange
+     */
+    public $apiHIBP = 'https://api.pwnedpasswords.com/range/';
 
     /**
      * @var string the name of the username attribute
@@ -183,11 +190,11 @@ class StrengthValidator extends Validator
     /**
      * @var string user-defined error message used when password is found in Have I Been Pwned
      */
-    public $checkHaveIBeenPwnedError;
+    public $haveIBeenPwnedError;
 
     /**
-     * @var string preset - one of the preset constants as defined in [[self::$_presets]]. If this is not null, the
-     *     preset parameters will override the validator level params
+     * @var string preset - one of the preset constants. If this is not null, the preset parameters will override the
+     * validator level params
      */
     public $preset;
 
@@ -231,18 +238,13 @@ class StrengthValidator extends Validator
     ];
 
     /**
-     * @var array the list of inbuilt presets and their parameter settings
-     */
-    private $_presets;
-
-        /**
      * @var string curl http adapter for HIBP
      */
     private $_adapter;
 
     /**
      * @inheritdoc
-     * @throws \ReflectionException
+     * @throws ReflectionException
      * @throws InvalidConfigException
      */
     public function init()
@@ -273,9 +275,9 @@ class StrengthValidator extends Validator
             $this->presetsSource = __DIR__ . '/presets.php';
         }
         /** @noinspection PhpIncludeInspection */
-        $this->_presets = require($this->presetsSource);
-        if (array_key_exists($this->preset, $this->_presets)) {
-            foreach ($this->_presets[$this->preset] as $param => $value) {
+        $presets = require($this->presetsSource);
+        if (array_key_exists($this->preset, $presets)) {
+            foreach ($presets[$this->preset] as $param => $value) {
                 $this->$param = $value;
             }
         } else {
@@ -381,12 +383,12 @@ class StrengthValidator extends Validator
                 );
             case self::RULE_HIBP:
                 return Yii::t('kvpwdstrength', '{attribute} is present in compromised password list');
-            }
+        }
         return null;
     }
 
     /**
-     * The main validation routine based parameters for model & attribute or value
+     * The main password validation routine
      *
      * @param array $params of model, attribute, and value
      *
@@ -435,16 +437,13 @@ class StrengthValidator extends Validator
                         return [$this->$param, ['found' => $count]];
                     }
                 }
-            } elseif ($rule === self::RULE_HIBP ) {
+            } elseif ($rule === self::RULE_HIBP) {
                 $hash = sha1($value);
                 $range = substr($hash, 0, 5);
                 $needle = strtoupper(substr($hash, 5));
-
-                #see https://haveibeenpwned.com/API/v3#SearchingPwnedPasswordsByRange
-                $url = "https://api.pwnedpasswords.com/range/" . urlencode($range);
+                $url = $this->apiHIBP . urlencode($range);
                 $result = file_get_contents($url);
                 $result = preg_replace('/^([0-9A-Z]+:0)$/m', '', $result);
-
                 if (strpos($result, $needle) !== false) {
                     if ($hasModel) {
                         $this->addError($model, $attribute, $this->$param, ['attribute' => $label]);
