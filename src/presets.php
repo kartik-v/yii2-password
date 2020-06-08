@@ -18,6 +18,7 @@ return [
         'special' => 0,
         'hasUser' => false,
         'hasEmail' => false,
+        'checkHaveIBeenPwned' => true,
     ],
     StrengthValidator::NORMAL => [
         'min' => 8,
@@ -27,6 +28,7 @@ return [
         'special' => 0,
         'hasUser' => true,
         'hasEmail' => true,
+        'checkHaveIBeenPwned' => true,
     ],
     StrengthValidator::FAIR => [
         'min' => 10,
@@ -36,6 +38,7 @@ return [
         'special' => 1,
         'hasUser' => true,
         'hasEmail' => true,
+        'checkHaveIBeenPwned' => true,
     ],
     StrengthValidator::MEDIUM => [
         'min' => 10,
@@ -45,6 +48,7 @@ return [
         'special' => 1,
         'hasUser' => true,
         'hasEmail' => true,
+        'checkHaveIBeenPwned' => true,
     ],
     StrengthValidator::STRONG => [
         'min' => 12,
@@ -54,5 +58,6 @@ return [
         'special' => 2,
         'hasUser' => true,
         'hasEmail' => true,
+        'checkHaveIBeenPwned' => true,
     ],
 ];
