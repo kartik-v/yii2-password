@@ -4,7 +4,7 @@
  * @package   yii2-password
  * @author    Kartik Visweswaran <kartikv2@gmail.com>
  * @copyright Copyright &copy; Kartik Visweswaran, Krajee.com, 2014 - 2020
- * @version   1.5.5
+ * @version   1.5.6
  */
 
 namespace kartik\password;
@@ -111,9 +111,9 @@ class StrengthValidator extends Validator
     public $special = 2;
 
     /**
-     * @var bool wheter to check the online database of Have I Been Pwned
+     * @var bool whether to check the online database of Have I Been Pwned
      */
-    public $haveIBeenPwned = true;
+    public $haveIBeenPwned = false;
 
     /**
      * @var string the api for "Have I Been Pwned" check with trailing slash
@@ -418,10 +418,11 @@ class StrengthValidator extends Validator
         $temp = [];
         foreach (self::$_rules as $rule => $setup) {
             $param = "{$rule}Error";
-            $chkUser = $rule === self::RULE_USER && $this->hasUser && !empty($value) && !empty($username) &&
+            $ruleValue = isset($this->$rule) ? $this->$rule : null;
+            $chkUser = $rule === self::RULE_USER && $ruleValue && !empty($value) && !empty($username) &&
                 strpos($value, $username) !== false;
-            $chkEmail = $rule === self::RULE_EMAIL && $this->hasEmail && preg_match($setup['match'], $value, $matches);
-            $chkSpaces = $rule === self::RULE_SPACES && !$this->allowSpaces && strpos($value, ' ') !== false;
+            $chkEmail = $rule === self::RULE_EMAIL && $ruleValue && preg_match($setup['match'], $value, $matches);
+            $chkSpaces = $rule === self::RULE_SPACES && !$ruleValue && strpos($value, ' ') !== false;
             if ($chkUser || $chkEmail || $chkSpaces) {
                 if ($hasModel) {
                     $this->addError($model, $attribute, $this->$param, ['attribute' => $label]);
@@ -430,14 +431,14 @@ class StrengthValidator extends Validator
                 }
             } elseif ($rule !== self::RULE_EMAIL && $rule !== self::RULE_USER && !empty($setup['match'])) {
                 $count = preg_match_all($setup['match'], $value, $temp);
-                if ($count < $this->$rule) {
+                if ($count < $ruleValue) {
                     if ($hasModel) {
                         $this->addError($model, $attribute, $this->$param, ['attribute' => $label, 'found' => $count]);
                     } else {
                         return [$this->$param, ['found' => $count]];
                     }
                 }
-            } elseif ($rule === self::RULE_HIBP) {
+            } elseif ($rule === self::RULE_HIBP && $ruleValue) {
                 $hash = sha1($value);
                 $range = substr($hash, 0, 5);
                 $needle = strtoupper(substr($hash, 5));
@@ -455,16 +456,16 @@ class StrengthValidator extends Validator
                 $length = mb_strlen($value, $this->encoding);
                 $test = false;
                 if ($rule === self::RULE_LEN) {
-                    $test = ($length !== $this->$rule);
+                    $test = ($length !== $ruleValue);
                 } elseif ($rule === self::RULE_MIN) {
-                    $test = ($length < $this->$rule);
+                    $test = ($length < $ruleValue);
                 } elseif ($rule === self::RULE_MAX) {
-                    $test = ($length > $this->$rule);
+                    $test = ($length > $ruleValue);
                 }
-                if ($this->$rule !== null && $test) {
+                if ($ruleValue !== null && $test) {
                     if ($hasModel) {
                         $this->addError($model, $attribute, $this->$param, [
-                            'attribute' => $label . ' (' . $rule . ' , ' . $this->$rule . ')',
+                            'attribute' => $label . ' (' . $rule . ' , ' . $ruleValue . ')',
                             'found' => $length,
                         ]);
                     } else {

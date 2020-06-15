@@ -1,6 +1,12 @@
 Change Log: `yii2-password`
 ===========================
 
+## Version 1.5.6
+
+**Date:** 15-Jun-2020
+
+- (bug #73, #74): Validate `haveIBeenPwned` correctly and default to `false` for BC.
+
 ## Version 1.5.5
 
 **Date:** 08-Jun-2020
