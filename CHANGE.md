@@ -1,6 +1,13 @@
 Change Log: `yii2-password`
 ===========================
 
+## Version 1.5.7
+
+**Date:** 16-May-2022
+
+- PHP 8.1 enhancements for native functions.
+- (enh #79): Enhancement to input group addons for Bootstrap 5.x.
+
 ## Version 1.5.6
 
 **Date:** 15-Jun-2020

@@ -6,10 +6,12 @@
     yii2-password
     <hr>
     <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=DTP3NZQ6G2AYU"
-       title="Donate via Paypal" target="_blank">
-        <img src="http://kartik-v.github.io/bootstrap-fileinput-samples/samples/donate.png" alt="Donate"/>
-    </a>
+       title="Donate via Paypal" target="_blank"><img height="60" src="https://kartik-v.github.io/bootstrap-fileinput-samples/samples/donate.png" alt="Donate"/></a>
+    &nbsp; &nbsp; &nbsp;
+    <a href="https://www.buymeacoffee.com/kartikv" title="Buy me a coffee" ><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" height="60" alt="kartikv" /></a>
 </h1>
+
+<div align="center">
 
 [![Stable Version](https://poser.pugx.org/kartik-v/yii2-password/v/stable)](https://packagist.org/packages/kartik-v/yii2-password)
 [![Untable Version](https://poser.pugx.org/kartik-v/yii2-password/v/unstable)](https://packagist.org/packages/kartik-v/yii2-password)
@@ -17,6 +19,8 @@
 [![Total Downloads](https://poser.pugx.org/kartik-v/yii2-password/downloads)](https://packagist.org/packages/kartik-v/yii2-password)
 [![Monthly Downloads](https://poser.pugx.org/kartik-v/yii2-password/d/monthly)](https://packagist.org/packages/kartik-v/yii2-password)
 [![Daily Downloads](https://poser.pugx.org/kartik-v/yii2-password/d/daily)](https://packagist.org/packages/kartik-v/yii2-password)
+
+</div>
 
 This extension provides a couple of great password management utilities for Yii Framework 2.0. The extension allows password strength validation through your model. In addition, it provides an advanced password input widget, that allows you to display/hide text and show the password strength.
 
