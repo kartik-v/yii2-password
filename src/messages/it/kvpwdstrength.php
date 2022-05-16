@@ -28,5 +28,6 @@ return [
     '{attribute} should contain at least {n, plural, one{one upper case character} other{# upper case characters}} ({found} found)!' => '{attribute} deve contenere almeno {n, plural, one{un carattere maiuscolo} other{# caratteri maiuscoli}} ({found} trovati)!',
     '{attribute} should contain at most {n, plural, one{one character} other{# characters}} ({found} found)!' => '{attribute} dovrebbe contenere al massimo {n, plural, one{un carattere} other{# caratteri}} ({found} trovati)!',
     '{attribute} should contain exactly {n, plural, one{one character} other{# characters}} ({found} found)!' => '{attribute} dovrebbe contenere esattamente {n, plural, one{un carattere} other{# caratteri}} ({found} trovati)!',
+    '{attribute} cannot contain more than {n, plural, one{one repeating character} other{# repeating characters}}!' => '',
     '{attribute} is present in compromised password list' => '',
 ];

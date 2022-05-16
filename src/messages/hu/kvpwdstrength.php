@@ -28,5 +28,6 @@ return [
     '{attribute} should contain at least {n, plural, one{one upper case character} other{# upper case characters}} ({found} found)!' => '{attribute} mezőnek legalább {n, plural, one{egy} other{#}} nagybetűt kell tartalmaznia (most {found} darabot tartalmaz)!',
     '{attribute} should contain at most {n, plural, one{one character} other{# characters}} ({found} found)!' => '{attribute} mező legfeljebb {n, plural, one{egy} other{#}} karaktert tartalmazhat (most {found} darabot tartalmaz)!',
     '{attribute} should contain exactly {n, plural, one{one character} other{# characters}} ({found} found)!' => '{attribute} mező pontosan {n, plural, one{egy} other{#}} karaktert tartalmazhat (most {found} darabot tartalmaz)!',
+    '{attribute} cannot contain more than {n, plural, one{one repeating character} other{# repeating characters}}!' => '',
     '{attribute} is present in compromised password list' => '',
 ];

@@ -20,6 +20,7 @@ return [
     '{attribute} cannot contain an email address' => '{attribute} darf keine E-Mail-Adresse enthalten',
     '{attribute} cannot contain any spaces' => '{attribute} darf keine Leerzeichen enthalten',
     '{attribute} cannot contain the username' => '{attribute} darf den Benutzernamen nicht enthalten',
+    '{attribute} is present in compromised password list' => '{attribute} befindet sich auf der Liste bereits kompromittierter Passwörter',
     '{attribute} must be a string' => '{attribute} muss eine Zeichenfolge sein',
     '{attribute} should contain at least {n, plural, one{one character} other{# characters}} ({found} found)!' => '{attribute} muss mindestens {n, plural, one{ein Zeichen} other{# Zeichen}} enthalten ({found} gefunden)!',
     '{attribute} should contain at least {n, plural, one{one lower case character} other{# lower case characters}} ({found} found)!' => '{attribute} muss mindestens {n, plural, one{einen Kleinbuchstaben enthalten} other{# Kleinbuchstaben enthalten}} ({found} gefunden)!',
@@ -28,5 +29,5 @@ return [
     '{attribute} should contain at least {n, plural, one{one upper case character} other{# upper case characters}} ({found} found)!' => '{attribute} muss mindestens {n, plural, one{einen Großbuchstaben enthalten} other{# Großbuchstaben enthalten}} ({found} gefunden)!',
     '{attribute} should contain at most {n, plural, one{one character} other{# characters}} ({found} found)!' => '{attribute} darf höchstens {n, plural, one{ein Zeichen} other{# Zeichen}} enthalten ({found} gefunden)!',
     '{attribute} should contain exactly {n, plural, one{one character} other{# characters}} ({found} found)!' => '{attribute} muss genau {n, plural, one{ein Zeichen} other{# Zeichen}} enthalten ({found} gefunden)!',
-    '{attribute} is present in compromised password list' => '{attribute} befindet sich auf der Liste bereits kompromittierter Passwörter',
+    '{attribute} cannot contain more than {n, plural, one{one repeating character} other{# repeating characters}}!' => '',
 ];

@@ -1,6 +1,12 @@
 Change Log: `yii2-password`
 ===========================
 
+## Version 1.5.8
+
+**Date:** _under development_
+
+- (enh #80): Add new password validation for checking repeating characters.
+
 ## Version 1.5.7
 
 **Date:** 16-May-2022

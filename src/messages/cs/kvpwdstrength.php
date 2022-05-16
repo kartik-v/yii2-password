@@ -28,5 +28,6 @@ return [
     '{attribute} should contain at least {n, plural, one{one upper case character} other{# upper case characters}} ({found} found)!' => '{attribute} musí obsahovat minimálně {n, plural, one{jedno velké písmeno} two{2 velká písmena} three{3 velká písmena} four{4 velká písmena} other{# velkých písmen}} ({found} nalezeno)!',
     '{attribute} should contain at most {n, plural, one{one character} other{# characters}} ({found} found)!' => '{attribute} musí obsahovat maximálně {n, plural, one{jeden znak} two{2 znaky} three{3 znaky} four{4 znaky} other{# znaků}} ({found} nalezeno)!',
     '{attribute} should contain exactly {n, plural, one{one character} other{# characters}} ({found} found)!' => '{attribute} musí obsahovat přesně {n, plural, one{jeden znak} two{2 znaky} three{3 znaky} four{4 znaky} other{# znaků}} ({found} nalezeno)!',
+    '{attribute} cannot contain more than {n, plural, one{one repeating character} other{# repeating characters}}!' => '',
     '{attribute} is present in compromised password list' => '',
 ];

@@ -19,6 +19,7 @@
 return [
     '{attribute} cannot contain an email address' => '',
     '{attribute} cannot contain any spaces' => '',
+    '{attribute} cannot contain more than {n, plural, one{one repeating character} other{# repeating characters}}!' => '',
     '{attribute} cannot contain the username' => '',
     '{attribute} is present in compromised password list' => '',
     '{attribute} must be a string' => '',

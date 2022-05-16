@@ -1,7 +1,7 @@
 /*!
  * @copyright Copyright &copy; Kartik Visweswaran, Krajee.com, 2014 - 2022
  * @package yii2-password
- * @version 1.5.7
+ * @version 1.5.8
  *
  * Password Strength Validation
  * Built for Yii Framework 2.0
@@ -25,16 +25,19 @@ var kvStrengthValidator = {};
             var self = this, msg = message.replace(/\{found}/g, valueFound);
             self.addMessage(messages, msg, valueRequired);
         },
-        findPatterns: function (str) {
+        findPatterns: function (str, options) {
             var self = this, isEmpty = self.isEmpty,
+                repRegex = new RegExp("(\\w)\\1{" + options.repeat + ",}"),
                 lower = str.match(/[a-z]/g),
                 upper = str.match(/[A-Z]/g),
                 digit = str.match(/\d/g),
+                repeat = str.match(repRegex),
                 special = str.match(/\W/g);
             return {
                 lower: isEmpty(lower) ? 0 : lower.length,
                 upper: isEmpty(upper) ? 0 : upper.length,
                 digit: isEmpty(digit) ? 0 : digit.length,
+                repeat: isEmpty(repeat) ? 0 : repeat.length,
                 special: isEmpty(special) ? 0 : special.length
             };
         },
@@ -72,7 +75,7 @@ var kvStrengthValidator = {};
                 self.addMessage(messages, options.strError, value);
                 return;
             }
-            var patterns = self.findPatterns(value), len = value.length || 0,
+            var patterns = self.findPatterns(value, options), len = value.length || 0,
                 username = $(options.userField).val();
             if (compare(len, '<', options.min)) {
                 self.addError(messages, options.minError, options.min, len);
@@ -100,6 +103,10 @@ var kvStrengthValidator = {};
             }
             if (compare(patterns.digit, '<', options.digit)) {
                 self.addError(messages, options.digitError, options.digit, patterns.digit);
+            }
+            console.log('KV SAYS', patterns.repeat, compare(patterns.repeat, '>', 0));
+            if (compare(patterns.repeat, '>', 0)) {
+                self.addError(messages, options.repeatError, options.repeat, len);
             }
             if (compare(patterns.special, '<', options.special)) {
                 self.addError(messages, options.specialError, options.special, patterns.special);

@@ -3,7 +3,7 @@
  * @package   yii2-password
  * @author    Kartik Visweswaran <kartikv2@gmail.com>
  * @copyright Copyright &copy; Kartik Visweswaran, Krajee.com, 2014 - 2022
- * @version   1.5.7
+ * @version   1.5.8
  */
 
 namespace kartik\password;
@@ -18,6 +18,7 @@ return [
         'lower' => 1,
         'digit' => 1,
         'special' => 0,
+        'repeat' => 6,
         'hasUser' => false,
         'hasEmail' => false,
         'haveIBeenPwned' => false,
@@ -28,6 +29,7 @@ return [
         'lower' => 1,
         'digit' => 1,
         'special' => 0,
+        'repeat' => 5,
         'hasUser' => true,
         'hasEmail' => true,
         'haveIBeenPwned' => false,
@@ -38,6 +40,7 @@ return [
         'lower' => 1,
         'digit' => 1,
         'special' => 1,
+        'repeat' => 4,
         'hasUser' => true,
         'hasEmail' => true,
         'haveIBeenPwned' => false,
@@ -48,6 +51,7 @@ return [
         'lower' => 1,
         'digit' => 2,
         'special' => 1,
+        'repeat' => 3,
         'hasUser' => true,
         'hasEmail' => true,
         'haveIBeenPwned' => false,
@@ -58,6 +62,7 @@ return [
         'lower' => 2,
         'digit' => 2,
         'special' => 2,
+        'repeat' => 2,
         'hasUser' => true,
         'hasEmail' => true,
         'haveIBeenPwned' => false,

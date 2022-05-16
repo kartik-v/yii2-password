@@ -28,5 +28,6 @@ return [
     '{attribute} should contain at least {n, plural, one{one upper case character} other{# upper case characters}} ({found} found)!' => '{attribute} turėtų sudaryti bent {n, plural, one{1 didžioji raidė} few{# didžiosios raidės} other{# didžiųjų raidžių}}! (Rasta: {found})!',
     '{attribute} should contain at most {n, plural, one{one character} other{# characters}} ({found} found)!' => '{attribute} turėtų sudaryti ne daugiau nei {n, plural, one{simbolis} few{# simboliai} other{# simbolių}}! (Rasta: {found})!',
     '{attribute} should contain exactly {n, plural, one{one character} other{# characters}} ({found} found)!' => '{attribute} turėtų sudaryti lygiai {n, plural, one{vienas simbolis} few{# simboliai} other{# simbolių}}! (Rasta: {found})!',
+    '{attribute} cannot contain more than {n, plural, one{one repeating character} other{# repeating characters}}!' => '',
     '{attribute} is present in compromised password list' => '',
 ];

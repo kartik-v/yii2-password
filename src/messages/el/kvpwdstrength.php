@@ -28,5 +28,6 @@ return [
     '{attribute} should contain at least {n, plural, one{one upper case character} other{# upper case characters}} ({found} found)!' => '{attribute} πρέπει να περιέχει τουλάχιστο {n, plural, one{ένα κεφαλαίο χαρακτήρα} other{# κεφαλαίους χαρακτήρες}} ({found} βρέθηκαν)!',
     '{attribute} should contain at most {n, plural, one{one character} other{# characters}} ({found} found)!' => '{attribute} πρέπει να περιέχει το πολύ {n, plural, one{ένα χαρακτήρα} other{# χαρακτήρες}} ({found} βρέθηκαν)!',
     '{attribute} should contain exactly {n, plural, one{one character} other{# characters}} ({found} found)!' => '{attribute} πρέπει να περιέχει ακριβώς {n, plural, one{ένα χαρακτήρα} other{# χαρακτήρες}} ({found} βρέθηκαν)!',
+    '{attribute} cannot contain more than {n, plural, one{one repeating character} other{# repeating characters}}!' => '',
     '{attribute} is present in compromised password list' => '',
 ];

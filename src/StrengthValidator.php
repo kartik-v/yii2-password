@@ -4,7 +4,7 @@
  * @package   yii2-password
  * @author    Kartik Visweswaran <kartikv2@gmail.com>
  * @copyright Copyright &copy; Kartik Visweswaran, Krajee.com, 2014 - 2022
- * @version   1.5.7
+ * @version   1.5.8
  */
 
 namespace kartik\password;
@@ -106,6 +106,10 @@ class StrengthValidator extends Validator
      */
     const RULE_SPL = 'special';
     /**
+     * @var string rule to check whether the password has repeating characters
+     */
+    const RULE_REP = 'repeat';
+    /**
      * @var string rule to check whether the password is part of `HaveIBeenPwned` database
      */
     const RULE_HIBP = 'haveIBeenPwned';
@@ -172,6 +176,11 @@ class StrengthValidator extends Validator
      * @var int minimal number of special characters
      */
     public $special = 2;
+
+    /**
+     * @var int maximum number of same characters that can be repeated
+     */
+    public $repeat = 2;
 
     /**
      * @var bool whether to check the online database of "Have I Been Pwned"
@@ -251,6 +260,11 @@ class StrengthValidator extends Validator
     public $specialError;
 
     /**
+     * @var string user-defined error message used when the number of characters repeated exceeds [[repeat]].
+     */
+    public $repeatError;
+
+    /**
      * @var string user-defined error message used when password is found in Have I Been Pwned
      */
     public $haveIBeenPwnedError;
@@ -274,7 +288,7 @@ class StrengthValidator extends Validator
         'lower' => 3,
         'upper' => 3,
         'digit' => 3,
-        'special' => 3,
+        'special' => 3
     ];
 
     /**
@@ -297,6 +311,7 @@ class StrengthValidator extends Validator
         self::RULE_UP => ['match' => '![A-Z]!', 'int' => true],
         self::RULE_NUM => ['match' => '![\d]!', 'int' => true],
         self::RULE_SPL => ['match' => '![\W]!', 'int' => true],
+        self::RULE_REP => ['match' => '/(\w)\1{<REP>,}/'], // <REP> flag will be replaced with $repeat
         self::RULE_HIBP => ['bool' => true],
     ];
 
@@ -441,6 +456,11 @@ class StrengthValidator extends Validator
                     'kvpwdstrength',
                     '{attribute} should contain at least {n, plural, one{one special character} other{# special characters}} ({found} found)!'
                 );
+            case self::RULE_REP:
+                return Yii::t(
+                    'kvpwdstrength',
+                    '{attribute} cannot contain more than {n, plural, one{one repeating character} other{# repeating characters}}!'
+                );
             case self::RULE_HIBP:
                 return Yii::t('kvpwdstrength', '{attribute} is present in compromised password list');
         }
@@ -485,15 +505,30 @@ class StrengthValidator extends Validator
                 Lib::strpos($value, $username) !== false;
             $chkEmail = $rule === self::RULE_EMAIL && $ruleValue && Lib::preg_match($setup['match'], $value, $matches);
             $chkSpaces = $rule === self::RULE_SPACES && !$ruleValue && Lib::strpos($value, ' ') !== false;
-            if ($chkUser || $chkEmail || $chkSpaces) {
+            if ($rule === self::RULE_REP && $ruleValue && !empty($setup['match'])) {
+
+                $count = Lib::preg_match_all($match, $value, $temp);
+                if ($count > $ruleValue) {
+                    if ($hasModel) {
+                        $this->addError($model, $attribute, $this->$param, ['attribute' => $label, 'found' => $count]);
+                    }
+                    return [$this->$param, ['found' => $count]];
+                }
+            }
+           if ($chkUser || $chkEmail || $chkSpaces) {
                 if ($hasModel) {
                     $this->addError($model, $attribute, $this->$param, ['attribute' => $label]);
                 } else {
                     return [$this->$param, []];
                 }
             } elseif ($rule !== self::RULE_EMAIL && $rule !== self::RULE_USER && !empty($setup['match'])) {
-                $count = Lib::preg_match_all($setup['match'], $value, $temp);
-                if ($count < $ruleValue) {
+               $match = $setup['match'];
+               if ($rule === self::RULE_REP) {
+                   $match = Lib::str_replace('<REP>', $ruleValue, $setup['match']);
+               }
+               $count = Lib::preg_match_all($match, $value, $temp);
+               $failed = $rule === self::RULE_REP ? $count > 0 : $count < $ruleValue;
+               if ($failed) {
                     if ($hasModel) {
                         $this->addError($model, $attribute, $this->$param, ['attribute' => $label, 'found' => $count]);
                     } else {
@@ -525,7 +560,7 @@ class StrengthValidator extends Validator
                 } elseif ($rule === self::RULE_MAX) {
                     $test = ($length > $ruleValue);
                 }
-                if ($ruleValue !== null && $test) {
+                if ($ruleValue !== null && $rule !== self::RULE_REP && $test) {
                     if ($hasModel) {
                         $this->addError($model, $attribute, $this->$param, [
                             'attribute' => $label.' ('.$rule.' , '.$ruleValue.')',
@@ -537,7 +572,6 @@ class StrengthValidator extends Validator
                 }
             }
         }
-
         return null;
     }
 

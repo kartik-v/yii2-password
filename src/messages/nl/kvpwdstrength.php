@@ -20,6 +20,7 @@ return [
     '{attribute} cannot contain an email address' => '{attribute} mag niet het email-adres bevatten',
     '{attribute} cannot contain any spaces' => '{attribute} mag geen spaties bevatten',
     '{attribute} cannot contain the username' => '{attribute} mag niet de gebruikersnaam bevatten',
+    '{attribute} is present in compromised password list' => '{attribute} is gevonden in een lijst met gekraakte wachtwoorden',
     '{attribute} must be a string' => '{attribute} moet een string zijn',
     '{attribute} should contain at least {n, plural, one{one character} other{# characters}} ({found} found)!' => '{attribute} moet minstens {n, plural, one{één karakter} other{# karakters}} bevatten ({found} gevonden)!',
     '{attribute} should contain at least {n, plural, one{one lower case character} other{# lower case characters}} ({found} found)!' => '{attribute} moet minstens {n, plural, one{één kleine letter} other{# kleine letters}} bevatten ({found} gevonden)!',
@@ -28,5 +29,5 @@ return [
     '{attribute} should contain at least {n, plural, one{one upper case character} other{# upper case characters}} ({found} found)!' => '{attribute} moet minstens {n, plural, one{één hoofdletter} other{# hoofdletters}} bevatten ({found} gevonden)!',
     '{attribute} should contain at most {n, plural, one{one character} other{# characters}} ({found} found)!' => '{attribute} mag maximaal {n, plural, one{één karakter} other{# karakters}} bevatten ({found} gevonden)!',
     '{attribute} should contain exactly {n, plural, one{one character} other{# characters}} ({found} found)!' => '{attribute} moet precies {n, plural, one{één karakter} other{# karakters}} bevatten ({found} gevonden)!',
-    '{attribute} is present in compromised password list' => '{attribute} is gevonden in een lijst met gekraakte wachtwoorden',
+    '{attribute} cannot contain more than {n, plural, one{one repeating character} other{# repeating characters}}!' => '',
 ];
